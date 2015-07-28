@@ -1,0 +1,14 @@
+CheckList:
+    -UI/MENU
+    -Jump Mechanics
+    -Fixing Hill/Spike spawn Locations
+    -Fixing HitBoxes
+    -Fix Rabbit running animation
+    -Add rabbit death animation
+    -Fix Spike Assets
+    -Fix Cloud Assets
+    -Fix Fonts
+    -Carrot?
+    -Ads
+    -publish
+

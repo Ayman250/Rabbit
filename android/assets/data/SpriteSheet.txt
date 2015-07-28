@@ -1,0 +1,179 @@
+SpriteSheet.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Frame05
+  rotate: false
+  xy: 2, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame06
+  rotate: false
+  xy: 38, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame09
+  rotate: false
+  xy: 74, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame08
+  rotate: false
+  xy: 110, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame07
+  rotate: false
+  xy: 146, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame01
+  rotate: false
+  xy: 182, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame02
+  rotate: false
+  xy: 218, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame04
+  rotate: false
+  xy: 254, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame03
+  rotate: false
+  xy: 290, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+pause
+  rotate: false
+  xy: 326, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+restart
+  rotate: false
+  xy: 428, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+right
+  rotate: false
+  xy: 530, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+leaderboardsComplex
+  rotate: false
+  xy: 632, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+shoppingCart
+  rotate: false
+  xy: 734, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+checkmark
+  rotate: false
+  xy: 836, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+audioOff
+  rotate: false
+  xy: 938, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+audioOn
+  rotate: false
+  xy: 1040, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+cloud1
+  rotate: false
+  xy: 1142, 2
+  size: 150, 60
+  orig: 150, 60
+  offset: 0, 0
+  index: -1
+cloud2
+  rotate: false
+  xy: 1294, 2
+  size: 150, 60
+  orig: 150, 60
+  offset: 0, 0
+  index: -1
+hillBottom
+  rotate: false
+  xy: 1446, 2
+  size: 212, 43
+  orig: 212, 43
+  offset: 0, 0
+  index: -1
+hillTop
+  rotate: false
+  xy: 2, 104
+  size: 212, 45
+  orig: 212, 45
+  offset: 0, 0
+  index: -1
+Spikes
+  rotate: false
+  xy: 216, 104
+  size: 197, 87
+  orig: 197, 87
+  offset: 0, 0
+  index: -1
+hill
+  rotate: false
+  xy: 415, 104
+  size: 212, 130
+  orig: 212, 130
+  offset: 0, 0
+  index: -1
+settings
+  rotate: false
+  xy: 629, 104
+  size: 182, 189
+  orig: 182, 189
+  offset: 0, 0
+  index: -1
+background
+  rotate: false
+  xy: 813, 104
+  size: 768, 768
+  orig: 768, 768
+  offset: 0, 0
+  index: -1
