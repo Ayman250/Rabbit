@@ -101,7 +101,13 @@ public class InputHandler implements InputProcessor {
         } else if (world.isMenu()) {
             if (doneButton.isTouchDown(screenX, screenY)){
                 AssetLoader.click.play();
-                world.pause();
+                System.out.println(world.getPreviousState());
+                if (world.getPreviousState() == GameWorld.GameState.READY) {
+                    world.ready();
+                }
+                else if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
+                    world.pause();
+                }
             } else if (audioButton.isTouchDown(screenX, screenY)) {
                 if (world.isSoundOn()) {
                     world.stopSound();
@@ -114,10 +120,18 @@ public class InputHandler implements InputProcessor {
 
             }
         } else if (this.world.isReady()) {
-            if(!settingsButton.isTouchDown(screenX, screenY)) {
+
+            if(settingsButton.isTouchDown(screenX, screenY)) {
+                world.menu();
+            }
+            else if (hiScoreButton.isTouchDown(screenX, screenY)) {
+
+            }
+            else {
                 AssetLoader.click.play();
                 this.world.start();
             }
+
         } else  if (world.isPaused()) {
             if (settingsButton.isTouchDown(screenX, screenY)) {
                 AssetLoader.click.play();

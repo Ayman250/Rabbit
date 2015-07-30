@@ -19,7 +19,7 @@ public class GameWorld {
 
     private boolean scoring, soundOn;
 
-    private GameState currentState;
+    private GameState currentState, previousState;
 
     public enum GameState {
         MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING
@@ -98,10 +98,12 @@ public class GameWorld {
             scroller.stop();
             stopMusic();
             rabbit.die();
+            previousState = currentState;
             currentState = GameState.GAMEOVER;
 
             if (score > AssetLoader.getHighScore()) {
                 AssetLoader.setHighScore(score);
+                previousState = currentState;
                 currentState = GameState.HIGHSCORE;
             }
         }
@@ -131,15 +133,18 @@ public class GameWorld {
     }
 
     public void start() {
+        previousState = currentState;
         currentState = GameState.RUNNING;
         AssetLoader.bgMusic.play();
     }
 
     public void startResuming() {
+        previousState = currentState;
         currentState = GameState.RESUMING;
     }
 
     public void restart() {
+        previousState = currentState;
         currentState = GameState.READY;
         score = 0;
         scoring = true;
@@ -154,6 +159,7 @@ public class GameWorld {
         rabbit.pause();
         stopScoring();
         pauseMusic();
+        previousState = currentState;
         currentState = GameState.PAUSED;
     }
 
@@ -162,10 +168,12 @@ public class GameWorld {
         rabbit.resume();
         resumeScoring();
         playMusic();
+        previousState = currentState;
         currentState = GameState.RUNNING;
     }
 
     public void menu() {
+        previousState = currentState;
         currentState = GameState.MENU;
     }
 
@@ -225,6 +233,10 @@ public class GameWorld {
         return currentState == GameState.PAUSED;
     }
 
+    public GameState getPreviousState() {
+        return previousState;
+    }
+
     //Used in case scoring needs to be resumed while game is still running.
     public void startScoring() {
         scoring = true;
@@ -259,6 +271,7 @@ public class GameWorld {
     public int getResumingTime() {
         return (int) Math.ceil(resumingCounter);
     }
+
     public int getScore() {
         return score;
     }

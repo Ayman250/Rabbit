@@ -257,7 +257,9 @@ public class GameRender {
         if (world.isGameOver() || world.isHighScore()) {
             if (world.isGameOver()) {
                 AssetLoader.gameFont.draw(batch, "GAME OVER",
-                        gameWidth / 2 - 100, gameHeight / 2 - 40);
+                        gameWidth / 2 - 100, gameHeight / 2);
+                AssetLoader.gameFont.draw(batch, "GAME OVER",
+                        gameWidth / 2 - 100, gameHeight / 2);
             } else {
                 AssetLoader.gameFont.draw(batch, "HIGH SCORE!",
                         gameWidth / 2 - 90, gameHeight / 2 - 40);
@@ -270,11 +272,9 @@ public class GameRender {
                 return;
             }
         }
-        if (world.isReady()) {
-            AssetLoader.gameFont.draw(batch, "TOUCH TO START!",
-                    gameWidth / 2 - 190, gameHeight / 2 - 40);
 
-        } else {
+
+         {
             int length = ("" + world.getScore()).length();
             AssetLoader.scoreFont.draw(batch, "" + world.getScore() + " m",
                     gameWidth / 2 - (3 * length)*5, gameHeight / 20);
@@ -332,7 +332,7 @@ public class GameRender {
 
 
 
-        if ( world.isMenu() || world.isPaused()) {
+        if ( world.isMenu() || world.isPaused() || world.isReady()) {
             batch.setColor(1F, 1F, 1F, 1F);
             batch.draw(AssetLoader.uiBackground, 320, 180, 640, 360);
         }
@@ -362,6 +362,8 @@ public class GameRender {
         if (world.isReady()) {
             settingsButton.draw(batch);
             hiScoreButton.draw(batch);
+            AssetLoader.gameFont.draw(batch, "TOUCH TO START!",
+            gameWidth / 2 - 190, gameHeight / 2 - 40);
         }
         if (world.isRunning()) {
             batch.setColor(1F, 1F, 1F, 1F);
