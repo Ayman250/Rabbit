@@ -22,13 +22,13 @@ public class GameWorld {
     private GameState currentState, previousState;
 
     public enum GameState {
-        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING
+        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING, TITLE
     }
 
     public GameWorld(int gameWidth, int gameHeight, float midPointY, int groundY) {
 
 
-        currentState = GameState.READY;
+        currentState = GameState.TITLE;
 
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
@@ -55,6 +55,7 @@ public class GameWorld {
     public void update(float delta) {
 
         runTime += delta;
+        scroller.updateClouds(delta);
         switch (currentState) {
             case READY:
             case MENU:
@@ -135,7 +136,7 @@ public class GameWorld {
     public void start() {
         previousState = currentState;
         currentState = GameState.RUNNING;
-        AssetLoader.bgMusic.play();
+
     }
 
     public void startResuming() {
@@ -231,6 +232,10 @@ public class GameWorld {
 
     public boolean isPaused() {
         return currentState == GameState.PAUSED;
+    }
+
+    public boolean isTitle() {
+        return  currentState == GameState.TITLE;
     }
 
     public GameState getPreviousState() {

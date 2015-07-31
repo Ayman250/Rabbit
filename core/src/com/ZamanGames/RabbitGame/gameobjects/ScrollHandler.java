@@ -83,6 +83,8 @@ public class ScrollHandler {
 
     public void update(float delta) {
 
+        updateClouds(delta);
+
         hill1.update(delta);
         hill2.update(delta);
         hill3.update(delta);
@@ -102,10 +104,7 @@ public class ScrollHandler {
         tree3.update(delta);
         tree4.update(delta);
 
-        cloud1.update(delta);
-        cloud2.update(delta);
-        cloud3.update(delta);
-        cloud4.update(delta);
+
 
         if (hill1.rabbitOn(rabbit) && hill1.getY() > 0) {
             rabbit.changeHeight(hill1.getY() + hill1.getHeight() - 7);
@@ -187,15 +186,7 @@ public class ScrollHandler {
             //fence2.changeHeight(ground2.getY());
         }
 
-        if (cloud1.isScrolledLeft) {
-            cloud1.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
-        } else if (cloud2.isScrolledLeft) {
-            cloud2.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
-        }else if (cloud3.isScrolledLeft) {
-            cloud3.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
-        }else if (cloud4.isScrolledLeft) {
-            cloud4.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
-        }
+
 
 
         if (water1.isScrolledLeft()) {
@@ -210,7 +201,20 @@ public class ScrollHandler {
     }
 
     public void updateClouds(float delta) {
+        cloud1.update(delta);
+        cloud2.update(delta);
+        cloud3.update(delta);
+        cloud4.update(delta);
 
+        if (cloud1.isScrolledLeft) {
+            cloud1.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
+        } else if (cloud2.isScrolledLeft) {
+            cloud2.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
+        }else if (cloud3.isScrolledLeft) {
+            cloud3.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
+        }else if (cloud4.isScrolledLeft) {
+            cloud4.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
+        }
     }
 
     public void stop() {

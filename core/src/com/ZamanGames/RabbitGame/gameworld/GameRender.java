@@ -39,7 +39,7 @@ public class GameRender {
 
 //    private float dustTimer, dustTimeLeft;
 
-    private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown;
+    private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, title, tPlayButton, tSettingsButton, tHighScoresButton;
 
     private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw;
 
@@ -119,10 +119,10 @@ public class GameRender {
     public void drawHillBottoms() {
         //draw((x coordinates of top and bottom match, y is shifted by the width (last parameter) so that it sits nicely on top of hill
         //width of hilltop should match width of hill and the height should be experiments with (2*width seems to work well)
-        batch.draw(hillBottom, hill1.getX(), hill1.getY()-1, hill1.getWidth(), 12);
-        batch.draw(hillBottom, hill2.getX(), hill2.getY()-1, hill2.getWidth(), 12);
-        batch.draw(hillBottom, hill3.getX(), hill3.getY()-1, hill3.getWidth(), 12);
-        batch.draw(hillBottom, hill4.getX(), hill4.getY()-1, hill4.getWidth(), 12);
+        batch.draw(hillBottom, hill1.getX(), hill1.getY(), hill1.getWidth(), 12);
+        batch.draw(hillBottom, hill2.getX(), hill2.getY(), hill2.getWidth(), 12);
+        batch.draw(hillBottom, hill3.getX(), hill3.getY(), hill3.getWidth(), 12);
+        batch.draw(hillBottom, hill4.getX(), hill4.getY(), hill4.getWidth(), 12);
     }
 
     public void drawGround() {
@@ -232,7 +232,7 @@ public class GameRender {
     }
 
     public void drawRabbit(float delta, float runTime) {
-        if (rabbit.inAir() || world.isReady() || world.isPaused() || world.isMenu()){
+        if (rabbit.inAir() || world.isReady() || world.isPaused() || world.isMenu() || world.isTitle()){
             batch.draw(rabbitJumped, rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
         }
         else{
@@ -254,7 +254,9 @@ public class GameRender {
     }
 
     private void drawScore() {
-        if (world.isGameOver() || world.isHighScore()) {
+        if (world.isTitle()) {
+            return;
+        } else if (world.isGameOver() || world.isHighScore()) {
             if (world.isGameOver()) {
                 AssetLoader.gameFont.draw(batch, "GAME OVER",
                         gameWidth / 2 - 100, gameHeight / 2);
@@ -274,10 +276,10 @@ public class GameRender {
         }
 
 
-         {
+        {
             int length = ("" + world.getScore()).length();
             AssetLoader.scoreFont.draw(batch, "" + world.getScore() + " m",
-                    gameWidth / 2 - (3 * length)*5, gameHeight / 20);
+                    gameWidth / 2 - (3 * length) * 5, gameHeight / 20);
         }
     }
 
@@ -287,6 +289,16 @@ public class GameRender {
             button.draw(batch);
         }
 
+    }
+
+    public void drawTitle() {
+        if (world.isTitle()) {
+            batch.draw(title, 16, 340, 1274, -216);
+            batch.draw(tSettingsButton, 345, 450, 150, -150);
+            batch.draw(tPlayButton, 570, 450, 150, -150);
+            batch.draw(tHighScoresButton, 795, 450, 150, -150);
+
+        }
     }
 
     private void drawBackground() {
@@ -329,6 +341,10 @@ public class GameRender {
         drawSpikes();
         drawScore();
         drawRabbit(delta, runTime);
+        drawTitle();
+
+
+        //LATER FIX THIS AND GIVE EACH IT'S OWN METHOD
 
 
 
@@ -411,6 +427,10 @@ public class GameRender {
         dust = AssetLoader.dust;
         treeTall = AssetLoader.treeTall;
         treeShort = AssetLoader.treeShort;
+        title = AssetLoader.title;
+        tPlayButton = AssetLoader.tPlayButton;
+        tSettingsButton = AssetLoader.tSettingsButton;
+        tHighScoresButton = AssetLoader.tHighScoresButton;
     }
 
 }

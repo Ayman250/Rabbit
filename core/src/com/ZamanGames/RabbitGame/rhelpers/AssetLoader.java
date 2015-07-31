@@ -17,12 +17,12 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class AssetLoader {
 
-    public static Texture ground, dirt, uiBackground;
+    public static Texture ground, dirt, uiBackground, title, tPlayButton, tSettingsButton, tHighScoresButton;
 
     public static TextureAtlas spriteSheet;
 
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water, spikes, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
-    audioOff, audioOn, settings, shoppingCart, pause, restart, playButton, hiScores, done;
+    audioOff, audioOn, settings, shoppingCart, pause, restart, hiScores, done, playButton;
 
     public static Animation runningAnimation;
 
@@ -41,9 +41,17 @@ public class AssetLoader {
 
         dirt = new Texture(Gdx.files.internal("data/ground_dirt.png"));
 
+        title = new Texture(Gdx.files.internal("data/Title.png"));
+
         rabbitJumped = new TextureRegion(spriteSheet.findRegion("Frame01"));
 
         uiBackground = new Texture(Gdx.files.internal("data/UIBackground.png"));
+
+        tPlayButton = new Texture(Gdx.files.internal("data/playButton.png"));
+
+        tSettingsButton = new Texture(Gdx.files.internal("data/settingsButton.png"));
+
+        tHighScoresButton = new Texture(Gdx.files.internal("data/highscoresButton.png"));
 
         //temp PlayButtons
 
@@ -65,9 +73,9 @@ public class AssetLoader {
         shoppingCart = new TextureRegion(spriteSheet.findRegion("shoppingCart"));
         pause = new TextureRegion(spriteSheet.findRegion("pause"));
         restart = new TextureRegion(spriteSheet.findRegion("restart"));
-        playButton = new TextureRegion(spriteSheet.findRegion("right"));
         hiScores = new TextureRegion(spriteSheet.findRegion("leaderboardsComplex"));
         done = new TextureRegion(spriteSheet.findRegion("checkmark"));
+        playButton = new TextureRegion(spriteSheet.findRegion("checkmark"));
 
         TextureRegion[] runFrames = {spriteSheet.findRegion("Frame01"), spriteSheet.findRegion("Frame02"), spriteSheet.findRegion("Frame03"),
                 spriteSheet.findRegion("Frame04"), spriteSheet.findRegion("Frame05"), spriteSheet.findRegion("Frame06"),
@@ -97,6 +105,8 @@ public class AssetLoader {
         bgMusic.setLooping(true);
         bgMusic.setVolume(1f);
         click.setVolume(1);
+
+        AssetLoader.bgMusic.play();
 
 //        gameFont.getData().setScale(2f,2f);
 
