@@ -39,9 +39,9 @@ public class GameRender {
 
 //    private float dustTimer, dustTimeLeft;
 
-    private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, title, tPlayButton, tSettingsButton, tHighScoresButton;
+    private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton;
 
-    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw;
+    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title;
 
     private Animation runningAnimation;
 

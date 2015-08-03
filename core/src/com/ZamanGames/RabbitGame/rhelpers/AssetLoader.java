@@ -17,14 +17,14 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class AssetLoader {
 
-    public static Texture ground, dirt, uiBackground, title;
+    public static Texture ground, dirt, uiBackground;
 
     public static TextureAtlas spriteSheet;
 
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
             spikes, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
             audioOff, audioOn, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
-            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown;
+            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title;
 
     public static Animation runningAnimation;
 
@@ -42,8 +42,6 @@ public class AssetLoader {
 
         dirt = new Texture(Gdx.files.internal("data/ground_dirt.png"));
 
-        title = new Texture(Gdx.files.internal("data/Title.png"));
-
         rabbitJumped = new TextureRegion(spriteSheet.findRegion("Frame01"));
 
         uiBackground = new Texture(Gdx.files.internal("data/UIBackground.png"));
@@ -56,6 +54,7 @@ public class AssetLoader {
         highscoresButtonDown = new TextureRegion(spriteSheet.findRegion("highscoresButtonDown"));
         restartButtonUp = new TextureRegion(spriteSheet.findRegion("restartButton"));
         restartButtonDown = new TextureRegion(spriteSheet.findRegion("restartButtonDown"));
+        title = new TextureRegion(spriteSheet.findRegion("title4"));
 
         background = new TextureRegion(spriteSheet.findRegion("background"));
         spikes = new TextureRegion(spriteSheet.findRegion("Spikes"));
