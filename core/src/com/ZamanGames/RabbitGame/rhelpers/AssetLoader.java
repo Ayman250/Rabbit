@@ -17,12 +17,14 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class AssetLoader {
 
-    public static Texture ground, dirt, uiBackground, title, tPlayButton, tSettingsButton, tHighScoresButton;
+    public static Texture ground, dirt, uiBackground, title;
 
     public static TextureAtlas spriteSheet;
 
-    public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water, spikes, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
-    audioOff, audioOn, settings, shoppingCart, pause, restart, hiScores, done, playButton;
+    public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
+            spikes, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
+            audioOff, audioOn, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
+            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown;
 
     public static Animation runningAnimation;
 
@@ -47,16 +49,15 @@ public class AssetLoader {
 
         uiBackground = new Texture(Gdx.files.internal("data/UIBackground.png"));
 
-        tPlayButton = new Texture(Gdx.files.internal("data/playButton.png"));
+        playButtonUp = new TextureRegion(spriteSheet.findRegion("playButton"));
+        playButtonDown = new TextureRegion(spriteSheet.findRegion("playButtonDown"));
+        settingsButtonUp = new TextureRegion(spriteSheet.findRegion("settingsButton"));
+        settingsButtonDown = new TextureRegion(spriteSheet.findRegion("settingsButtonDown"));
+        highscoresButtonUp = new TextureRegion(spriteSheet.findRegion("highscoresButton"));
+        highscoresButtonDown = new TextureRegion(spriteSheet.findRegion("highscoresButtonDown"));
+        restartButtonUp = new TextureRegion(spriteSheet.findRegion("restartButton"));
+        restartButtonDown = new TextureRegion(spriteSheet.findRegion("restartButtonDown"));
 
-        tSettingsButton = new Texture(Gdx.files.internal("data/settingsButton.png"));
-
-        tHighScoresButton = new Texture(Gdx.files.internal("data/highscoresButton.png"));
-
-        //temp PlayButtons
-
-        playButtonUp = new TextureRegion(spriteSheet.findRegion("Spikes"));
-        playButtonDown = new TextureRegion(spriteSheet.findRegion("Spikes"));
         background = new TextureRegion(spriteSheet.findRegion("background"));
         spikes = new TextureRegion(spriteSheet.findRegion("Spikes"));
         hillTop = new TextureRegion(spriteSheet.findRegion("hillTop"));
@@ -89,6 +90,14 @@ public class AssetLoader {
         hiScores.flip(false, true);
         background.flip(false, true);
         done.flip(false, true);
+        playButtonUp.flip(false, true);
+        playButtonDown.flip(false, true);
+        settingsButtonUp.flip(false, true);
+        settingsButtonDown.flip(false, true);
+        highscoresButtonUp.flip(false, true);
+        highscoresButtonDown.flip(false, true);
+        restartButtonUp.flip(false, true);
+        restartButtonDown.flip(false, true);
 
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("data/bgMusic.ogg"));
         click = Gdx.audio.newMusic(Gdx.files.internal("data/click.ogg"));

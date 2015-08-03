@@ -53,11 +53,11 @@ public class GameWorld {
     }
 
     public void update(float delta) {
-
         runTime += delta;
         scroller.updateClouds(delta);
         switch (currentState) {
             case READY:
+                updateReady(runTime);
             case MENU:
                 updateMenu(delta);
                 break;
@@ -66,6 +66,9 @@ public class GameWorld {
                 break;
             case RESUMING:
                 updateResuming(delta);
+                break;
+            case TITLE:
+                updateTitle(runTime);
                 break;
             case PAUSED:
                 updatePaused(delta);
@@ -127,6 +130,10 @@ public class GameWorld {
             resumingCounter = 3;
         }
 
+    }
+
+    public void updateTitle(float runTime) {
+        rabbit.updateTitle(runTime);
     }
 
     public void ready() {

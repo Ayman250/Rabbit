@@ -54,7 +54,7 @@ public class GameRender {
     private ScrollHandler scroller;
     private ParallaxBackground parallaxBackground;
 
-    private List<Button> menuButtons;
+    private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons;
 
     private Button playButton, settingsButton, audioButton, checkButton, hiScoreButton, pauseButton;
 
@@ -75,15 +75,24 @@ public class GameRender {
 
         this.menuButtons = ((InputHandler) Gdx.input.getInputProcessor())
                 .getMenuButtons();
-        this.settingsButton = ((InputHandler) Gdx.input.getInputProcessor())
-            .getSettingsButton();
-        this.hiScoreButton = ((InputHandler) Gdx.input.getInputProcessor())
-                .getHiScoreButton();
+        this.titleButtons = ((InputHandler) Gdx.input.getInputProcessor())
+                .getTitleButtons();
+        this.readyButtons = ((InputHandler) Gdx.input.getInputProcessor())
+                .getReadyButtons();
+        this.pausedButtons = ((InputHandler) Gdx.input.getInputProcessor())
+                .getPausedButtons();
+
         this.pauseButton = ((InputHandler) Gdx.input.getInputProcessor())
                 .getPauseButton();
-        this.playButton =
-                ((InputHandler) Gdx.input.getInputProcessor())
-                        .getPlayButton();
+
+//        this.settingsButton = ((InputHandler) Gdx.input.getInputProcessor())
+//            .getReadySettingsButton();
+//        this.hiScoreButton = ((InputHandler) Gdx.input.getInputProcessor())
+//                .getMenuHighscoresButton();
+//
+//        this.playButton =
+//                ((InputHandler) Gdx.input.getInputProcessor())
+//                        .getTitlePlayButton();
 
         initGameObjects();
         initAssets();
@@ -283,26 +292,73 @@ public class GameRender {
         }
     }
 
-    private void drawMenuUI() {
-
-        for (Button button : menuButtons) {
-            button.draw(batch);
+    private void drawBackgroundUI() {
+        if ( world.isMenu() || world.isPaused() || world.isReady()) {
+            batch.setColor(1F, 1F, 1F, 1F);
+            batch.draw(AssetLoader.uiBackground, 320, 180, 640, 360);
         }
+    }
 
+    private void drawMenuUI() {
+        if (world.isMenu()) {
+            for (Button button : menuButtons) {
+                System.out.println(button);
+                button.draw(batch);
+            }
+        }
+    }
+
+    public void drawRunning() {
+        if (world.isRunning()) {
+            batch.setColor(1F, 1F, 1F, 1F);
+            pauseButton.draw(batch);
+        }
     }
 
     public void drawTitle() {
         if (world.isTitle()) {
-            batch.draw(title, 16, 340, 1274, -216);
-            batch.draw(tSettingsButton, 345, 450, 150, -150);
-            batch.draw(tPlayButton, 570, 450, 150, -150);
-            batch.draw(tHighScoresButton, 795, 450, 150, -150);
+            batch.draw(title, 16, 300, 1274, -216);
+            for (Button button : titleButtons) {
+                button.draw(batch);
+            }
 
+        }
+    }
+
+    public void drawPause() {
+        if (world.isPaused()) {
+            batch.setColor(1F, 1F, 1F, 1F);
+            AssetLoader.gameFont.draw(batch, "Touch To Resume",
+                    gameWidth / 2 - 180, gameHeight / 2 - 120);
+            for (Button button : pausedButtons) {
+                button.draw(batch);
+            }
+            batch.setColor(0.5F, 0.5F, 0.5F, 1F);
+        }
+
+    }
+
+    public void drawReady() {
+        if (world.isReady()) {
+            AssetLoader.gameFont.draw(batch, "TOUCH TO START!",
+                    gameWidth / 2 - 180, gameHeight / 2 - 120);
+            for (Button button : readyButtons) {
+                button.draw(batch);
+            }
         }
     }
 
     private void drawBackground() {
         batch.draw(background, 0, gameHeight, gameWidth, -gameHeight);
+    }
+
+    public void drawResuming(){
+        if (world.isResuming()) {
+            batch.setColor(0.5F, 0.5F, 0.5F, 1F);
+            AssetLoader.resumingFont.draw(batch, "" + world.getResumingTime(),
+                    gameWidth / 2 - 30, gameHeight / 2 - 90);
+
+        }
     }
 
     //might use runTime later for animations
@@ -341,51 +397,15 @@ public class GameRender {
         drawSpikes();
         drawScore();
         drawRabbit(delta, runTime);
+        drawBackgroundUI();
         drawTitle();
+        drawPause();
+        drawMenuUI();
+        drawReady();
+        drawRunning();
+        drawResuming();
 
-
-        //LATER FIX THIS AND GIVE EACH IT'S OWN METHOD
-
-
-
-        if ( world.isMenu() || world.isPaused() || world.isReady()) {
-            batch.setColor(1F, 1F, 1F, 1F);
-            batch.draw(AssetLoader.uiBackground, 320, 180, 640, 360);
-        }
-
-        if (world.isMenu()) {
-            drawMenuUI();
-        }
-//        shapeRenderer.end();
-
-
-        if (world.isResuming()) {
-            batch.setColor(0.5F, 0.5F, 0.5F, 1F);
-            AssetLoader.resumingFont.draw(batch, "" + world.getResumingTime(),
-                    gameWidth / 2 - 30, gameHeight / 2 - 90);
-
-        }
-
-        if (world.isPaused()) {
-            batch.setColor(1F, 1F, 1F, 1F);
-            AssetLoader.gameFont.draw(batch, "Touch To Resume",
-                    gameWidth / 2 - 150, gameHeight / 2 - 90);
-            settingsButton.draw(batch);
-            hiScoreButton.draw(batch);
-            batch.setColor(0.5F, 0.5F, 0.5F, 1F);
-        }
-
-        if (world.isReady()) {
-            settingsButton.draw(batch);
-            hiScoreButton.draw(batch);
-            AssetLoader.gameFont.draw(batch, "TOUCH TO START!",
-            gameWidth / 2 - 190, gameHeight / 2 - 40);
-        }
-        if (world.isRunning()) {
-            batch.setColor(1F, 1F, 1F, 1F);
-            pauseButton.draw(batch);
-        }
-
+//        shapeRenderer.end();540
         batch.end();
 
     }
@@ -428,9 +448,6 @@ public class GameRender {
         treeTall = AssetLoader.treeTall;
         treeShort = AssetLoader.treeShort;
         title = AssetLoader.title;
-        tPlayButton = AssetLoader.tPlayButton;
-        tSettingsButton = AssetLoader.tSettingsButton;
-        tHighScoresButton = AssetLoader.tHighScoresButton;
     }
 
 }

@@ -68,6 +68,10 @@ public class Rabbit {
         position.y = 2 * (float) Math.sin(7 * runTime) + initY;
     }
 
+    public void updateTitle(float runTime) {
+        position.y = 2 * (float) Math.sin(7 * runTime) + initY;
+    }
+
     public void jump() {
         //if the rabbit lands reset upAllowed to false so game knows to activate jump mechanics when pressed
 

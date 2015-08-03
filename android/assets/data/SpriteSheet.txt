@@ -2,177 +2,240 @@ SpriteSheet.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Frame05
-  rotate: false
-  xy: 2, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame06
-  rotate: false
-  xy: 38, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame09
-  rotate: false
-  xy: 74, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame08
-  rotate: false
-  xy: 110, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame07
-  rotate: false
-  xy: 146, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame01
-  rotate: false
-  xy: 182, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame02
-  rotate: false
-  xy: 218, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame04
-  rotate: false
-  xy: 254, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame03
-  rotate: false
-  xy: 290, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-pause
-  rotate: false
-  xy: 326, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-restart
-  rotate: false
-  xy: 428, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-right
-  rotate: false
-  xy: 530, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-leaderboardsComplex
-  rotate: false
-  xy: 632, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-shoppingCart
-  rotate: false
-  xy: 734, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-checkmark
-  rotate: false
-  xy: 836, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-audioOff
-  rotate: false
-  xy: 938, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-audioOn
-  rotate: false
-  xy: 1040, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-cloud1
-  rotate: false
-  xy: 1142, 2
-  size: 150, 60
-  orig: 150, 60
-  offset: 0, 0
-  index: -1
-cloud2
-  rotate: false
-  xy: 1294, 2
-  size: 150, 60
-  orig: 150, 60
-  offset: 0, 0
-  index: -1
 hillBottom
   rotate: false
-  xy: 1446, 2
+  xy: 2, 2
   size: 212, 43
   orig: 212, 43
   offset: 0, 0
   index: -1
 hillTop
   rotate: false
-  xy: 2, 104
+  xy: 216, 2
   size: 212, 45
   orig: 212, 45
   offset: 0, 0
   index: -1
+Frame08
+  rotate: false
+  xy: 430, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame09
+  rotate: false
+  xy: 466, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame06
+  rotate: false
+  xy: 502, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame07
+  rotate: false
+  xy: 538, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame01
+  rotate: false
+  xy: 574, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame03
+  rotate: false
+  xy: 610, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame02
+  rotate: false
+  xy: 646, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame04
+  rotate: false
+  xy: 682, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame05
+  rotate: false
+  xy: 718, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+cloud2
+  rotate: false
+  xy: 754, 2
+  size: 150, 60
+  orig: 150, 60
+  offset: 0, 0
+  index: -1
+cloud1
+  rotate: false
+  xy: 906, 2
+  size: 150, 60
+  orig: 150, 60
+  offset: 0, 0
+  index: -1
+checkmark
+  rotate: false
+  xy: 1058, 2
+  size: 81, 83
+  orig: 81, 83
+  offset: 0, 0
+  index: -1
 Spikes
   rotate: false
-  xy: 216, 104
+  xy: 1141, 2
   size: 197, 87
   orig: 197, 87
   offset: 0, 0
   index: -1
+leaderboardsComplex
+  rotate: false
+  xy: 1340, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+pause
+  rotate: false
+  xy: 1442, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+right
+  rotate: false
+  xy: 1544, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+restart
+  rotate: false
+  xy: 1646, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+shoppingCart
+  rotate: false
+  xy: 1748, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+audioOff
+  rotate: false
+  xy: 1850, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+audioOn
+  rotate: false
+  xy: 2, 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
 hill
   rotate: false
-  xy: 415, 104
+  xy: 104, 104
   size: 212, 130
   orig: 212, 130
   offset: 0, 0
   index: -1
 settings
   rotate: false
-  xy: 629, 104
+  xy: 318, 104
   size: 182, 189
   orig: 182, 189
   offset: 0, 0
   index: -1
+settingsButton
+  rotate: false
+  xy: 502, 104
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+settingsButtonDown
+  rotate: false
+  xy: 696, 104
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+highscoresButtonDown
+  rotate: false
+  xy: 890, 104
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+highscoresButton
+  rotate: false
+  xy: 1084, 104
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+title4
+  rotate: false
+  xy: 2, 298
+  size: 1914, 274
+  orig: 1914, 274
+  offset: 0, 0
+  index: -1
+restartButton
+  rotate: false
+  xy: 2, 574
+  size: 309, 311
+  orig: 309, 311
+  offset: 0, 0
+  index: -1
+restartButtonDown
+  rotate: false
+  xy: 313, 574
+  size: 309, 311
+  orig: 309, 311
+  offset: 0, 0
+  index: -1
+playButtonDown
+  rotate: false
+  xy: 624, 574
+  size: 309, 311
+  orig: 309, 311
+  offset: 0, 0
+  index: -1
+playButton
+  rotate: false
+  xy: 935, 574
+  size: 309, 311
+  orig: 309, 311
+  offset: 0, 0
+  index: -1
 background
   rotate: false
-  xy: 813, 104
+  xy: 1246, 574
   size: 768, 768
   orig: 768, 768
   offset: 0, 0
