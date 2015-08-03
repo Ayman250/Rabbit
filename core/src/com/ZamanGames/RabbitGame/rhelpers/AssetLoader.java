@@ -35,7 +35,6 @@ public class AssetLoader {
     public static Preferences prefs;
 
 
-
     public static void load() {
         spriteSheet = new TextureAtlas(Gdx.files.internal("data/SpriteSheet.txt"));
 
