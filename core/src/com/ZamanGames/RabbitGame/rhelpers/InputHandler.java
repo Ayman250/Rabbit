@@ -123,64 +123,33 @@ public class InputHandler implements InputProcessor {
 
         //System.out.println(screenX + " " + screenY);
         if (world.isRunning()) {
-            if (pauseButton.isTouchDown(screenX, screenY)) {
-                AssetLoader.click.play();
-                world.pause();
-
-            } else{
+            if (!pauseButton.isTouchDown(screenX, screenY)) {
             rabbit.onClick();}
+        } else if (world.isPaused()) {
+            boolean pausedButtonClicked = false;
+            for (Button buttons : pausedButtons) {
+                if (buttons.isTouchDown(screenX, screenY)){
+                    pausedButtonClicked = true;
+                }
+            }
+                if (!pausedButtonClicked) {
+                    world.startResuming();
+
+            }
+
         } else if (world.isMenu()) {
-            if (menuDoneButton.isTouchDown(screenX, screenY)){
-                AssetLoader.click.play();
-                System.out.println(world.getPreviousState());
-                if (world.getPreviousState() == GameWorld.GameState.READY) {
-                    world.ready();
-                }
-                else if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
-                    world.pause();
-                }
-            } else if (menuAudioButton.isTouchDown(screenX, screenY)) {
-                if (world.isSoundOn()) {
-                    world.stopSound();
-                    menuAudioButton.changeTexture(AssetLoader.audioOff);
-                } else {
-                    world.startSound();
-                    AssetLoader.click.play();
-                    menuAudioButton.changeTexture(AssetLoader.audioOn);
-                }
-
+            for (Button buttons : menuButtons) {
+                buttons.isTouchDown(screenX, screenY);
             }
-        } else if (this.world.isReady()) {
-
-            if(readySettingsButton.isTouchDown(screenX, screenY)) {
-                world.menu();
+        } else if (world.isReady()) {
+            for (Button buttons : readyButtons) {
+                buttons.isTouchDown(screenX, screenY);
             }
-            else if (menuHighscoresButton.isTouchDown(screenX, screenY)) {
-
-            }
-            else {
-                AssetLoader.click.play();
-                this.world.start();
-            }
-
-        } else  if (world.isPaused()) {
-            if (pausedSettingsButton.isTouchDown(screenX, screenY)) {
-                AssetLoader.click.play();
-                world.menu();
-            } else {
-                world.startResuming();
-            }
-
-            System.out.println("resumed");
-        } else if (world.isGameOver()) {
-            //Reset all variables, go to GameState.Ready
-            this.world.restart();
         }
-
-        if (world.isTitle()) {
-            titlePlayButton.isTouchDown(screenX, screenY);
-//            titleSettingsButton.isTouchDown(screenX, screenY);
-//            titleHighscoresButton.isTouchDown(screenX, screenY);
+        else if (world.isTitle()) {
+            for (Button buttons : titleButtons) {
+                buttons.isTouchDown(screenX, screenY);
+            }
         }
 
 
@@ -194,12 +163,76 @@ public class InputHandler implements InputProcessor {
         screenX = scaleX(screenX);
         screenY = scaleY(screenY);
 
-        if (world.isTitle()) {
+        if (world.isRunning()) {
+            if (pauseButton.isTouchUp(screenX, screenY)) {
+                AssetLoader.click.play();
+                world.pause();
+
+            }
+        } else if (world.isTitle()) {
+            for (Button buttons : titleButtons) {
+                buttons.isTouchUp(screenX, screenY);
+            }
             System.out.println("title");
             if (titlePlayButton.isTouchUp(screenX, screenY)) {
                 System.out.println("ready");
                 world.start();
+            } else if (titleHighscoresButton.isTouchUp(screenX, screenY)) {
+            } else if (titleSettingsButton.isTouchUp(screenX, screenY)) {
             }
+        } else if (world.isMenu()) {
+            for (Button buttons : menuButtons) {
+                buttons.isTouchUp(screenX, screenY);
+            }
+            if (menuDoneButton.isTouchUp(screenX, screenY)){
+                AssetLoader.click.play();
+                System.out.println(world.getPreviousState());
+                if (world.getPreviousState() == GameWorld.GameState.READY) {
+                    world.ready();
+                }
+                else if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
+                    world.pause();
+                }
+            } else if (menuAudioButton.isTouchUp(screenX, screenY)) {
+                if (world.isSoundOn()) {
+                    world.stopSound();
+                    menuAudioButton.changeTexture(AssetLoader.audioOff);
+                } else {
+                    world.startSound();
+                    AssetLoader.click.play();
+                    menuAudioButton.changeTexture(AssetLoader.audioOn);
+                }
+
+            } else if (menuHighscoresButton.isTouchUp(screenX, screenY)) {
+
+            }
+        } else if (this.world.isReady()) {
+            for (Button buttons : readyButtons) {
+                buttons.isTouchUp(screenX, screenY);
+            }
+            if(readySettingsButton.isTouchUp(screenX, screenY)) {
+                world.menu();
+            }
+            else if (menuHighscoresButton.isTouchUp(screenX, screenY)) {
+
+            }
+            else {
+                AssetLoader.click.play();
+                this.world.start();
+            }
+
+        } else  if (world.isPaused()) {
+            for (Button buttons : pausedButtons) {
+                buttons.isTouchUp(screenX, screenY);
+            }
+            if (pausedSettingsButton.isTouchUp(screenX, screenY)) {
+                AssetLoader.click.play();
+                world.menu();
+            }
+
+        } else if (world.isGameOver()) {
+            //Reset all variables, go to GameState.Ready
+            this.world.restart();
         }
 
         rabbit.onRelease();

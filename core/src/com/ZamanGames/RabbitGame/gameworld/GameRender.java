@@ -302,7 +302,6 @@ public class GameRender {
     private void drawMenuUI() {
         if (world.isMenu()) {
             for (Button button : menuButtons) {
-                System.out.println(button);
                 button.draw(batch);
             }
         }
@@ -405,7 +404,7 @@ public class GameRender {
         drawRunning();
         drawResuming();
 
-//        shapeRenderer.end();540
+//      -  shapeRenderer.end();540
         batch.end();
 
     }

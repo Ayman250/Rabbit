@@ -75,6 +75,7 @@ public class AssetLoader {
         hiScores = new TextureRegion(spriteSheet.findRegion("leaderboardsComplex"));
         done = new TextureRegion(spriteSheet.findRegion("checkmark"));
         playButton = new TextureRegion(spriteSheet.findRegion("checkmark"));
+        title = new TextureRegion(spriteSheet.findRegion("title4"));
 
         TextureRegion[] runFrames = {spriteSheet.findRegion("Frame01"), spriteSheet.findRegion("Frame02"), spriteSheet.findRegion("Frame03"),
                 spriteSheet.findRegion("Frame04"), spriteSheet.findRegion("Frame05"), spriteSheet.findRegion("Frame06"),
