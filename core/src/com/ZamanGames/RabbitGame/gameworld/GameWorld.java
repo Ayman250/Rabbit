@@ -159,6 +159,7 @@ public class GameWorld {
         rabbit.onRestart(this.groundY);
         scroller.onRestart();
         currentState = GameState.READY;
+        AssetLoader.bgMusic.play();
 
     }
 

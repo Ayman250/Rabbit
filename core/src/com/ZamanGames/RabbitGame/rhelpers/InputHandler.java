@@ -170,9 +170,7 @@ public class InputHandler implements InputProcessor {
 
             }
         } else if (world.isTitle()) {
-            for (Button buttons : titleButtons) {
-                buttons.isTouchUp(screenX, screenY);
-            }
+
             System.out.println("title");
             if (titlePlayButton.isTouchUp(screenX, screenY)) {
                 System.out.println("ready");
@@ -181,9 +179,6 @@ public class InputHandler implements InputProcessor {
             } else if (titleSettingsButton.isTouchUp(screenX, screenY)) {
             }
         } else if (world.isMenu()) {
-            for (Button buttons : menuButtons) {
-                buttons.isTouchUp(screenX, screenY);
-            }
             if (menuDoneButton.isTouchUp(screenX, screenY)){
                 AssetLoader.click.play();
                 System.out.println(world.getPreviousState());
@@ -207,9 +202,7 @@ public class InputHandler implements InputProcessor {
 
             }
         } else if (this.world.isReady()) {
-            for (Button buttons : readyButtons) {
-                buttons.isTouchUp(screenX, screenY);
-            }
+
             if(readySettingsButton.isTouchUp(screenX, screenY)) {
                 world.menu();
             }
@@ -222,17 +215,19 @@ public class InputHandler implements InputProcessor {
             }
 
         } else  if (world.isPaused()) {
-            for (Button buttons : pausedButtons) {
-                buttons.isTouchUp(screenX, screenY);
-            }
+
             if (pausedSettingsButton.isTouchUp(screenX, screenY)) {
                 AssetLoader.click.play();
                 world.menu();
+            } else if (pausedRestartButton.isTouchUp(screenX, screenY)) {
+                world.restart();
+            } else if (pausedHighscoresButton.isTouchUp(screenX, screenY)) {
+
             }
 
         } else if (world.isGameOver()) {
             //Reset all variables, go to GameState.Ready
-            this.world.restart();
+            world.restart();
         }
 
         rabbit.onRelease();
