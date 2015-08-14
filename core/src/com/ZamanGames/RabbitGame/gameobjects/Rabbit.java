@@ -65,11 +65,10 @@ public class Rabbit {
     }
 
     public void updateReady(float runTime) {
-        position.y = 2 * (float) Math.sin(7 * runTime) + initY;
+//        position.y = 2 * (float) Math.sin(7 * runTime) + initY;
     }
 
     public void updateTitle(float runTime) {
-        position.y = 2 * (float) Math.sin(7 * runTime) + initY;
     }
 
     public void jump() {

@@ -43,7 +43,7 @@ public class GameRender {
 
     private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title;
 
-    private Animation runningAnimation;
+    private Animation runningAnimation, idleAnimation;
 
     private Scrollable water1, water2;
     private Cloud cloud1, cloud2, cloud3, cloud4;
@@ -128,10 +128,10 @@ public class GameRender {
     public void drawHillBottoms() {
         //draw((x coordinates of top and bottom match, y is shifted by the width (last parameter) so that it sits nicely on top of hill
         //width of hilltop should match width of hill and the height should be experiments with (2*width seems to work well)
-        batch.draw(hillBottom, hill1.getX(), hill1.getY(), hill1.getWidth(), 12);
-        batch.draw(hillBottom, hill2.getX(), hill2.getY(), hill2.getWidth(), 12);
-        batch.draw(hillBottom, hill3.getX(), hill3.getY(), hill3.getWidth(), 12);
-        batch.draw(hillBottom, hill4.getX(), hill4.getY(), hill4.getWidth(), 12);
+        batch.draw(hillBottom, hill1.getX(), hill1.getY(), hill1.getWidth(), 14);
+        batch.draw(hillBottom, hill2.getX(), hill2.getY(), hill2.getWidth(), 14);
+        batch.draw(hillBottom, hill3.getX(), hill3.getY(), hill3.getWidth(), 14);
+        batch.draw(hillBottom, hill4.getX(), hill4.getY(), hill4.getWidth(), 14);
     }
 
     public void drawGround() {
@@ -241,10 +241,11 @@ public class GameRender {
     }
 
     public void drawRabbit(float delta, float runTime) {
-        if (rabbit.inAir() || world.isReady() || world.isPaused() || world.isMenu() || world.isTitle()){
+        if (rabbit.inAir() || world.isPaused() || world.isMenu()){
             batch.draw(rabbitJumped, rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
-        }
-        else{
+        } else if (world.isReady() || world.isTitle()) {
+            batch.draw(idleAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
+        } else {
             batch.draw(runningAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
 //            dustTimer += delta;
 //            if (dustTimer > 1f) {
@@ -389,10 +390,10 @@ public class GameRender {
         drawClouds();
 
         drawGround();
+        drawHillBottoms();
         drawHills();
         drawHillTops();
         drawHillTops();
-        drawHillBottoms();
         drawSpikes();
         drawScore();
         drawRabbit(delta, runTime);
@@ -443,6 +444,7 @@ public class GameRender {
         dirt = AssetLoader.dirt;
         spikes = AssetLoader.spikes;
         runningAnimation = AssetLoader.runningAnimation;
+        idleAnimation = AssetLoader.idleAnimation;
         dust = AssetLoader.dust;
         treeTall = AssetLoader.treeTall;
         treeShort = AssetLoader.treeShort;

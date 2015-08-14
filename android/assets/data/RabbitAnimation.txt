@@ -1,0 +1,81 @@
+RabbitAnimation.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Frame02
+  rotate: false
+  xy: 2, 2
+  size: 396, 523
+  orig: 396, 523
+  offset: 0, 0
+  index: -1
+Frame01
+  rotate: false
+  xy: 400, 2
+  size: 396, 525
+  orig: 396, 525
+  offset: 0, 0
+  index: -1
+Idle2
+  rotate: false
+  xy: 798, 2
+  size: 419, 524
+  orig: 419, 524
+  offset: 0, 0
+  index: -1
+Idle3
+  rotate: false
+  xy: 1219, 2
+  size: 419, 524
+  orig: 419, 524
+  offset: 0, 0
+  index: -1
+Idle4
+  rotate: false
+  xy: 2, 529
+  size: 419, 524
+  orig: 419, 524
+  offset: 0, 0
+  index: -1
+Idle1
+  rotate: false
+  xy: 423, 529
+  size: 419, 524
+  orig: 419, 524
+  offset: 0, 0
+  index: -1
+Jumped
+  rotate: false
+  xy: 844, 529
+  size: 419, 524
+  orig: 419, 524
+  offset: 0, 0
+  index: -1
+Frame06
+  rotate: false
+  xy: 2, 1055
+  size: 413, 532
+  orig: 413, 532
+  offset: 0, 0
+  index: -1
+Frame03
+  rotate: false
+  xy: 417, 1055
+  size: 413, 532
+  orig: 413, 532
+  offset: 0, 0
+  index: -1
+Frame05
+  rotate: false
+  xy: 832, 1055
+  size: 413, 532
+  orig: 413, 532
+  offset: 0, 0
+  index: -1
+Frame04
+  rotate: false
+  xy: 1247, 1055
+  size: 413, 532
+  orig: 413, 532
+  offset: 0, 0
+  index: -1

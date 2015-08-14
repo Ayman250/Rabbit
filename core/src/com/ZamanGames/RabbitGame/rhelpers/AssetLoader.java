@@ -19,14 +19,14 @@ public class AssetLoader {
 
     public static Texture ground, dirt, uiBackground;
 
-    public static TextureAtlas spriteSheet;
+    public static TextureAtlas spriteSheet, rabbitAnimation;
 
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
             spikes, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
             audioOff, audioOn, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
             settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title;
 
-    public static Animation runningAnimation;
+    public static Animation runningAnimation, idleAnimation;
 
     public static BitmapFont gameFont, scoreFont, resumingFont;
 
@@ -37,12 +37,13 @@ public class AssetLoader {
 
     public static void load() {
         spriteSheet = new TextureAtlas(Gdx.files.internal("data/SpriteSheet.txt"));
+        rabbitAnimation = new TextureAtlas(Gdx.files.internal("data/RabbitAnimation.txt"));
 
         ground = new Texture(Gdx.files.internal("data/ground.png"));
 
         dirt = new Texture(Gdx.files.internal("data/ground_dirt.png"));
 
-        rabbitJumped = new TextureRegion(spriteSheet.findRegion("Frame01"));
+        rabbitJumped = new TextureRegion(rabbitAnimation.findRegion("Jumped"));
 
         uiBackground = new Texture(Gdx.files.internal("data/UIBackground.png"));
 
@@ -77,12 +78,21 @@ public class AssetLoader {
         playButton = new TextureRegion(spriteSheet.findRegion("checkmark"));
         title = new TextureRegion(spriteSheet.findRegion("title4"));
 
-        TextureRegion[] runFrames = {spriteSheet.findRegion("Frame01"), spriteSheet.findRegion("Frame02"), spriteSheet.findRegion("Frame03"),
-                spriteSheet.findRegion("Frame04"), spriteSheet.findRegion("Frame05"), spriteSheet.findRegion("Frame06"),
-                spriteSheet.findRegion("Frame07"), spriteSheet.findRegion("Frame08"), spriteSheet.findRegion("Frame09"),  };
+        TextureRegion[] runFrames = {rabbitAnimation.findRegion("Frame01"),
+                rabbitAnimation.findRegion("Frame02"), rabbitAnimation.findRegion("Frame03"), rabbitAnimation.findRegion("Frame04"), rabbitAnimation.findRegion("Frame05"),
+                rabbitAnimation.findRegion("Frame06")};
+//                spriteSheet.findRegion("Frame04"), spriteSheet.findRegion("Frame05"), spriteSheet.findRegion("Frame06"),
+//                spriteSheet.findRegion("Frame07"), spriteSheet.findRegion("Frame08"), spriteSheet.findRegion("Frame09"),  };
 
-        runningAnimation = new Animation(.03f, runFrames);
-        runningAnimation.setPlayMode(Animation.PlayMode.LOOP);
+        TextureRegion[] idleFrames = {rabbitAnimation.findRegion("Idle1"),
+                rabbitAnimation.findRegion("Idle2"), rabbitAnimation.findRegion("Idle3"), rabbitAnimation.findRegion("Idle4")};
+
+
+        runningAnimation = new Animation(.05f, runFrames);
+        runningAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+
+        idleAnimation = new Animation(.05f, idleFrames);
+        idleAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
         hillTop.flip(false, true);
         hillBottom.flip(false, true);
