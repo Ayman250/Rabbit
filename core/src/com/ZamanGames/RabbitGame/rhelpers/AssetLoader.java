@@ -80,7 +80,7 @@ public class AssetLoader {
 
         TextureRegion[] runFrames = {rabbitAnimation.findRegion("Frame01"),
                 rabbitAnimation.findRegion("Frame02"), rabbitAnimation.findRegion("Frame03"), rabbitAnimation.findRegion("Frame04"), rabbitAnimation.findRegion("Frame05"),
-                rabbitAnimation.findRegion("Frame06")};
+                rabbitAnimation.findRegion("Frame06"), rabbitAnimation.findRegion("Frame09"), rabbitAnimation.findRegion("Frame08"), rabbitAnimation.findRegion("Frame07")};
 //                spriteSheet.findRegion("Frame04"), spriteSheet.findRegion("Frame05"), spriteSheet.findRegion("Frame06"),
 //                spriteSheet.findRegion("Frame07"), spriteSheet.findRegion("Frame08"), spriteSheet.findRegion("Frame09"),  };
 
@@ -89,10 +89,11 @@ public class AssetLoader {
 
 
         runningAnimation = new Animation(.05f, runFrames);
-        runningAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        runningAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
         idleAnimation = new Animation(.05f, idleFrames);
         idleAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+
 
         hillTop.flip(false, true);
         hillBottom.flip(false, true);
