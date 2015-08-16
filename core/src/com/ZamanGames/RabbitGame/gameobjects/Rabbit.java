@@ -43,6 +43,10 @@ public class Rabbit {
     }
 
     public void update(float delta) {
+        velocity.x = 0;
+        if (position.x < 342.75f) {
+            velocity.x = 150;
+        }
         velocity.add(acceleration.cpy().scl(delta));
         this.delta = delta;
 
@@ -53,8 +57,11 @@ public class Rabbit {
         //If rabbit is on the ground set velocity in y to 0;
         if (!inAir()) {
             velocity.y = 0;
+        }
+        if (velocity.y > 0 && position.y > groundY - 30) {
             upAllowed = true;
         }
+
         hitBox.x = position.x;
         hitBox.y = position.y;
 
@@ -74,9 +81,12 @@ public class Rabbit {
     public void jump() {
         //if the rabbit lands reset upAllowed to false so game knows to activate jump mechanics when pressed
 
-        if (upAllowed && timeLeft > 0) {
-            velocity.add(0, -delta*2000);
+        if (upAllowed && timeLeft > 0 && (!inAir())) {
+            acceleration.y = 0;
+            velocity.y = -650;
             timeLeft -=delta;
+        } else{
+            acceleration.y = 2000;
         }
     }
 
@@ -90,6 +100,7 @@ public class Rabbit {
     }
 
     public void onRelease() {
+        acceleration.y = 2000;
         screenHeld = false;
         if (inAir()) {
             upAllowed = false;

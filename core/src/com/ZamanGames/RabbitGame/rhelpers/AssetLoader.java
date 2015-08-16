@@ -91,7 +91,7 @@ public class AssetLoader {
         runningAnimation = new Animation(.05f, runFrames);
         runningAnimation.setPlayMode(Animation.PlayMode.LOOP);
 
-        idleAnimation = new Animation(.05f, idleFrames);
+        idleAnimation = new Animation(.2f, idleFrames);
         idleAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
 
