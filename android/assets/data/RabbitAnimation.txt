@@ -5,98 +5,98 @@ repeat: none
 Frame01
   rotate: false
   xy: 2, 2
-  size: 396, 525
-  orig: 396, 525
+  size: 396, 502
+  orig: 396, 502
+  offset: 0, 0
+  index: -1
+Idle1
+  rotate: false
+  xy: 2, 2
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Frame02
   rotate: false
   xy: 400, 2
-  size: 396, 523
-  orig: 396, 523
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Frame03
   rotate: false
   xy: 798, 2
-  size: 413, 532
-  orig: 413, 532
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Frame04
   rotate: false
-  xy: 1213, 2
-  size: 413, 532
-  orig: 413, 532
+  xy: 1196, 2
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Frame05
   rotate: false
-  xy: 1628, 2
-  size: 413, 532
-  orig: 413, 532
+  xy: 1594, 2
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Frame06
   rotate: false
-  xy: 2, 536
-  size: 413, 532
-  orig: 413, 532
+  xy: 2, 506
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Frame07
   rotate: false
-  xy: 417, 536
-  size: 413, 532
-  orig: 413, 532
+  xy: 400, 506
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Frame08
   rotate: false
-  xy: 832, 536
-  size: 413, 532
-  orig: 413, 532
+  xy: 798, 506
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Frame09
   rotate: false
-  xy: 1247, 536
-  size: 396, 531
-  orig: 396, 531
-  offset: 0, 0
-  index: -1
-Idle1
-  rotate: false
-  xy: 1645, 536
-  size: 419, 524
-  orig: 419, 524
+  xy: 1196, 506
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Idle2
   rotate: false
-  xy: 2, 1070
-  size: 419, 524
-  orig: 419, 524
+  xy: 1594, 506
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Idle3
   rotate: false
-  xy: 423, 1070
-  size: 419, 524
-  orig: 419, 524
+  xy: 2, 1010
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Idle4
   rotate: false
-  xy: 844, 1070
-  size: 419, 524
-  orig: 419, 524
+  xy: 400, 1010
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
 Jumped
   rotate: false
-  xy: 1265, 1070
-  size: 419, 524
-  orig: 419, 524
+  xy: 798, 1010
+  size: 396, 502
+  orig: 396, 502
   offset: 0, 0
   index: -1
