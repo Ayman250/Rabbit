@@ -132,14 +132,14 @@ public class ScrollHandler {
             //Same code logic for spike2
             if (r.nextInt(10) > 1) {
                 ground1.newSpike(spike1);
-                spikeLocation = r.nextInt(ground1.getWidth()) + ground1.getX() - spike1.getWidth();
+                spikeLocation = r.nextInt(ground1.getWidth() - spike1.getWidth()) + ground1.getX();
                 spike1.reset(spikeLocation, ground1.getY());
             }
 
             if (r.nextInt(10) > 1) {
                 ground1.firstNewHill(hill1);
-                firstHillLocation = r.nextInt(ground1.getWidth()) + ground1.getX() - hill1.getWidth();
-                if (Math.abs(firstHillLocation - spikeLocation) > 400) {
+                firstHillLocation = r.nextInt(ground1.getWidth() - hill1.getWidth()) + ground1.getX();
+                if (Math.abs(firstHillLocation - spikeLocation) > 300) {
                     hill1.reset(firstHillLocation, ground1.getY() - ground1.getGroundHeight() - 10);
                 }
 
@@ -147,8 +147,8 @@ public class ScrollHandler {
 
             if (r.nextInt(10) > 1) {
                 ground1.secondNewHill(hill2);
-                secondhillLocation = r.nextInt(ground1.getWidth()) + ground1.getX() - hill2.getWidth();
-                if (Math.abs(secondhillLocation - firstHillLocation) > 400 && Math.abs(secondhillLocation - spikeLocation) > 200) {
+                secondhillLocation = r.nextInt(ground1.getWidth() - hill2.getWidth()) + ground1.getX();
+                if (Math.abs(secondhillLocation - firstHillLocation) > 300 && Math.abs(secondhillLocation - spikeLocation) > 200) {
                     hill2.reset(secondhillLocation, ground1.getY() - ground1.getGroundHeight() - 10);
                 }
             }
@@ -160,13 +160,13 @@ public class ScrollHandler {
 
             if (r.nextInt(10) > 1) {
                 ground2.newSpike(spike2);
-                spikeLocation = r.nextInt(ground2.getWidth()) - ground2.getX() - spike2.getWidth();
+                spikeLocation = r.nextInt(ground2.getWidth() - spike2.getWidth()) - ground2.getX();
                 spike2.reset(spikeLocation, ground2.getY());
             }
 
             if (r.nextInt(10) > 1) {
                 ground2.firstNewHill(hill3);
-                firstHillLocation = r.nextInt(ground2.getWidth()) + ground2.getX() - hill3.getWidth();
+                firstHillLocation = r.nextInt(ground2.getWidth() - hill3.getWidth()) + ground2.getX();
                 if (Math.abs(firstHillLocation - spikeLocation) > 400) {
                     hill3.reset(firstHillLocation, ground2.getY() + ground2.getGroundHeight() - 10);
                 }
@@ -174,7 +174,7 @@ public class ScrollHandler {
 
             if (r.nextInt(10) > 1) {
                 ground2.secondNewHill(hill4);
-                secondhillLocation = r.nextInt(ground2.getWidth()) + ground2.getX() - hill4.getWidth();
+                secondhillLocation = r.nextInt(ground2.getWidth() - hill4.getWidth()) + ground2.getX();
                 if (Math.abs(secondhillLocation - firstHillLocation) > 400 && Math.abs(secondhillLocation - spikeLocation) > 200) {
                     hill4.reset(secondhillLocation, ground2.getY() + ground2.getGroundHeight() - 10);
                 }
@@ -261,16 +261,16 @@ public class ScrollHandler {
 
 
     public boolean rabbitCollides() {
-        if (spike1.collides(rabbit) || spike2.collides(rabbit)) {
-            System.out.println("Hit spike");
-            return true;
-        } else if (ground1.collides(rabbit) || ground2.collides(rabbit)) {
-            System.out.println("Hit ground");
-            return true;
-        } else if (hill1.collides(rabbit) || hill2.collides(rabbit) || hill3.collides(rabbit) || hill4.collides(rabbit)) {
-            System.out.println("Hit hill");
-            return true;
-        }
+//        if (spike1.collides(rabbit) || spike2.collides(rabbit)) {
+//            System.out.println("Hit spike");
+//            return true;
+//        } else if (ground1.collides(rabbit) || ground2.collides(rabbit)) {
+//            System.out.println("Hit ground");
+//            return true;
+//        } else if (hill1.collides(rabbit) || hill2.collides(rabbit) || hill3.collides(rabbit) || hill4.collides(rabbit)) {
+//            System.out.println("Hit hill");
+//            return true;
+//        }
         return false;
     }
 

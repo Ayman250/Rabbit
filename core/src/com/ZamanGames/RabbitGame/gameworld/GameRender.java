@@ -270,8 +270,8 @@ public class GameRender {
             if (world.isGameOver()) {
                 AssetLoader.gameFont.draw(batch, "GAME OVER",
                         gameWidth / 2 - 100, gameHeight / 2);
-                AssetLoader.gameFont.draw(batch, "GAME OVER",
-                        gameWidth / 2 - 100, gameHeight / 2);
+                AssetLoader.gameFont.draw(batch, "High Score: " + AssetLoader.getHighScore(),
+                        gameWidth / 2 - 150, gameHeight / 2 - 100);
             } else {
                 AssetLoader.gameFont.draw(batch, "HIGH SCORE!",
                         gameWidth / 2 - 90, gameHeight / 2 - 40);
@@ -280,7 +280,7 @@ public class GameRender {
 
                 int length = ("" + AssetLoader.getHighScore()).length();
                 AssetLoader.gameFont.draw(batch, highScore,
-                        gameWidth / 2 - (3 * length), gameHeight / 2 - 40 - 50);
+                        gameWidth / 2 - (3 * length), gameHeight / 2 - 90);
                 return;
             }
         }
