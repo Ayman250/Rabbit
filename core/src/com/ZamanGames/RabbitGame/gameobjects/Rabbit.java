@@ -43,6 +43,8 @@ public class Rabbit {
     }
 
     public void update(float delta) {
+//        System.out.println(timeLeft);
+//        System.out.println(upAllowed);
         velocity.x = 0;
         if (position.x < 342.75f) {
             velocity.x = 150;
@@ -58,8 +60,8 @@ public class Rabbit {
         if (!inAir()) {
             velocity.y = 0;
         }
-        if (velocity.y > 0 && position.y > groundY - 30) {
-            upAllowed = true;
+        if (velocity.y > 0 && (!inAir())) {
+            timeLeft = 1f;
         }
 
         hitBox.x = position.x;
@@ -68,7 +70,8 @@ public class Rabbit {
         if (screenHeld) {
             jump();
         }
-
+        System.out.println(timeLeft);
+        System.out.println(upAllowed);
     }
 
     public void updateReady(float runTime) {
@@ -81,7 +84,7 @@ public class Rabbit {
     public void jump() {
         //if the rabbit lands reset upAllowed to false so game knows to activate jump mechanics when pressed
 
-        if (upAllowed && timeLeft > 0 && (!inAir())) {
+        if (upAllowed && timeLeft > 0) {
             acceleration.y = 0;
             velocity.y = -650;
             timeLeft -=delta;
@@ -93,8 +96,6 @@ public class Rabbit {
     public void onClick() {
         if (!inAir()) {
             velocity.add(0, -600);
-            timeLeft = .4f;
-
         }
         screenHeld = true;
     }
@@ -130,8 +131,9 @@ public class Rabbit {
     }
 
     public void onRestart(int y) {
-        position.y = y;
-        velocity.x = 0;
+        position.y = 300;
+        position.x = -99;
+        velocity.x = 150;
         velocity.y = 0;
         acceleration.x = 0;
         acceleration.y = 2000;
@@ -142,7 +144,13 @@ public class Rabbit {
     }
 
     public boolean inAir() {
-        return position.y < groundY;
+        if (position.y < groundY) {
+            return true;
+        } else {
+            timeLeft = .4f;
+            upAllowed = true;
+            return false;
+        }
     }
 
     public boolean isDead() {

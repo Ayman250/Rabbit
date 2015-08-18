@@ -15,7 +15,7 @@ public class Hill extends Scrollable {
 
     public Hill(float x, float y, int width, int height, float scrollSpeed, float groundY) {
         super(x, y, width, height, scrollSpeed);
-        hitBox = new Rectangle(x, y, width-10, -(height - 5));
+        hitBox = new Rectangle(x, y, width-20, -(height - 5));
         r = new Random();
         this.groundY = groundY;
         //This is so that rabbit can slide of hill earlier
