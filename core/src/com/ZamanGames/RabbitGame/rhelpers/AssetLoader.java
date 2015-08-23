@@ -22,15 +22,15 @@ public class AssetLoader {
     public static TextureAtlas spriteSheet, rabbitAnimation;
 
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
-            spikes, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
-            audioOff, audioOn, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
+            policeCar, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
+            audioOnButton, audioOnButtonPressed, audioOffButton, audioOffButtonPressed, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
             settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title;
 
     public static Animation runningAnimation, idleAnimation;
 
     public static BitmapFont gameFont, scoreFont, resumingFont;
 
-    public static Music bgMusic, click;
+    public static Music bgMusic, click, jumpSound;
 
     public static Preferences prefs;
 
@@ -58,7 +58,7 @@ public class AssetLoader {
         title = new TextureRegion(spriteSheet.findRegion("title4"));
 
         background = new TextureRegion(spriteSheet.findRegion("background"));
-        spikes = new TextureRegion(spriteSheet.findRegion("Spikes"));
+        policeCar = new TextureRegion(spriteSheet.findRegion("policeCar"));
         hillTop = new TextureRegion(spriteSheet.findRegion("hillTop"));
         hill = new TextureRegion(spriteSheet.findRegion("hill"));
         hillBottom = new TextureRegion(spriteSheet.findRegion("hillBottom"));
@@ -67,15 +67,17 @@ public class AssetLoader {
         cloud1 = new TextureRegion(spriteSheet.findRegion("cloud1"));
         cloud2 = new TextureRegion(spriteSheet.findRegion("cloud2"));
         settingsGear = new TextureRegion(spriteSheet.findRegion("settings"));
-        audioOff = new TextureRegion(spriteSheet.findRegion("audioOff"));
-        audioOn = new TextureRegion(spriteSheet.findRegion("audioOn"));
+        audioOffButton = new TextureRegion(spriteSheet.findRegion("audioOffButton"));
+        audioOffButtonPressed = new TextureRegion(spriteSheet.findRegion("audioOffButtonPressed"));
+        audioOnButton = new TextureRegion(spriteSheet.findRegion("audioOnButton"));
+        audioOnButtonPressed = new TextureRegion(spriteSheet.findRegion("audioOnButtonPressed"));
         settings = new TextureRegion(spriteSheet.findRegion("settings"));
         shoppingCart = new TextureRegion(spriteSheet.findRegion("shoppingCart"));
         pause = new TextureRegion(spriteSheet.findRegion("pause"));
         restart = new TextureRegion(spriteSheet.findRegion("restart"));
         hiScores = new TextureRegion(spriteSheet.findRegion("leaderboardsComplex"));
-        done = new TextureRegion(spriteSheet.findRegion("checkmark"));
-        playButton = new TextureRegion(spriteSheet.findRegion("checkmark"));
+        done = new TextureRegion(spriteSheet.findRegion("arrowLeft"));
+        playButton = new TextureRegion(spriteSheet.findRegion("arrowLeft"));
         title = new TextureRegion(spriteSheet.findRegion("title4"));
 
         TextureRegion[] runFrames = {rabbitAnimation.findRegion("Frame01"),
@@ -108,9 +110,14 @@ public class AssetLoader {
         highscoresButtonDown.flip(false, true);
         restartButtonUp.flip(false, true);
         restartButtonDown.flip(false, true);
+        audioOnButton.flip(false, true);
+        audioOnButtonPressed.flip(false, true);
+        audioOffButton.flip(false, true);
+        audioOffButtonPressed.flip(false, true);
 
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("data/bgMusic.ogg"));
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("data/ridaz.mp3"));
         click = Gdx.audio.newMusic(Gdx.files.internal("data/click.ogg"));
+        jumpSound = Gdx.audio.newMusic(Gdx.files.internal("data/jumpSound.wav"));
 
 //        gameFont = new BitmapFont(Gdx.files.internal("data/gameFont.fnt"), true);
 

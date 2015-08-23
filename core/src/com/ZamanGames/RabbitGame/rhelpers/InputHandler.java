@@ -49,10 +49,10 @@ public class InputHandler implements InputProcessor {
                 AssetLoader.highscoresButtonUp, AssetLoader.highscoresButtonDown);
 
 
-        menuDoneButton = new Button(860, 440, 61, 63,
+        menuDoneButton = new Button(350, 200, 100, 70,
                 AssetLoader.done, AssetLoader.done);
         menuAudioButton = new MusicButton(480, 296, 128, 128,
-                AssetLoader.audioOn, AssetLoader.audioOn);
+                AssetLoader.audioOnButton, AssetLoader.audioOnButtonPressed);
         menuHighscoresButton = new Button(672, 296, 128, 128,
                 AssetLoader.highscoresButtonUp, AssetLoader.highscoresButtonDown);
 
@@ -191,11 +191,11 @@ public class InputHandler implements InputProcessor {
             } else if (menuAudioButton.isTouchUp(screenX, screenY)) {
                 if (world.isSoundOn()) {
                     world.stopSound();
-                    menuAudioButton.changeTexture(AssetLoader.audioOff);
+                    menuAudioButton.changeTexture(AssetLoader.audioOffButton, AssetLoader.audioOffButtonPressed);
                 } else {
                     world.startSound();
                     AssetLoader.click.play();
-                    menuAudioButton.changeTexture(AssetLoader.audioOn);
+                    menuAudioButton.changeTexture(AssetLoader.audioOnButton, AssetLoader.audioOnButtonPressed);
                 }
 
             } else if (menuHighscoresButton.isTouchUp(screenX, screenY)) {

@@ -50,7 +50,7 @@ public class GameRender {
     private Tree tree1, tree2, tree3, tree4;
     private Hill hill1, hill2, hill3, hill4;
     private Ground ground1, ground2;
-    private Spike spike1, spike2, spike3;
+    private Spike policeCar1, policeCar2, policeCar3;
     private ScrollHandler scroller;
     private ParallaxBackground parallaxBackground;
 
@@ -233,11 +233,11 @@ public class GameRender {
 
     }
 
-    public void drawSpikes() {
-        batch.draw(spikes, spike1.getX(), spike1.getY(), spike1.getWidth(), spike1.getHeight());
-        batch.draw(spikes, spike2.getX(), spike2.getY(), spike2.getWidth(), spike2.getHeight());
-        batch.draw(spikes, spike1.getX(), spike1.getY(), spike1.getWidth(), spike1.getHeight());
-        batch.draw(spikes, spike2.getX(), spike2.getY(), spike2.getWidth(), spike2.getHeight());
+    public void drawPoliceCars() {
+        batch.draw(spikes, policeCar1.getX(), policeCar1.getY(), policeCar1.getWidth(), policeCar1.getHeight());
+        batch.draw(spikes, policeCar2.getX(), policeCar2.getY(), policeCar2.getWidth(), policeCar2.getHeight());
+        batch.draw(spikes, policeCar1.getX(), policeCar1.getY(), policeCar1.getWidth(), policeCar1.getHeight());
+        batch.draw(spikes, policeCar2.getX(), policeCar2.getY(), policeCar2.getWidth(), policeCar2.getHeight());
     }
 
     public void drawRabbit(float delta, float runTime) {
@@ -381,8 +381,8 @@ public class GameRender {
 //        shapeRenderer.rect(hill3.getHitBox().getX(), hill3.getHitBox().getY(), hill3.getHitBox().getWidth(), hill3.getHitBox().getHeight());
 //        shapeRenderer.rect(hill4.getHitBox().getX(), hill4.getHitBox().getY(), hill4.getHitBox().getWidth(), hill4.getHitBox().getHeight());
 //        shapeRenderer.setColor(Color.PURPLE);
-//        shapeRenderer.rect(spike1.getHitBox().getX(), spike1.getHitBox().getY(), spike1.getHitBox().getWidth(), spike1.getHitBox().getHeight());
-//        shapeRenderer.rect(spike2.getHitBox().getX(), spike2.getHitBox().getY(), spike2.getHitBox().getWidth(), spike2.getHitBox().getHeight());
+//        shapeRenderer.rect(policeCar1.getHitBox().getX(), policeCar1.getHitBox().getY(), policeCar1.getHitBox().getWidth(), policeCar1.getHitBox().getHeight());
+//        shapeRenderer.rect(policeCar2.getHitBox().getX(), policeCar2.getHitBox().getY(), policeCar2.getHitBox().getWidth(), policeCar2.getHitBox().getHeight());
         //Temporary Location
         //drawWater();
 
@@ -394,7 +394,7 @@ public class GameRender {
         drawHills();
         drawHillTops();
         drawHillTops();
-        drawSpikes();
+        drawPoliceCars();
         drawScore();
         drawRabbit(delta, runTime);
         drawBackgroundUI();
@@ -419,8 +419,8 @@ public class GameRender {
         hill4 = scroller.getHill4();
         ground1 = scroller.getGround1();
         ground2 = scroller.getGround2();
-        spike1 = scroller.getSpike1();
-        spike2 = scroller.getSpike2();
+        policeCar1 = scroller.getPoliceCar1();
+        policeCar2 = scroller.getPoliceCar2();
         water1 = scroller.getWater1();
         water2 = scroller.getWater2();
         tree1 = scroller.getTree1();
@@ -442,7 +442,7 @@ public class GameRender {
         tGround  = AssetLoader.ground;
         rabbitJumped = AssetLoader.rabbitJumped;
         dirt = AssetLoader.dirt;
-        spikes = AssetLoader.spikes;
+        spikes = AssetLoader.policeCar;
         runningAnimation = AssetLoader.runningAnimation;
         idleAnimation = AssetLoader.idleAnimation;
         dust = AssetLoader.dust;

@@ -1,5 +1,6 @@
 package com.ZamanGames.RabbitGame.gameobjects;
 
+import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -69,9 +70,9 @@ public class Rabbit {
 
         if (screenHeld) {
             jump();
+
         }
-        System.out.println(timeLeft);
-        System.out.println(upAllowed);
+
     }
 
     public void updateReady(float runTime) {
@@ -88,6 +89,12 @@ public class Rabbit {
             acceleration.y = 0;
             velocity.y = -650;
             timeLeft -=delta;
+            if (!inAir()) {
+                AssetLoader.jumpSound.play();
+            }
+
+
+
         } else{
             acceleration.y = 2000;
         }
@@ -95,7 +102,8 @@ public class Rabbit {
 
     public void onClick() {
         if (!inAir()) {
-            velocity.add(0, -600);
+            AssetLoader.jumpSound.play();
+            velocity.add(0, -650);
         }
         screenHeld = true;
     }

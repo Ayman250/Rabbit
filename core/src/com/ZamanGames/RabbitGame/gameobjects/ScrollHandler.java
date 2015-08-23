@@ -12,7 +12,7 @@ public class ScrollHandler {
     private Hill hill1, hill2, hill3, hill4;
     private Ground ground1, ground2, rightGround;
     private Fence fence1, fence2;
-    private Spike spike1, spike2, spike3;
+    private Spike policeCar1, policeCar2, policeCar3;
 
     public static int SCROLL_SPEED;
     public static int HILL_GAP, TREE_GAP, CLOUD_GAP;
@@ -26,6 +26,8 @@ public class ScrollHandler {
     private Tree tree1, tree2, tree3, tree4;
 
     private Cloud cloud1, cloud2, cloud3, cloud4;
+
+    private Scrollable enemy1, enemy2;
 
     private int gameWidth, gameHeight;
 
@@ -61,9 +63,9 @@ public class ScrollHandler {
         water1 = new Water(0, groundY, 1300, 70, SCROLL_SPEED);
         water2 = new Water(water1.getTailX(), gameHeight, 1300, 70, SCROLL_SPEED);
 
-        //initialize spikes to be invisble to player
-        spike1 = new Spike(0, -200 - 10, 70, 30, SCROLL_SPEED);
-        spike2 = new Spike(0, -200 - 10, 70, 30, SCROLL_SPEED);
+        //initialize policeCar to be invisble to player
+        policeCar1 = new Spike(0, -200 - 10, 141, 87, SCROLL_SPEED);
+        policeCar2 = new Spike(0, -200 - 10, 141, 87, SCROLL_SPEED);
 
         tree1 = new Tree(50, groundY, 100, 150, SCROLL_SPEED/2, false);
         tree2 = new Tree(tree1.getTailX() + TREE_GAP, groundY - 12, 100, 150, SCROLL_SPEED/2, true);
@@ -74,6 +76,9 @@ public class ScrollHandler {
         cloud2 = new Cloud(cloud1.getTailX() + CLOUD_GAP, 150, 150, 75, SCROLL_SPEED/3, false);
         cloud3 = new Cloud(cloud2.getTailX() + CLOUD_GAP, 100, 150, 75, SCROLL_SPEED/3, true);
         cloud4 = new Cloud(cloud3.getTailX() + CLOUD_GAP, 120, 150, 75, SCROLL_SPEED/3, false);
+
+        enemy1 = new Scrollable(-199, 300, 99, 129, SCROLL_SPEED);
+        enemy2 = new Scrollable(-299, 300, 99, 129, SCROLL_SPEED);
 
 
 
@@ -96,13 +101,16 @@ public class ScrollHandler {
         ground1.update(delta);
         ground2.update(delta);
 
-        spike1.update(delta);
-        spike2.update(delta);
+        policeCar1.update(delta);
+        policeCar2.update(delta);
 
         tree1.update(delta);
         tree2.update(delta);
         tree3.update(delta);
         tree4.update(delta);
+
+        enemy1.update(delta);
+        enemy2.update(delta);
 
 
 
@@ -129,11 +137,11 @@ public class ScrollHandler {
             ground1.reset(ground2.getTailX(), 0);
             //fence1.changeHeight(ground1.getY());
             //50% chance of there being a spike on the ground
-            //Same code logic for spike2
+            //Same code logic for policeCar2
             if (r.nextInt(10) > 1) {
-                ground1.newSpike(spike1);
-                spikeLocation = r.nextInt(ground1.getWidth() - spike1.getWidth()) + ground1.getX();
-                spike1.reset(spikeLocation, ground1.getY());
+                ground1.newSpike(policeCar1);
+                spikeLocation = r.nextInt(ground1.getWidth() - policeCar1.getWidth()) + ground1.getX();
+                policeCar1.reset(spikeLocation, ground1.getY());
             }
 
             if (r.nextInt(10) > 1) {
@@ -159,9 +167,9 @@ public class ScrollHandler {
             //If too close it will not be spawned
 
             if (r.nextInt(10) > 1) {
-                ground2.newSpike(spike2);
-                spikeLocation = r.nextInt(ground2.getWidth() - spike2.getWidth()) - ground2.getX();
-                spike2.reset(spikeLocation, ground2.getY());
+                ground2.newSpike(policeCar2);
+                spikeLocation = r.nextInt(ground2.getWidth() - policeCar2.getWidth()) - ground2.getX();
+                policeCar2.reset(spikeLocation, ground2.getY());
             }
 
             if (r.nextInt(10) > 1) {
@@ -221,8 +229,8 @@ public class ScrollHandler {
         rabbit.die();
         ground1.stop();
         ground2.stop();
-        spike1.stop();
-        spike2.stop();
+        policeCar1.stop();
+        policeCar2.stop();
         water1.stop();
         water2.stop();
         tree1.stop();
@@ -236,8 +244,8 @@ public class ScrollHandler {
         ground1.stop();
         ground2.stop();
         rabbit.pause();
-        spike1.stop();
-        spike2.stop();
+        policeCar1.stop();
+        policeCar2.stop();
         water1.stop();
         water2.stop();
         tree1.stop();
@@ -249,8 +257,8 @@ public class ScrollHandler {
     public void resume() {
         ground1.resume();
         ground2.resume();
-        spike1.resume();
-        spike2.resume();
+        policeCar1.resume();
+        policeCar2.resume();
         water1.resume();
         water2.resume();
         tree1.resume();
@@ -261,7 +269,7 @@ public class ScrollHandler {
 
 
     public boolean rabbitCollides() {
-//        if (spike1.collides(rabbit) || spike2.collides(rabbit)) {
+//        if (policeCar1.collides(rabbit) || policeCar2.collides(rabbit)) {
 //            System.out.println("Hit spike");
 //            return true;
 //        } else if (ground1.collides(rabbit) || ground2.collides(rabbit)) {
@@ -281,8 +289,8 @@ public class ScrollHandler {
         hill2.onReset(hill1.getTailX() + HILL_GAP, -1000, 120, SCROLL_SPEED);
         hill3.onReset(ground2.getTailX() - 400, ground1.getY(), 140, SCROLL_SPEED);
         hill4.onReset(hill3.getTailX() + HILL_GAP, -1000, 120, SCROLL_SPEED);
-        spike1.onReset(0, SCROLL_SPEED);
-        spike2.onReset(0, SCROLL_SPEED);
+        policeCar1.onReset(0, SCROLL_SPEED);
+        policeCar2.onReset(0, SCROLL_SPEED);
         water1.onReset(0, SCROLL_SPEED);
         water2.onReset(0, SCROLL_SPEED);
         tree1.onRestart(50, r.nextBoolean());
@@ -320,16 +328,16 @@ public class ScrollHandler {
         return ground2;
     }
 
-    public Spike getSpike1() {
-        return spike1;
+    public Spike getPoliceCar1() {
+        return policeCar1;
     }
 
-    public Spike getSpike2() {
-        return spike2;
+    public Spike getPoliceCar2() {
+        return policeCar2;
     }
 
-    public Spike getSpike3() {
-        return spike3;
+    public Spike getPoliceCar3() {
+        return policeCar3;
     }
 
     public Water getWater1() {
