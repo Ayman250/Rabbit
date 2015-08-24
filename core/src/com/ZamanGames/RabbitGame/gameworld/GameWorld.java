@@ -2,6 +2,7 @@ package com.ZamanGames.RabbitGame.gameworld;
 
 import com.ZamanGames.RabbitGame.gameobjects.Rabbit;
 import com.ZamanGames.RabbitGame.gameobjects.ScrollHandler;
+import com.ZamanGames.RabbitGame.gameobjects.Scrollable;
 import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
 
 /**
@@ -9,7 +10,7 @@ import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
  */
 public class GameWorld {
 
-    private Rabbit rabbit;
+    private Rabbit rabbit, enemy1, enemy2;
     private ScrollHandler scroller;
     private int rabbitWidth, rabbitHeight;
 
@@ -37,6 +38,8 @@ public class GameWorld {
         rabbitWidth = 99;
         rabbitHeight = 129;
         rabbit = new Rabbit(-99, 300, rabbitWidth, rabbitHeight,this.groundY);
+        enemy1 = new Rabbit(-199, 300, rabbitWidth, rabbitHeight,this.groundY);
+        enemy2 = new Rabbit(-299, 300, rabbitWidth, rabbitHeight,this.groundY);
         scroller = new ScrollHandler(this, this.gameWidth, this.gameHeight, this.groundY);
 
         score = 0;
@@ -88,6 +91,8 @@ public class GameWorld {
         }
 
         rabbit.update(delta);
+        enemy1.update(delta);
+        enemy2.update(delta);
         scroller.update(delta);
         //adds point every 1/20th of a second
         scoreCounter += delta;
@@ -266,6 +271,14 @@ public class GameWorld {
 
     public Rabbit getRabbit() {
         return rabbit;
+    }
+
+    public Rabbit getEnemy1() {
+        return enemy1;
+    }
+
+    public Rabbit getEnemy2() {
+        return enemy2;
     }
 
     public ScrollHandler getScroller() {

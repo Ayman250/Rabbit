@@ -29,7 +29,7 @@ import java.util.Random;
 public class GameRender {
     private GameWorld world;
     private OrthographicCamera cam;
-    private Rabbit rabbit;
+    private Rabbit rabbit, enemy1, enemy2;
 
     private SpriteBatch batch;
 
@@ -41,7 +41,7 @@ public class GameRender {
 
     private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton;
 
-    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title;
+    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2;
 
     private Animation runningAnimation, idleAnimation;
 
@@ -240,6 +240,10 @@ public class GameRender {
         batch.draw(spikes, policeCar2.getX(), policeCar2.getY(), policeCar2.getWidth(), policeCar2.getHeight());
     }
 
+    private void drawEnemies() {
+        batch.draw(tEnemy1, enemy1.getX(), enemy1.getY(), enemy1.getWidth(), enemy1.getHeight());
+        batch.draw(tEnemy2, enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
+    }
     public void drawRabbit(float delta, float runTime) {
         if (rabbit.inAir() || world.isPaused() || world.isMenu()){
             batch.draw(rabbitJumped, rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
@@ -396,6 +400,7 @@ public class GameRender {
         drawHillTops();
         drawPoliceCars();
         drawScore();
+        drawEnemies();
         drawRabbit(delta, runTime);
         drawBackgroundUI();
         drawTitle();
@@ -431,6 +436,8 @@ public class GameRender {
         cloud2 = scroller.getCloud2();
         cloud3 = scroller.getCloud3();
         cloud4 = scroller.getCloud4();
+        enemy1 = world.getEnemy1();
+        enemy2 = world.getEnemy2();
         //parallaxBackground = new ParallaxBackground();
     }
 
@@ -449,6 +456,7 @@ public class GameRender {
         treeTall = AssetLoader.treeTall;
         treeShort = AssetLoader.treeShort;
         title = AssetLoader.title;
+        tEnemy1 = AssetLoader.enemy1;
+        tEnemy2 = AssetLoader.enemy2;
     }
-
 }

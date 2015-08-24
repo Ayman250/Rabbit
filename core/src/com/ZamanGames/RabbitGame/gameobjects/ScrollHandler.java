@@ -77,8 +77,9 @@ public class ScrollHandler {
         cloud3 = new Cloud(cloud2.getTailX() + CLOUD_GAP, 100, 150, 75, SCROLL_SPEED/3, true);
         cloud4 = new Cloud(cloud3.getTailX() + CLOUD_GAP, 120, 150, 75, SCROLL_SPEED/3, false);
 
-        enemy1 = new Scrollable(-199, 300, 99, 129, SCROLL_SPEED);
-        enemy2 = new Scrollable(-299, 300, 99, 129, SCROLL_SPEED);
+        enemy1 = new Scrollable(-199, 300, 99, 129, -SCROLL_SPEED);
+        enemy2 = new Scrollable(-299, 300, 99, 129, -SCROLL_SPEED);
+
 
 
 
@@ -378,5 +379,13 @@ public class ScrollHandler {
 
     public Cloud getCloud4() {
         return cloud4;
+    }
+
+    public Scrollable getEnemy1() {
+        return enemy1;
+    }
+
+    public Scrollable getEnemy2() {
+        return enemy2;
     }
 }
