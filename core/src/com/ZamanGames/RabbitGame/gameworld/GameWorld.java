@@ -23,7 +23,7 @@ public class GameWorld {
     private GameState currentState, previousState;
 
     public enum GameState {
-        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING, TITLE
+        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING, TITLE, DYINGPOLICE, DYINGHILL
     }
 
     public GameWorld(int gameWidth, int gameHeight, float midPointY, int groundY) {
@@ -37,9 +37,9 @@ public class GameWorld {
 
         rabbitWidth = 99;
         rabbitHeight = 129;
-        rabbit = new Rabbit(-99, 300, rabbitWidth, rabbitHeight,this.groundY);
-        enemy1 = new Rabbit(-199, 300, rabbitWidth, rabbitHeight,this.groundY);
-        enemy2 = new Rabbit(-299, 300, rabbitWidth, rabbitHeight,this.groundY);
+        rabbit = new Rabbit(-99, 300, rabbitWidth, rabbitHeight,this.groundY, false);
+        enemy1 = new Rabbit(-199, 500, rabbitWidth, rabbitHeight,this.groundY, true);
+        enemy2 = new Rabbit(-299, 500, rabbitWidth, rabbitHeight,this.groundY, true);
         scroller = new ScrollHandler(this, this.gameWidth, this.gameHeight, this.groundY);
 
         score = 0;
@@ -66,6 +66,10 @@ public class GameWorld {
                 break;
             case RUNNING:
                 updateRunning(delta);
+                break;
+            case DYINGHILL:
+                break;
+            case DYINGPOLICE:
                 break;
             case RESUMING:
                 updateResuming(delta);

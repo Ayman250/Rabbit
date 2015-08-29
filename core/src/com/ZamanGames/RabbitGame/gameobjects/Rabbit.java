@@ -19,14 +19,16 @@ public class Rabbit {
 
     private float delta, timeLeft;
 
-    private boolean isDead, screenHeld, upAllowed;
+    private boolean isDead, screenHeld, upAllowed, isEnemy, isBacking;
 
     private Rectangle hitBox;
 
-    public Rabbit(float x, float y, int width, int height, int groundY) {
+    public Rabbit(float x, float y, int width, int height, int groundY, boolean isEnemy) {
         this.height = -height;
         this.width = width;
         this.groundY = groundY;
+
+        this.isEnemy = isEnemy;
 
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
@@ -41,14 +43,26 @@ public class Rabbit {
         screenHeld = false;
         //determines if screen holding will cause upwards acceleration of rabbit
         upAllowed = true;
+
+
+        isBacking = false;
     }
 
     public void update(float delta) {
 //        System.out.println(timeLeft);
 //        System.out.println(upAllowed);
-        velocity.x = 0;
-        if (position.x < 342.75f) {
+        if (!isEnemy) {
+            velocity.x = 0;
+        } else {
+            velocity.x = -150;
+        }
+        if (position.x < 342.75f && !isEnemy) {
             velocity.x = 150;
+        }
+        if (position.x < 20f && isEnemy && !isBacking) {
+            velocity.x = 150;
+        } else {
+            isBacking = true;
         }
         velocity.add(acceleration.cpy().scl(delta));
         this.delta = delta;
