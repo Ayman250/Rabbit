@@ -41,7 +41,7 @@ public class GameRender {
 
     private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton;
 
-    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2;
+    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars;
 
     private Animation runningAnimation, idleAnimation;
 
@@ -268,6 +268,10 @@ public class GameRender {
     }
 
     private void drawScore() {
+        System.out.println(world.getCollidedPolice());
+        if (world.isGameOver() && world.getCollidedPolice()) {
+                batch.draw(bars, 0, -20, bars.getRegionWidth() * 3 / 4, bars.getRegionHeight() * 3 / 4);
+        }
         if (world.isTitle()) {
             return;
         } else if (world.isGameOver() || world.isHighScore()) {
@@ -365,6 +369,17 @@ public class GameRender {
         }
     }
 
+    public void drawDyingPolice() {
+        if (world.isDyingPolice()) {
+            batch.draw(bars, 20, -20, bars.getRegionWidth()*3/4, bars.getRegionHeight()*3/4 );
+        }
+    }
+
+    public void drawDyingHill() {
+        if (world.isDyingHill()) {
+
+        }
+    }
     //might use runTime later for animations
     public void render(float delta, float runTime) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -409,6 +424,7 @@ public class GameRender {
         drawReady();
         drawRunning();
         drawResuming();
+        drawDyingPolice();
 
 //      -  shapeRenderer.end();540
         batch.end();
@@ -458,5 +474,6 @@ public class GameRender {
         title = AssetLoader.title;
         tEnemy1 = AssetLoader.enemy1;
         tEnemy2 = AssetLoader.enemy2;
+        bars = AssetLoader.bars;
     }
 }

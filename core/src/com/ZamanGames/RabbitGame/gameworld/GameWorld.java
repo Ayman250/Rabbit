@@ -156,12 +156,17 @@ public class GameWorld {
     }
 
     public void updateDyingHillUpdate(float delta) {
-
+        dyingCounter -= delta;
+        if (dyingCounter <= 0) {
+            currentState = GameState.GAMEOVER;
+        }
     }
 
     public void updateDyingPoliceCar(float delta) {
         dyingCounter -= delta;
-        if(dyingCounter)
+        if (dyingCounter <= 0) {
+            currentState = GameState.GAMEOVER;
+        }
     }
 
     public void ready() {
