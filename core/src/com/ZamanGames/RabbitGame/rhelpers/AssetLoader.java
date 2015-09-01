@@ -24,13 +24,13 @@ public class AssetLoader {
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
             policeCar, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
             audioOnButton, audioOnButtonPressed, audioOffButton, audioOffButtonPressed, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
-            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2;
+            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars;
 
     public static Animation runningAnimation, idleAnimation;
 
     public static BitmapFont gameFont, scoreFont, resumingFont;
 
-    public static Music bgMusic, click, jumpSound;
+    public static Music bgMusic, click, jumpSound, jailCell, gunShot, policeSiren;
 
     public static Preferences prefs;
 
@@ -81,6 +81,7 @@ public class AssetLoader {
         title = new TextureRegion(spriteSheet.findRegion("title4"));
         enemy1 = new TextureRegion(spriteSheet.findRegion("Enemy G1"));
         enemy2 = new TextureRegion(spriteSheet.findRegion("Enemy G2"));
+        bars = new TextureRegion(spriteSheet.findRegion("bars"));
 
         TextureRegion[] runFrames = {rabbitAnimation.findRegion("Frame01"),
                 rabbitAnimation.findRegion("Frame02"), rabbitAnimation.findRegion("Frame03"), rabbitAnimation.findRegion("Frame04"), rabbitAnimation.findRegion("Frame05"),
@@ -120,12 +121,16 @@ public class AssetLoader {
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("data/ridaz.mp3"));
         click = Gdx.audio.newMusic(Gdx.files.internal("data/click.ogg"));
         jumpSound = Gdx.audio.newMusic(Gdx.files.internal("data/jumpSound.wav"));
+        gunShot = Gdx.audio.newMusic(Gdx.files.internal("data/gunShot.mp3"));
+        jailCell = Gdx.audio.newMusic(Gdx.files.internal("data/jail.mp3"));
+        policeSiren = Gdx.audio.newMusic(Gdx.files.internal("data/police.mp3"));
+
 
 //        gameFont = new BitmapFont(Gdx.files.internal("data/gameFont.fnt"), true);
 
 
-        // Create (or retrieve existing) preferences file
-        prefs = Gdx.app.getPreferences("Rabbit Runner");
+                // Create (or retrieve existing) preferences file
+                prefs = Gdx.app.getPreferences("Rabbit Runner");
 
         ground.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         dirt.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);

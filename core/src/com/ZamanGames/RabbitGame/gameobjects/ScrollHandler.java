@@ -270,16 +270,14 @@ public class ScrollHandler {
 
 
     public boolean rabbitCollides() {
-//        if (policeCar1.collides(rabbit) || policeCar2.collides(rabbit)) {
-//            System.out.println("Hit spike");
-//            return true;
-//        } else if (ground1.collides(rabbit) || ground2.collides(rabbit)) {
-//            System.out.println("Hit ground");
-//            return true;
-//        } else if (hill1.collides(rabbit) || hill2.collides(rabbit) || hill3.collides(rabbit) || hill4.collides(rabbit)) {
-//            System.out.println("Hit hill");
-//            return true;
-//        }
+        if (policeCar1.collides(rabbit) || policeCar2.collides(rabbit)) {
+            world.setCollidedPolice(true);
+            return true;
+        } else if (ground1.collides(rabbit) || ground2.collides(rabbit)) {
+            return true;
+        } else if (hill1.collides(rabbit) || hill2.collides(rabbit) || hill3.collides(rabbit) || hill4.collides(rabbit)) {
+            return true;
+        }
         return false;
     }
 

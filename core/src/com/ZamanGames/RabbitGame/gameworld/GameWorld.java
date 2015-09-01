@@ -16,9 +16,9 @@ public class GameWorld {
 
     private int gameWidth, gameHeight, groundY, score;
     private float scoreCounter, runTime = 0, initRHeight;
-    private double resumingCounter;
+    private double resumingCounter, dyingCounter;
 
-    private boolean scoring, soundOn;
+    private boolean scoring, soundOn, collidedPolice;
 
     private GameState currentState, previousState;
 
@@ -38,8 +38,8 @@ public class GameWorld {
         rabbitWidth = 99;
         rabbitHeight = 129;
         rabbit = new Rabbit(-99, 300, rabbitWidth, rabbitHeight,this.groundY, false);
-        enemy1 = new Rabbit(-199, 500, rabbitWidth, rabbitHeight,this.groundY, true);
-        enemy2 = new Rabbit(-299, 500, rabbitWidth, rabbitHeight,this.groundY, true);
+        enemy1 = new Rabbit(-199, 150, rabbitWidth, rabbitHeight,this.groundY, true);
+        enemy2 = new Rabbit(-299, 150, rabbitWidth, rabbitHeight,this.groundY, true);
         scroller = new ScrollHandler(this, this.gameWidth, this.gameHeight, this.groundY);
 
         score = 0;
@@ -50,6 +50,10 @@ public class GameWorld {
         soundOn = true;
 
         resumingCounter = 3;
+
+        dyingCounter = 3;
+
+        collidedPolice = false;
 
 
 
@@ -68,8 +72,10 @@ public class GameWorld {
                 updateRunning(delta);
                 break;
             case DYINGHILL:
+                updateDyingHillUpdate(delta);
                 break;
             case DYINGPOLICE:
+                updateDyingPoliceCar(delta);
                 break;
             case RESUMING:
                 updateResuming(delta);
@@ -112,7 +118,11 @@ public class GameWorld {
             stopMusic();
             rabbit.die();
             previousState = currentState;
-            currentState = GameState.GAMEOVER;
+            if (collidedPolice) {
+                currentState = GameState.DYINGPOLICE;
+            } else {
+                currentState = GameState.DYINGHILL;
+            }
 
             if (score > AssetLoader.getHighScore()) {
                 AssetLoader.setHighScore(score);
@@ -145,6 +155,15 @@ public class GameWorld {
         rabbit.updateTitle(runTime);
     }
 
+    public void updateDyingHillUpdate(float delta) {
+
+    }
+
+    public void updateDyingPoliceCar(float delta) {
+        dyingCounter -= delta;
+        if(dyingCounter)
+    }
+
     public void ready() {
         currentState = GameState.READY;
     }
@@ -169,6 +188,8 @@ public class GameWorld {
         scroller.onRestart();
         currentState = GameState.READY;
         AssetLoader.bgMusic.play();
+        dyingCounter = 3;
+        resumingCounter = 3;
 
     }
 
@@ -255,6 +276,14 @@ public class GameWorld {
         return  currentState == GameState.TITLE;
     }
 
+    public boolean isDyingPolice() {
+        return currentState == GameState.DYINGPOLICE;
+    }
+
+    public boolean isDyingHill() {
+        return currentState == GameState.DYINGHILL;
+    }
+
     public GameState getPreviousState() {
         return previousState;
     }
@@ -304,6 +333,14 @@ public class GameWorld {
 
     public int getScore() {
         return score;
+    }
+
+    public boolean getCollidedPolice() {
+        return collidedPolice;
+    }
+
+    public void setCollidedPolice(boolean collidedPolice) {
+        this.collidedPolice = collidedPolice;
     }
 
 }

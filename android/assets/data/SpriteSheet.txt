@@ -2,311 +2,318 @@ SpriteSheet.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-hillBottom
+Frame04
   rotate: false
   xy: 2, 2
-  size: 212, 43
-  orig: 212, 43
-  offset: 0, 0
-  index: -1
-hillTop
-  rotate: false
-  xy: 216, 2
-  size: 212, 45
-  orig: 212, 45
-  offset: 0, 0
-  index: -1
-Frame07
-  rotate: false
-  xy: 430, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame09
-  rotate: false
-  xy: 466, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame06
-  rotate: false
-  xy: 502, 2
   size: 34, 46
   orig: 34, 46
   offset: 0, 0
   index: -1
 Frame05
   rotate: false
-  xy: 538, 2
+  xy: 38, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame09
+  rotate: false
+  xy: 74, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame07
+  rotate: false
+  xy: 110, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame06
+  rotate: false
+  xy: 146, 2
   size: 34, 46
   orig: 34, 46
   offset: 0, 0
   index: -1
 Frame08
   rotate: false
-  xy: 574, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame02
-  rotate: false
-  xy: 610, 2
-  size: 34, 46
-  orig: 34, 46
-  offset: 0, 0
-  index: -1
-Frame01
-  rotate: false
-  xy: 646, 2
+  xy: 182, 2
   size: 34, 46
   orig: 34, 46
   offset: 0, 0
   index: -1
 Frame03
   rotate: false
-  xy: 682, 2
+  xy: 218, 2
   size: 34, 46
   orig: 34, 46
   offset: 0, 0
   index: -1
-Frame04
+Frame02
   rotate: false
-  xy: 718, 2
+  xy: 254, 2
+  size: 34, 46
+  orig: 34, 46
+  offset: 0, 0
+  index: -1
+Frame01
+  rotate: false
+  xy: 290, 2
   size: 34, 46
   orig: 34, 46
   offset: 0, 0
   index: -1
 arrowLeft
   rotate: false
-  xy: 754, 2
+  xy: 326, 2
   size: 68, 56
   orig: 68, 56
   offset: 0, 0
   index: -1
-cloud2
-  rotate: false
-  xy: 824, 2
-  size: 150, 60
-  orig: 150, 60
-  offset: 0, 0
-  index: -1
-cloud1
-  rotate: false
-  xy: 976, 2
-  size: 150, 60
-  orig: 150, 60
-  offset: 0, 0
-  index: -1
 Pistol
   rotate: false
-  xy: 1128, 2
+  xy: 396, 2
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-Spikes
-  rotate: false
-  xy: 1194, 2
-  size: 197, 87
-  orig: 197, 87
-  offset: 0, 0
-  index: -1
-pause
-  rotate: false
-  xy: 1393, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
 restart
   rotate: false
-  xy: 1495, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-leaderboardsComplex
-  rotate: false
-  xy: 1597, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-audioOn
-  rotate: false
-  xy: 1699, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-right
-  rotate: false
-  xy: 1801, 2
+  xy: 462, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 audioOff
   rotate: false
-  xy: 1903, 2
+  xy: 564, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+right
+  rotate: false
+  xy: 666, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+leaderboardsComplex
+  rotate: false
+  xy: 768, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+audioOn
+  rotate: false
+  xy: 870, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 shoppingCart
   rotate: false
-  xy: 2005, 2
+  xy: 972, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-hill
+pause
+  rotate: false
+  xy: 1074, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+cloud2
+  rotate: false
+  xy: 1176, 2
+  size: 150, 60
+  orig: 150, 60
+  offset: 0, 0
+  index: -1
+cloud1
+  rotate: false
+  xy: 1328, 2
+  size: 150, 60
+  orig: 150, 60
+  offset: 0, 0
+  index: -1
+hillBottom
+  rotate: false
+  xy: 1480, 2
+  size: 212, 43
+  orig: 212, 43
+  offset: 0, 0
+  index: -1
+hillTop
+  rotate: false
+  xy: 1694, 2
+  size: 212, 45
+  orig: 212, 45
+  offset: 0, 0
+  index: -1
+Spikes
   rotate: false
   xy: 2, 104
+  size: 197, 87
+  orig: 197, 87
+  offset: 0, 0
+  index: -1
+hill
+  rotate: false
+  xy: 201, 104
   size: 212, 130
   orig: 212, 130
   offset: 0, 0
   index: -1
 settings
   rotate: false
-  xy: 216, 104
+  xy: 415, 104
   size: 182, 189
   orig: 182, 189
   offset: 0, 0
   index: -1
-settingsButton
+audioOnButton
   rotate: false
-  xy: 400, 104
+  xy: 599, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
-settingsButtonDown
+settingsButton
   rotate: false
-  xy: 594, 104
+  xy: 793, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
 audioOffButton
   rotate: false
-  xy: 788, 104
+  xy: 987, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
 audioOffButtonPressed
   rotate: false
-  xy: 982, 104
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-settingsButtonOld
-  rotate: false
-  xy: 1176, 104
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-audioOnButtonPressed
-  rotate: false
-  xy: 1370, 104
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-audioOnButton
-  rotate: false
-  xy: 1564, 104
+  xy: 1181, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
 highscoresButton
   rotate: false
-  xy: 1758, 104
+  xy: 1375, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
 highscoresButtonDown
   rotate: false
-  xy: 1952, 104
+  xy: 1569, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
-settingsButtonDownOld
+audioOnButtonPressed
   rotate: false
   xy: 2, 298
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
-title4
+settingsButtonDownOld
   rotate: false
   xy: 196, 298
-  size: 1914, 274
-  orig: 1914, 274
+  size: 192, 192
+  orig: 192, 192
   offset: 0, 0
   index: -1
-playButton
+settingsButtonDown
   rotate: false
-  xy: 2, 574
-  size: 309, 311
-  orig: 309, 311
+  xy: 390, 298
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+settingsButtonOld
+  rotate: false
+  xy: 584, 298
+  size: 192, 192
+  orig: 192, 192
   offset: 0, 0
   index: -1
 playButtonDown
   rotate: false
-  xy: 313, 574
+  xy: 778, 298
   size: 309, 311
   orig: 309, 311
   offset: 0, 0
   index: -1
 restartButtonDown
   rotate: false
-  xy: 624, 574
+  xy: 1089, 298
+  size: 309, 311
+  orig: 309, 311
+  offset: 0, 0
+  index: -1
+playButton
+  rotate: false
+  xy: 1400, 298
   size: 309, 311
   orig: 309, 311
   offset: 0, 0
   index: -1
 restartButton
   rotate: false
-  xy: 935, 574
+  xy: 2, 611
   size: 309, 311
   orig: 309, 311
   offset: 0, 0
   index: -1
 Enemy G1
   rotate: false
-  xy: 1246, 574
+  xy: 313, 611
   size: 409, 502
   orig: 409, 502
   offset: 0, 0
   index: -1
 Enemy G2
   rotate: false
-  xy: 1657, 574
+  xy: 724, 611
   size: 409, 502
   orig: 409, 502
   offset: 0, 0
   index: -1
 background
   rotate: false
-  xy: 2, 1078
+  xy: 1135, 611
   size: 768, 768
   orig: 768, 768
   offset: 0, 0
   index: -1
+title4
+  rotate: false
+  xy: 2, 1381
+  size: 1914, 274
+  orig: 1914, 274
+  offset: 0, 0
+  index: -1
 policeCar
   rotate: false
-  xy: 772, 1078
+  xy: 2, 1657
   size: 1415, 875
   orig: 1415, 875
+  offset: 0, 0
+  index: -1
+bars
+  rotate: false
+  xy: 2, 2534
+  size: 1596, 1304
+  orig: 1596, 1304
   offset: 0, 0
   index: -1
