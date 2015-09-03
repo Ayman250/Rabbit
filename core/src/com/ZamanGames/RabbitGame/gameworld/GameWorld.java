@@ -163,9 +163,13 @@ public class GameWorld {
     }
 
     public void updateDyingPoliceCar(float delta) {
+        AssetLoader.policeSiren.play();
         dyingCounter -= delta;
         if (dyingCounter <= 0) {
             currentState = GameState.GAMEOVER;
+        }
+        if (dyingCounter <= 1.5) {
+            AssetLoader.jailCell.play();
         }
     }
 
