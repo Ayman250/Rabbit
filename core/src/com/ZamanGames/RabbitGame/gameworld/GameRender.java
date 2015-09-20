@@ -268,7 +268,6 @@ public class GameRender {
     }
 
     private void drawScore() {
-        System.out.println(world.getCollidedPolice());
         if (world.isGameOver() && world.getCollidedPolice()) {
                 batch.draw(bars, 50, -20, bars.getRegionWidth() * 3 / 4, bars.getRegionHeight() * 3 / 4);
         }
@@ -425,7 +424,10 @@ public class GameRender {
         drawRunning();
         drawResuming();
         drawDyingPolice();
-
+        //Shitty code to handle rabbit dying and bars showing over score
+        if (rabbit.isDead()) {
+            drawScore();
+        }
 //      -  shapeRenderer.end();540
         batch.end();
 

@@ -152,17 +152,31 @@ public class Rabbit {
         velocity.x = 0;
     }
 
-    public void onRestart(int y) {
-        position.y = 300;
-        position.x = -99;
-        velocity.x = 150;
-        velocity.y = 0;
-        acceleration.x = 0;
-        acceleration.y = 2000;
-        groundY = initGroundY;
-        isDead = false;
-        screenHeld = true;
-        upAllowed = true;
+    public void onRestart(int groundY, float x, float y) {
+        if (isEnemy) {
+            position.x = x;
+            position.y = y;
+            velocity.x = 150;
+            velocity.y = 0;
+            acceleration.x = 0;
+            acceleration.y = 2000;
+            this.groundY = initGroundY;
+            isDead = false;
+            screenHeld = false;
+            isBacking = false;
+        } else {
+            position.x = x;
+            position.y = y;
+            velocity.x = 150;
+            velocity.y = 0;
+            acceleration.x = 0;
+            acceleration.y = 2000;
+            this.groundY = initGroundY;
+            isDead = false;
+            screenHeld = true;
+            upAllowed = true;
+            isBacking = false;
+        }
     }
 
     public boolean inAir() {

@@ -13,6 +13,7 @@ public class ScrollHandler {
     private Ground ground1, ground2, rightGround;
     private Fence fence1, fence2;
     private Spike policeCar1, policeCar2, policeCar3;
+    private Bullet bullet1, bullet2;
 
     public static int SCROLL_SPEED;
     public static int HILL_GAP, TREE_GAP, CLOUD_GAP;
@@ -112,6 +113,14 @@ public class ScrollHandler {
 
         enemy1.update(delta);
         enemy2.update(delta);
+
+        if (world.isDyingPolice() && world.getshouldShoot()) {
+            bullet1.reset(-50 , rabbit.getY());
+            bullet2.reset(-100, rabbit.getY() + 30);
+
+            bullet1.update(delta);
+            bullet2.update(delta);
+        }
 
 
 
@@ -377,6 +386,14 @@ public class ScrollHandler {
 
     public Cloud getCloud4() {
         return cloud4;
+    }
+
+    public Bullet getBullet1() {
+        return bullet1;
+    }
+
+    public Bullet getBullet2() {
+        return bullet2;
     }
 
     public Scrollable getEnemy1() {

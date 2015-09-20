@@ -56,9 +56,9 @@ public class InputHandler implements InputProcessor {
         menuHighscoresButton = new Button(672, 296, 128, 128,
                 AssetLoader.highscoresButtonUp, AssetLoader.highscoresButtonDown);
 
-        readyHighscoresButton = new Button(672, 296, 128, 128,
+        readyHighscoresButton = new Button(720, 400, 128, 128,
                 AssetLoader.highscoresButtonUp, AssetLoader.highscoresButtonDown);
-        readySettingsButton = new Button(350, 400, 128, 128,
+        readySettingsButton = new Button(450, 400, 128, 128,
                 AssetLoader.settingsButtonUp, AssetLoader.settingsButtonDown);
 
         pausedHighscoresButton = new Button(768, 320, 128, 128,
@@ -81,6 +81,7 @@ public class InputHandler implements InputProcessor {
 
         readyButtons = new ArrayList<Button>();
         readyButtons.add(readySettingsButton);
+        readyButtons.add(readyHighscoresButton);
 
         pausedButtons = new ArrayList<Button>();
         pausedButtons.add(pausedSettingsButton);
@@ -171,9 +172,7 @@ public class InputHandler implements InputProcessor {
             }
         } else if (world.isTitle()) {
 
-            System.out.println("title");
             if (titlePlayButton.isTouchUp(screenX, screenY)) {
-                System.out.println("ready");
                 world.start();
             } else if (titleHighscoresButton.isTouchUp(screenX, screenY)) {
             } else if (titleSettingsButton.isTouchUp(screenX, screenY)) {
@@ -181,7 +180,6 @@ public class InputHandler implements InputProcessor {
         } else if (world.isMenu()) {
             if (menuDoneButton.isTouchUp(screenX, screenY)){
                 AssetLoader.click.play();
-                System.out.println(world.getPreviousState());
                 if (world.getPreviousState() == GameWorld.GameState.READY) {
                     world.ready();
                 }

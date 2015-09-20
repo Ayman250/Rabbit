@@ -18,7 +18,7 @@ public class GameWorld {
     private float scoreCounter, runTime = 0, initRHeight;
     private double resumingCounter, dyingCounter;
 
-    private boolean scoring, soundOn, collidedPolice;
+    private boolean scoring, soundOn, collidedPolice, shouldShoot;
 
     private GameState currentState, previousState;
 
@@ -54,6 +54,8 @@ public class GameWorld {
         dyingCounter = 3;
 
         collidedPolice = false;
+
+        shouldShoot = false;
 
 
 
@@ -96,6 +98,8 @@ public class GameWorld {
 
 
     public void updateRunning(float delta) {
+        System.out.println(enemy1.getX() + "," + enemy1.getY());
+        System.out.println(enemy2.getX() + "," + enemy2.getY());
         if (delta > .15f) {
             delta = .15f;
         }
@@ -160,6 +164,10 @@ public class GameWorld {
         if (dyingCounter <= 0) {
             currentState = GameState.GAMEOVER;
         }
+        if (dyingCounter <= 2) {
+            shouldShoot = true;
+            AssetLoader.gunShot.play();
+        }
     }
 
     public void updateDyingPoliceCar(float delta) {
@@ -193,7 +201,9 @@ public class GameWorld {
         currentState = GameState.READY;
         score = 0;
         scoring = true;
-        rabbit.onRestart(this.groundY);
+        rabbit.onRestart(this.groundY, -99, 300);
+        enemy1.onRestart(this.groundY, -199, 150);
+        enemy2.onRestart(this.groundY, -299, 150);
         scroller.onRestart();
         currentState = GameState.READY;
         AssetLoader.bgMusic.play();
@@ -346,6 +356,10 @@ public class GameWorld {
 
     public boolean getCollidedPolice() {
         return collidedPolice;
+    }
+
+    public boolean getshouldShoot () {
+        return shouldShoot;
     }
 
     public void setCollidedPolice(boolean collidedPolice) {
