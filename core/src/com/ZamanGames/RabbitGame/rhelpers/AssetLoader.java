@@ -24,7 +24,7 @@ public class AssetLoader {
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
             policeCar, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
             audioOnButton, audioOnButtonPressed, audioOffButton, audioOffButtonPressed, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
-            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars;
+            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars, bullet;
 
     public static Animation runningAnimation, idleAnimation;
 
@@ -82,6 +82,7 @@ public class AssetLoader {
         enemy1 = new TextureRegion(spriteSheet.findRegion("Enemy G1"));
         enemy2 = new TextureRegion(spriteSheet.findRegion("Enemy G2"));
         bars = new TextureRegion(spriteSheet.findRegion("bars"));
+        bullet = new TextureRegion(spriteSheet.findRegion("Pistol"));
 
         TextureRegion[] runFrames = {rabbitAnimation.findRegion("Frame01"),
                 rabbitAnimation.findRegion("Frame02"), rabbitAnimation.findRegion("Frame03"), rabbitAnimation.findRegion("Frame04"), rabbitAnimation.findRegion("Frame05"),

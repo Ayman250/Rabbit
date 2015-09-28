@@ -13,7 +13,7 @@ public class ScrollHandler {
     private Ground ground1, ground2, rightGround;
     private Fence fence1, fence2;
     private Spike policeCar1, policeCar2, policeCar3;
-    private Bullet bullet1, bullet2;
+    private Bullet bullet1, bullet2, bullet3;
 
     public static int SCROLL_SPEED;
     public static int HILL_GAP, TREE_GAP, CLOUD_GAP;
@@ -31,6 +31,8 @@ public class ScrollHandler {
     private Scrollable enemy1, enemy2;
 
     private int gameWidth, gameHeight;
+
+    private float dyingCounter;
 
     private float groundY;
 
@@ -81,8 +83,12 @@ public class ScrollHandler {
         enemy1 = new Scrollable(-199, 300, 99, 129, -SCROLL_SPEED);
         enemy2 = new Scrollable(-299, 300, 99, 129, -SCROLL_SPEED);
 
+        bullet1 = new Bullet(0, 0, 50, 25, -SCROLL_SPEED);
+        bullet2 = new Bullet(0, 0, 50, 25, -SCROLL_SPEED);
+        bullet3 = new Bullet(0, 0, 50, 25, -SCROLL_SPEED);
 
 
+        dyingCounter = 3;
 
         r = new Random();
 
@@ -215,7 +221,19 @@ public class ScrollHandler {
         //Determine which ground is on the right side and make sure hills spawn according to that one
 
         //when hill is reset, parameter is passed in to determine how high it will stand now
+        updateDyingHill(delta);
+    }
 
+    public void updateDyingHill(float delta) {
+        bullet1.setY(rabbit.getY());
+        bullet2.setY(rabbit.getY() + 50);
+        bullet3.setY(rabbit.getY() + 25);
+        dyingCounter -= delta;
+        if(dyingCounter < 2) {
+            bullet1.update(delta);
+            bullet2.update(delta);
+            bullet3.update(delta);
+        }
     }
 
     public void updateClouds(float delta) {
@@ -291,6 +309,7 @@ public class ScrollHandler {
     }
 
     public void onRestart() {
+        dyingCounter = 3;
         ground1.onReset(0, SCROLL_SPEED);
         ground2.onReset(ground1.getTailX(), SCROLL_SPEED);
         hill1.onReset(ground2.getTailX() - 150, -1000, 140, SCROLL_SPEED);
@@ -394,6 +413,10 @@ public class ScrollHandler {
 
     public Bullet getBullet2() {
         return bullet2;
+    }
+
+    public Bullet getBullet3() {
+        return bullet3;
     }
 
     public Scrollable getEnemy1() {

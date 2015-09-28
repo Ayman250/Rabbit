@@ -9,5 +9,9 @@ public class Bullet extends Scrollable {
         super(x, y, width, height, scrollSpeed*3);
     }
 
+    public void setY(float y) {
+        position.y = y;
+    }
+
 
 }

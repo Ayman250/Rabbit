@@ -1,5 +1,6 @@
 package com.ZamanGames.RabbitGame.gameworld;
 
+import com.ZamanGames.RabbitGame.gameobjects.Bullet;
 import com.ZamanGames.RabbitGame.gameobjects.Cloud;
 import com.ZamanGames.RabbitGame.gameobjects.Ground;
 import com.ZamanGames.RabbitGame.gameobjects.Hill;
@@ -41,7 +42,7 @@ public class GameRender {
 
     private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton;
 
-    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars;
+    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet;
 
     private Animation runningAnimation, idleAnimation;
 
@@ -53,6 +54,7 @@ public class GameRender {
     private Spike policeCar1, policeCar2, policeCar3;
     private ScrollHandler scroller;
     private ParallaxBackground parallaxBackground;
+    private Bullet bullet1, bullet2, bullet3;
 
     private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons;
 
@@ -132,6 +134,13 @@ public class GameRender {
         batch.draw(hillBottom, hill2.getX(), hill2.getY(), hill2.getWidth(), 14);
         batch.draw(hillBottom, hill3.getX(), hill3.getY(), hill3.getWidth(), 14);
         batch.draw(hillBottom, hill4.getX(), hill4.getY(), hill4.getWidth(), 14);
+    }
+
+    public void drawBullets() {
+        batch.draw(bullet, bullet1.getX(), bullet1.getY(), bullet1.getWidth(), bullet1.getHeight());
+        batch.draw(bullet, bullet2.getX(), bullet2.getY(), bullet2.getWidth(), bullet2.getHeight());
+        batch.draw(bullet, bullet3.getX(), bullet3.getY(), bullet3.getWidth(), bullet3.getHeight());
+
     }
 
     public void drawGround() {
@@ -424,6 +433,7 @@ public class GameRender {
         drawRunning();
         drawResuming();
         drawDyingPolice();
+        drawBullets();
         //Shitty code to handle rabbit dying and bars showing over score
         if (rabbit.isDead()) {
             drawScore();
@@ -456,6 +466,9 @@ public class GameRender {
         cloud4 = scroller.getCloud4();
         enemy1 = world.getEnemy1();
         enemy2 = world.getEnemy2();
+        bullet1 = scroller.getBullet1();
+        bullet2 = scroller.getBullet2();
+        bullet3 = scroller.getBullet3();
         //parallaxBackground = new ParallaxBackground();
     }
 
@@ -477,5 +490,6 @@ public class GameRender {
         tEnemy1 = AssetLoader.enemy1;
         tEnemy2 = AssetLoader.enemy2;
         bars = AssetLoader.bars;
+        bullet = AssetLoader.bullet;
     }
 }
