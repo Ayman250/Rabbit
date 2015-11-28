@@ -54,9 +54,9 @@ public class GameRender {
     private Spike policeCar1, policeCar2, policeCar3;
     private ScrollHandler scroller;
     private ParallaxBackground parallaxBackground;
-    private Bullet bullet1, bullet2, bullet3;
+    private Bullet bullet1, bullet2;
 
-    private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons;
+    private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons, leaderButtons;
 
     private Button playButton, settingsButton, audioButton, checkButton, hiScoreButton, pauseButton;
 
@@ -83,9 +83,10 @@ public class GameRender {
                 .getReadyButtons();
         this.pausedButtons = ((InputHandler) Gdx.input.getInputProcessor())
                 .getPausedButtons();
-
         this.pauseButton = ((InputHandler) Gdx.input.getInputProcessor())
                 .getPauseButton();
+        this.leaderButtons = ((InputHandler) Gdx.input.getInputProcessor())
+                .getLeaderButtons();
 
 //        this.settingsButton = ((InputHandler) Gdx.input.getInputProcessor())
 //            .getReadySettingsButton();
@@ -139,7 +140,6 @@ public class GameRender {
     public void drawBullets() {
         batch.draw(bullet, bullet1.getX(), bullet1.getY(), bullet1.getWidth(), bullet1.getHeight());
         batch.draw(bullet, bullet2.getX(), bullet2.getY(), bullet2.getWidth(), bullet2.getHeight());
-        batch.draw(bullet, bullet3.getX(), bullet3.getY(), bullet3.getWidth(), bullet3.getHeight());
 
     }
 
@@ -286,15 +286,15 @@ public class GameRender {
             if (world.isGameOver()) {
                 AssetLoader.gameFont.draw(batch, "GAME OVER",
                         gameWidth / 2 - 100, gameHeight / 2);
-                AssetLoader.gameFont.draw(batch, "High Score: " + AssetLoader.getHighScore(),
+                AssetLoader.gameFont.draw(batch, "High Score: " + AssetLoader.getHighScore1(),
                         gameWidth / 2 - 150, gameHeight / 2 - 100);
             } else {
                 AssetLoader.gameFont.draw(batch, "HIGH SCORE!",
                         gameWidth / 2 - 90, gameHeight / 2 - 40);
 
-                String highScore = "" + AssetLoader.getHighScore();
+                String highScore = "" + AssetLoader.getHighScore1();
 
-                int length = ("" + AssetLoader.getHighScore()).length();
+                int length = ("" + AssetLoader.getHighScore1()).length();
                 AssetLoader.gameFont.draw(batch, highScore,
                         gameWidth / 2 - (3 * length), gameHeight / 2 - 90);
                 return;
@@ -310,9 +310,27 @@ public class GameRender {
     }
 
     private void drawBackgroundUI() {
-        if ( world.isMenu() || world.isPaused() || world.isReady()) {
+        if ( world.isMenu() || world.isPaused() || world.isReady() || world.isLeaderBoard()) {
             batch.setColor(1F, 1F, 1F, 1F);
             batch.draw(AssetLoader.uiBackground, 320, 180, 640, 360);
+        }
+    }
+
+    private void drawLeaderBoard() {
+        if (world.isLeaderBoard()) {
+            String highScore1 = "" + AssetLoader.getHighScore1();
+            String highScore2 = "" + AssetLoader.getHighScore2();
+            String highScore3 = "" + AssetLoader.getHighScore3();
+
+            int length1 = highScore1.length();
+            AssetLoader.gameFont.draw(batch, highScore1,
+                    gameWidth / 2 - (3 * length1), 240);
+            int length2 = highScore2.length();
+            AssetLoader.gameFont.draw(batch, highScore1,
+                    gameWidth / 2 - (3 * length2), 320);
+            int length3 = highScore3.length();
+            AssetLoader.gameFont.draw(batch, highScore1,
+                    gameWidth / 2 - (3 * length3), 400);
         }
     }
 
@@ -468,7 +486,6 @@ public class GameRender {
         enemy2 = world.getEnemy2();
         bullet1 = scroller.getBullet1();
         bullet2 = scroller.getBullet2();
-        bullet3 = scroller.getBullet3();
         //parallaxBackground = new ParallaxBackground();
     }
 

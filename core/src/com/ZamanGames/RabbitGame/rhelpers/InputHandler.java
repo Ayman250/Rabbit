@@ -18,7 +18,7 @@ public class InputHandler implements InputProcessor {
     private Rabbit rabbit;
     private GameWorld world;
 
-    private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons;
+    private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons, leaderButtons;
 
     private float scaleFactorX, scaleFactorY;
 
@@ -26,6 +26,7 @@ public class InputHandler implements InputProcessor {
     private Button pauseButton, pausedSettingsButton, pausedHighscoresButton, pausedRestartButton;
     private Button readySettingsButton, readyHighscoresButton;
     private Button menuDoneButton, menuHighscoresButton;
+    private Button leaderDoneButton;
 
     private MusicButton menuAudioButton;
 
@@ -68,6 +69,9 @@ public class InputHandler implements InputProcessor {
         pausedRestartButton = new Button(576, 320, 128, 128,
                 AssetLoader.restartButtonUp, AssetLoader.restartButtonDown);
 
+        leaderDoneButton = new Button(350, 200, 100, 70,
+                AssetLoader.playButtonUp, AssetLoader.playButtonDown);
+
 
         menuButtons = new ArrayList<Button>();
         menuButtons.add(menuAudioButton);
@@ -87,6 +91,9 @@ public class InputHandler implements InputProcessor {
         pausedButtons.add(pausedSettingsButton);
         pausedButtons.add(pausedHighscoresButton);
         pausedButtons.add(pausedRestartButton);
+
+        leaderButtons = new ArrayList<Button>();
+        leaderButtons.add(leaderDoneButton);
     }
 
 
@@ -187,6 +194,7 @@ public class InputHandler implements InputProcessor {
                     world.pause();
                 }
             } else if (menuAudioButton.isTouchUp(screenX, screenY)) {
+            } else if (menuAudioButton.isTouchUp(screenX, screenY)) {
                 if (world.isSoundOn()) {
                     world.stopSound();
                     menuAudioButton.changeTexture(AssetLoader.audioOffButton, AssetLoader.audioOffButtonPressed);
@@ -197,6 +205,7 @@ public class InputHandler implements InputProcessor {
                 }
 
             } else if (menuHighscoresButton.isTouchUp(screenX, screenY)) {
+                world.leaderBoard();
 
             }
         } else if (this.world.isReady()) {
@@ -205,7 +214,7 @@ public class InputHandler implements InputProcessor {
                 world.menu();
             }
             else if (menuHighscoresButton.isTouchUp(screenX, screenY)) {
-
+                world.leaderBoard();
             }
             else {
                 AssetLoader.click.play();
@@ -220,7 +229,7 @@ public class InputHandler implements InputProcessor {
             } else if (pausedRestartButton.isTouchUp(screenX, screenY)) {
                 world.restart();
             } else if (pausedHighscoresButton.isTouchUp(screenX, screenY)) {
-
+                world.leaderBoard();
             }
 
         } else if (world.isGameOver()) {
@@ -267,8 +276,13 @@ public class InputHandler implements InputProcessor {
     public List<Button> getReadyButtons() {
         return readyButtons;
     }
+
     public List<Button> getPausedButtons() {
         return pausedButtons;
+    }
+
+    public List<Button> getLeaderButtons() {
+        return leaderButtons;
     }
 
     public Button getReadySettingsButton() {

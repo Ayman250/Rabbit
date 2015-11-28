@@ -13,7 +13,7 @@ public class ScrollHandler {
     private Ground ground1, ground2, rightGround;
     private Fence fence1, fence2;
     private Spike policeCar1, policeCar2, policeCar3;
-    private Bullet bullet1, bullet2, bullet3;
+    private Bullet bullet1, bullet2;
 
     public static int SCROLL_SPEED;
     public static int HILL_GAP, TREE_GAP, CLOUD_GAP;
@@ -83,9 +83,8 @@ public class ScrollHandler {
         enemy1 = new Scrollable(-199, 300, 99, 129, -SCROLL_SPEED);
         enemy2 = new Scrollable(-299, 300, 99, 129, -SCROLL_SPEED);
 
-        bullet1 = new Bullet(0, 0, 50, 25, -SCROLL_SPEED);
-        bullet2 = new Bullet(0, 0, 50, 25, -SCROLL_SPEED);
-        bullet3 = new Bullet(0, 0, 50, 25, -SCROLL_SPEED);
+        bullet1 = new Bullet(-100, 0, 50, 25, -SCROLL_SPEED);
+        bullet2 = new Bullet(-100, 0, 50, 25, -SCROLL_SPEED);
 
 
         dyingCounter = 3;
@@ -119,15 +118,6 @@ public class ScrollHandler {
 
         enemy1.update(delta);
         enemy2.update(delta);
-
-        if (world.isDyingPolice() && world.getshouldShoot()) {
-            bullet1.reset(-50 , rabbit.getY());
-            bullet2.reset(-100, rabbit.getY() + 30);
-
-            bullet1.update(delta);
-            bullet2.update(delta);
-        }
-
 
 
         if (hill1.rabbitOn(rabbit) && hill1.getY() > 0) {
@@ -221,18 +211,25 @@ public class ScrollHandler {
         //Determine which ground is on the right side and make sure hills spawn according to that one
 
         //when hill is reset, parameter is passed in to determine how high it will stand now
-        updateDyingHill(delta);
     }
 
     public void updateDyingHill(float delta) {
         bullet1.setY(rabbit.getY());
         bullet2.setY(rabbit.getY() + 50);
-        bullet3.setY(rabbit.getY() + 25);
         dyingCounter -= delta;
+        //If bullet hits rabbit make bullet dissappear by sending it way up into the middle of nowhere.
+        if(bullet1.getX() + 50 > rabbit.getX()) {
+            bullet1.setY(1000);
+        }
+
+        if(bullet2.getX() + 50 > rabbit.getX()) {
+            bullet2.setY(1000);
+        }
         if(dyingCounter < 2) {
             bullet1.update(delta);
+        }
+        if (dyingCounter < 1.5) {
             bullet2.update(delta);
-            bullet3.update(delta);
         }
     }
 
@@ -329,6 +326,9 @@ public class ScrollHandler {
         cloud3.onRestart(cloud2.getTailX() + CLOUD_GAP, r.nextInt(100) + 80, r.nextBoolean());
         //So clouds don't double up on Restart.
         cloud4.onRestart(cloud3.getTailX() + CLOUD_GAP, -1000, r.nextBoolean());
+        bullet1.reset(-100, 0);
+        bullet2.reset(-100, 0);
+
     }
 
     public Hill getHill1() {
@@ -413,10 +413,6 @@ public class ScrollHandler {
 
     public Bullet getBullet2() {
         return bullet2;
-    }
-
-    public Bullet getBullet3() {
-        return bullet3;
     }
 
     public Scrollable getEnemy1() {

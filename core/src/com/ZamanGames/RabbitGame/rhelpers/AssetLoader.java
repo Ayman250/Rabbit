@@ -145,11 +145,17 @@ public class AssetLoader {
 //        gameFont.getData().setScale(2f,2f);
 
         //Provide default high score of 0
-        if (!prefs.contains("highScore")) {
-            prefs.putInteger("highScore", 0);
-        }
+        if (!prefs.contains("highScore1"))
+            prefs.putInteger("highScore1", 0);
 
-}
+        if (!prefs.contains("highScore2"))
+            prefs.putInteger("highScore2", 0);
+
+
+        if (!prefs.contains("highScore3"))
+            prefs.putInteger("highScore3", 0);
+
+    }
 
     public static void createFonts() {
         FileHandle fontFile = Gdx.files.internal("data/bebasneue.ttf");
@@ -174,14 +180,29 @@ public class AssetLoader {
     }
 
     // Receives an integer and maps it to the String highScore in prefs
-    public static void setHighScore(int val) {
-        prefs.putInteger("highScore", val);
-        prefs.flush();
+    public static void setHighScore(int val, int num) {
+        if (num == 1) {
+            prefs.putInteger("highScore1", val);
+            prefs.flush();
+        } else if (num == 2) {
+            prefs.putInteger("highScore2", val);
+            prefs.flush();
+        } else if (num == 3) {
+            prefs.putInteger("highScore3", val);
+            prefs.flush();
+        }
+
     }
 
     // Retrieves the current high score
-    public static int getHighScore() {
-        return prefs.getInteger("highScore");
+    public static int getHighScore1() {
+        return prefs.getInteger("highScore1");
+    }
+    public static int getHighScore2() {
+        return prefs.getInteger("highScore2");
+    }
+    public static int getHighScore3() {
+        return prefs.getInteger("highScore3");
     }
 
 

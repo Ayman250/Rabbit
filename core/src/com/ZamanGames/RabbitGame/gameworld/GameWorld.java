@@ -2,8 +2,8 @@ package com.ZamanGames.RabbitGame.gameworld;
 
 import com.ZamanGames.RabbitGame.gameobjects.Rabbit;
 import com.ZamanGames.RabbitGame.gameobjects.ScrollHandler;
-import com.ZamanGames.RabbitGame.gameobjects.Scrollable;
 import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
+import com.badlogic.gdx.Game;
 
 /**
  * Created by Ayman on 6/6/2015.
@@ -23,7 +23,7 @@ public class GameWorld {
     private GameState currentState, previousState;
 
     public enum GameState {
-        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING, TITLE, DYINGPOLICE, DYINGHILL
+        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING, TITLE, DYINGPOLICE, DYINGHILL, LEADERBOARD;
     }
 
     public GameWorld(int gameWidth, int gameHeight, float midPointY, int groundY) {
@@ -51,7 +51,7 @@ public class GameWorld {
 
         resumingCounter = 3;
 
-        dyingCounter = 3;
+        dyingCounter = 2;
 
         collidedPolice = false;
 
@@ -85,6 +85,8 @@ public class GameWorld {
             case TITLE:
                 updateTitle(runTime);
                 break;
+            case LEADERBOARD:
+                break;
             case PAUSED:
                 updatePaused(delta);
             default:
@@ -98,8 +100,6 @@ public class GameWorld {
 
 
     public void updateRunning(float delta) {
-        System.out.println(enemy1.getX() + "," + enemy1.getY());
-        System.out.println(enemy2.getX() + "," + enemy2.getY());
         if (delta > .15f) {
             delta = .15f;
         }
@@ -128,11 +128,15 @@ public class GameWorld {
                 currentState = GameState.DYINGHILL;
             }
 
-            if (score > AssetLoader.getHighScore()) {
-                AssetLoader.setHighScore(score);
+            if (score > AssetLoader.getHighScore1()) {
+                AssetLoader.setHighScore(score, 1);
+                } else if (score > AssetLoader.getHighScore2()) {
+                    AssetLoader.setHighScore(score, 2);
+                } else if (score > AssetLoader.getHighScore3()) {
+                    AssetLoader.setHighScore(score, 3);
+                }
                 previousState = currentState;
                 currentState = GameState.HIGHSCORE;
-            }
         }
 
 
@@ -164,10 +168,11 @@ public class GameWorld {
         if (dyingCounter <= 0) {
             currentState = GameState.GAMEOVER;
         }
-        if (dyingCounter <= 2) {
+        if (dyingCounter <= 1.5) {
             shouldShoot = true;
             AssetLoader.gunShot.play();
         }
+        scroller.updateDyingHill(delta);
     }
 
     public void updateDyingPoliceCar(float delta) {
@@ -207,8 +212,9 @@ public class GameWorld {
         scroller.onRestart();
         currentState = GameState.READY;
         AssetLoader.bgMusic.play();
-        dyingCounter = 3;
+        dyingCounter = 2;
         resumingCounter = 3;
+        collidedPolice = false;
 
     }
 
@@ -233,6 +239,14 @@ public class GameWorld {
     public void menu() {
         previousState = currentState;
         currentState = GameState.MENU;
+    }
+
+    public void highScore() {
+        currentState = GameState.HIGHSCORE;
+    }
+
+    public void leaderBoard() {
+        currentState = GameState.LEADERBOARD;
     }
 
     public boolean isSoundOn() {
@@ -293,6 +307,10 @@ public class GameWorld {
 
     public boolean isTitle() {
         return  currentState == GameState.TITLE;
+    }
+
+    public boolean isLeaderBoard() {
+        return currentState == GameState.LEADERBOARD;
     }
 
     public boolean isDyingPolice() {
@@ -358,7 +376,7 @@ public class GameWorld {
         return collidedPolice;
     }
 
-    public boolean getshouldShoot () {
+    public boolean shouldShoot() {
         return shouldShoot;
     }
 
