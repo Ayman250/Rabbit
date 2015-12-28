@@ -322,6 +322,8 @@ public class GameRender {
             String highScore2 = "" + AssetLoader.getHighScore2();
             String highScore3 = "" + AssetLoader.getHighScore3();
 
+            drawBackgroundUI();
+
             int length1 = highScore1.length();
             AssetLoader.gameFont.draw(batch, highScore1,
                     gameWidth / 2 - (3 * length1), 240);

@@ -136,7 +136,6 @@ public class GameWorld {
                     AssetLoader.setHighScore(score, 3);
                 }
                 previousState = currentState;
-                currentState = GameState.HIGHSCORE;
         }
 
 
