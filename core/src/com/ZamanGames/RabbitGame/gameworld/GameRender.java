@@ -322,7 +322,9 @@ public class GameRender {
             String highScore2 = "" + AssetLoader.getHighScore2();
             String highScore3 = "" + AssetLoader.getHighScore3();
 
-            drawBackgroundUI();
+            for (Button button : leaderButtons) {
+                button.draw(batch);
+            }
 
             int length1 = highScore1.length();
             AssetLoader.gameFont.draw(batch, highScore1,
@@ -451,6 +453,7 @@ public class GameRender {
         drawMenuUI();
         drawReady();
         drawRunning();
+        drawLeaderBoard();
         drawResuming();
         drawDyingPolice();
         drawBullets();

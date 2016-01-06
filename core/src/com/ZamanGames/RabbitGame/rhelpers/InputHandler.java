@@ -57,9 +57,9 @@ public class InputHandler implements InputProcessor {
         menuHighscoresButton = new Button(672, 296, 128, 128,
                 AssetLoader.highscoresButtonUp, AssetLoader.highscoresButtonDown);
 
-        readyHighscoresButton = new Button(720, 400, 128, 128,
+        readyHighscoresButton = new Button(720, 360, 128, 128,
                 AssetLoader.highscoresButtonUp, AssetLoader.highscoresButtonDown);
-        readySettingsButton = new Button(450, 400, 128, 128,
+        readySettingsButton = new Button(450, 360, 128, 128,
                 AssetLoader.settingsButtonUp, AssetLoader.settingsButtonDown);
 
         pausedHighscoresButton = new Button(768, 320, 128, 128,
@@ -70,7 +70,7 @@ public class InputHandler implements InputProcessor {
                 AssetLoader.restartButtonUp, AssetLoader.restartButtonDown);
 
         leaderDoneButton = new Button(350, 200, 100, 70,
-                AssetLoader.playButtonUp, AssetLoader.playButtonDown);
+                AssetLoader.done, AssetLoader.done);
 
 
         menuButtons = new ArrayList<Button>();
@@ -194,7 +194,6 @@ public class InputHandler implements InputProcessor {
                     world.pause();
                 }
             } else if (menuAudioButton.isTouchUp(screenX, screenY)) {
-            } else if (menuAudioButton.isTouchUp(screenX, screenY)) {
                 if (world.isSoundOn()) {
                     world.stopSound();
                     menuAudioButton.changeTexture(AssetLoader.audioOffButton, AssetLoader.audioOffButtonPressed);
@@ -221,7 +220,7 @@ public class InputHandler implements InputProcessor {
                 this.world.start();
             }
 
-        } else  if (world.isPaused()) {
+        } else if (world.isPaused()) {
 
             if (pausedSettingsButton.isTouchUp(screenX, screenY)) {
                 AssetLoader.click.play();
@@ -230,6 +229,16 @@ public class InputHandler implements InputProcessor {
                 world.restart();
             } else if (pausedHighscoresButton.isTouchUp(screenX, screenY)) {
                 world.leaderBoard();
+        } else if (world.isLeaderBoard()) {
+
+                if (leaderDoneButton.isTouchUp(screenX, screenY)) {
+                    if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
+                        world.pause();
+                    }
+                    else if (world.getPreviousState() == GameWorld.GameState.TITLE) {
+                        world.ready();
+                    }
+                }
             }
 
         } else if (world.isGameOver()) {

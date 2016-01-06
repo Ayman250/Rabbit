@@ -241,10 +241,12 @@ public class GameWorld {
     }
 
     public void highScore() {
+        previousState = currentState;
         currentState = GameState.HIGHSCORE;
     }
 
     public void leaderBoard() {
+        previousState = currentState;
         currentState = GameState.LEADERBOARD;
     }
 
