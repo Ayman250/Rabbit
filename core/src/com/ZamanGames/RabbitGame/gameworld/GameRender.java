@@ -13,6 +13,7 @@ import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
 import com.ZamanGames.RabbitGame.rhelpers.InputHandler;
 import com.ZamanGames.RabbitGame.ui.Button;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -42,7 +43,7 @@ public class GameRender {
 
     private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton;
 
-    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet;
+    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet, star, emptyStar, largeStar, one, two, three;
 
     private Animation runningAnimation, idleAnimation;
 
@@ -254,7 +255,7 @@ public class GameRender {
         batch.draw(tEnemy2, enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
     }
     public void drawRabbit(float delta, float runTime) {
-        if (rabbit.inAir() || world.isPaused() || world.isMenu()){
+        if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill()){
             batch.draw(rabbitJumped, rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
         } else if (world.isReady() || world.isTitle()) {
             batch.draw(idleAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
@@ -284,10 +285,11 @@ public class GameRender {
             return;
         } else if (world.isGameOver() || world.isHighScore()) {
             if (world.isGameOver()) {
+                drawStars();
                 AssetLoader.gameFont.draw(batch, "GAME OVER",
-                        gameWidth / 2 - 100, gameHeight / 2);
+                        gameWidth / 2 - 130, gameHeight / 2 + 80);
                 AssetLoader.gameFont.draw(batch, "High Score: " + AssetLoader.getHighScore1(),
-                        gameWidth / 2 - 150, gameHeight / 2 - 100);
+                        gameWidth / 2 - 180, gameHeight / 2 - 20);
             } else {
                 AssetLoader.gameFont.draw(batch, "HIGH SCORE!",
                         gameWidth / 2 - 90, gameHeight / 2 - 40);
@@ -304,13 +306,32 @@ public class GameRender {
 
         {
             int length = ("" + world.getScore()).length();
+            AssetLoader.bgScoreFont.draw(batch, "" + world.getScore() + " m",
+                    gameWidth / 2 - (3 * length) * 5 + 2, gameHeight / 20 + 2);
+
             AssetLoader.scoreFont.draw(batch, "" + world.getScore() + " m",
                     gameWidth / 2 - (3 * length) * 5, gameHeight / 20);
         }
     }
+    private void drawStars() {
+        if (world.getScore() > 500) {
+            batch.draw(star, gameWidth /2 - 180, gameHeight /2 - 50, star.getRegionWidth() * 2 / 4, -(star.getRegionHeight() * 2 / 4));
+            batch.draw(largeStar, gameWidth /2 - 45, gameHeight /2 - 100, star.getRegionWidth() * 2 / 4 + 5, -(star.getRegionHeight() * 2 / 4 + 5));
+            batch.draw(star, gameWidth /2 + 80, gameHeight /2 - 50, star.getRegionWidth() * 2 / 4, -(star.getRegionHeight() * 2 / 4));
+        } else if (world.getScore() > 250) {
+            batch.draw(star, gameWidth /2 - 180, gameHeight /2 - 50, star.getRegionWidth() * 2 / 4, -(star.getRegionHeight() * 2 / 4));
+            batch.draw(largeStar, gameWidth /2 - 45, gameHeight /2 - 100, star.getRegionWidth() * 2 / 4 + 5, -(star.getRegionHeight() * 2 / 4 + 5));
+            batch.draw(emptyStar, gameWidth /2 + 80, gameHeight /2 - 50, star.getRegionWidth() * 2 / 4, -(star.getRegionHeight() * 2 / 4));
+        } else {
+            batch.draw(star, gameWidth /2 - 180, gameHeight /2 - 50, star.getRegionWidth() * 2 / 4, -(star.getRegionHeight() * 2 / 4));
+            batch.draw(emptyStar, gameWidth /2 - 45, gameHeight /2 - 100, star.getRegionWidth() * 2 / 4 + 5, -(star.getRegionHeight() * 2 / 4 + 5));
+            batch.draw(emptyStar, gameWidth /2 + 80, gameHeight /2 - 50, star.getRegionWidth() * 2 / 4, -(star.getRegionHeight() * 2 / 4));
+        }
 
+
+    }
     private void drawBackgroundUI() {
-        if ( world.isMenu() || world.isPaused() || world.isReady() || world.isLeaderBoard()) {
+        if ( world.isMenu() || world.isPaused() || world.isReady() || world.isLeaderBoard() || world.isHighScore() || world.isGameOver()) {
             batch.setColor(1F, 1F, 1F, 1F);
             batch.draw(AssetLoader.uiBackground, 320, 180, 640, 360);
         }
@@ -325,16 +346,24 @@ public class GameRender {
             for (Button button : leaderButtons) {
                 button.draw(batch);
             }
+            //draw stars on top of leaderboard ui
+            batch.draw(star, gameWidth /2 - 180, gameHeight /2 - 100, star.getRegionWidth() * 2 / 4, -(star.getRegionHeight() * 2 / 4));
+            batch.draw(largeStar, gameWidth /2 - 45, gameHeight /2 - 150, star.getRegionWidth() * 2 / 4 + 5, -(star.getRegionHeight() * 2 / 4 + 5));
+            batch.draw(star, gameWidth /2 + 80, gameHeight /2 - 100, star.getRegionWidth() * 2 / 4, -(star.getRegionHeight() * 2 / 4));
 
+            //Draw Numbers and display HighScores
+            batch.draw(one, 512, 280);
             int length1 = highScore1.length();
             AssetLoader.gameFont.draw(batch, highScore1,
-                    gameWidth / 2 - (3 * length1), 240);
+                    620, 280);
+            batch.draw(two, 512, 360);
             int length2 = highScore2.length();
-            AssetLoader.gameFont.draw(batch, highScore1,
-                    gameWidth / 2 - (3 * length2), 320);
+            AssetLoader.gameFont.draw(batch, highScore2,
+                    620, 360);
+            batch.draw(three, 512, 440);
             int length3 = highScore3.length();
-            AssetLoader.gameFont.draw(batch, highScore1,
-                    gameWidth / 2 - (3 * length3), 400);
+            AssetLoader.gameFont.draw(batch, highScore3,
+                    620, 440);
         }
     }
 
@@ -513,5 +542,11 @@ public class GameRender {
         tEnemy2 = AssetLoader.enemy2;
         bars = AssetLoader.bars;
         bullet = AssetLoader.bullet;
+        star = AssetLoader.star;
+        emptyStar = AssetLoader.emptyStar;
+        largeStar = AssetLoader.largeStar;
+        one = AssetLoader.one;
+        two = AssetLoader.two;
+        three = AssetLoader.three;
     }
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -24,11 +25,11 @@ public class AssetLoader {
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
             policeCar, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
             audioOnButton, audioOnButtonPressed, audioOffButton, audioOffButtonPressed, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
-            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars, bullet;
+            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars, bullet, star, emptyStar, largeStar, one, two, three;
 
     public static Animation runningAnimation, idleAnimation;
 
-    public static BitmapFont gameFont, scoreFont, resumingFont;
+    public static BitmapFont gameFont, scoreFont, resumingFont, bgGameFont, bgScoreFont;
 
     public static Music bgMusic, click, jumpSound, jailCell, gunShot, policeSiren;
 
@@ -82,7 +83,13 @@ public class AssetLoader {
         enemy1 = new TextureRegion(spriteSheet.findRegion("Enemy G1"));
         enemy2 = new TextureRegion(spriteSheet.findRegion("Enemy G2"));
         bars = new TextureRegion(spriteSheet.findRegion("bars"));
-        bullet = new TextureRegion(spriteSheet.findRegion("Pistol"));
+        bullet = new TextureRegion(spriteSheet.findRegion("bullet"));
+        star = new TextureRegion(spriteSheet.findRegion("star"));
+        emptyStar = new TextureRegion(spriteSheet.findRegion("emptyStar"));
+        largeStar = new TextureRegion(spriteSheet.findRegion("largeStar"));
+        one = new TextureRegion(spriteSheet.findRegion("1"));
+        two = new TextureRegion(spriteSheet.findRegion("2"));
+        three = new TextureRegion(spriteSheet.findRegion("3"));
 
         TextureRegion[] runFrames = {rabbitAnimation.findRegion("Frame01"),
                 rabbitAnimation.findRegion("Frame02"), rabbitAnimation.findRegion("Frame03"), rabbitAnimation.findRegion("Frame04"), rabbitAnimation.findRegion("Frame05"),
@@ -118,6 +125,9 @@ public class AssetLoader {
         audioOnButtonPressed.flip(false, true);
         audioOffButton.flip(false, true);
         audioOffButtonPressed.flip(false, true);
+        one.flip(false, true);
+        two.flip(false, true);
+        three.flip(false, true);
 
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("data/ridaz.mp3"));
         click = Gdx.audio.newMusic(Gdx.files.internal("data/click.ogg"));
@@ -164,8 +174,14 @@ public class AssetLoader {
         parameter.flip = true;
         parameter.size = 72;
         gameFont = generator.generateFont(parameter);
+        parameter.size = 80;
+        bgGameFont = generator.generateFont(parameter);
+        bgGameFont.setColor(Color.BLACK);
         parameter.size = 64;
         scoreFont = generator.generateFont(parameter);
+        parameter.size = 64;
+        bgScoreFont = generator.generateFont(parameter);
+        bgScoreFont.setColor(Color.BLACK);
         parameter.size = 72;
         resumingFont = generator.generateFont(parameter);
         generator.dispose();

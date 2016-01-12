@@ -62,6 +62,7 @@ public class GameWorld {
     }
 
     public void update(float delta) {
+        System.out.println(currentState);
         runTime += delta;
         scroller.updateClouds(delta);
         switch (currentState) {
@@ -186,6 +187,7 @@ public class GameWorld {
     }
 
     public void ready() {
+        previousState = currentState;
         currentState = GameState.READY;
     }
 
@@ -312,6 +314,10 @@ public class GameWorld {
 
     public boolean isLeaderBoard() {
         return currentState == GameState.LEADERBOARD;
+    }
+
+    public GameState getCurrentState() {
+        return currentState;
     }
 
     public boolean isDyingPolice() {

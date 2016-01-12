@@ -159,6 +159,12 @@ public class InputHandler implements InputProcessor {
                 buttons.isTouchDown(screenX, screenY);
             }
         }
+        else if (world.isLeaderBoard()) {
+                for (Button buttons : leaderButtons) {
+                    buttons.isTouchDown(screenX, screenY);
+                }
+            }
+
 
 
 
@@ -170,7 +176,6 @@ public class InputHandler implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         screenX = scaleX(screenX);
         screenY = scaleY(screenY);
-
         if (world.isRunning()) {
             if (pauseButton.isTouchUp(screenX, screenY)) {
                 AssetLoader.click.play();
@@ -182,7 +187,9 @@ public class InputHandler implements InputProcessor {
             if (titlePlayButton.isTouchUp(screenX, screenY)) {
                 world.start();
             } else if (titleHighscoresButton.isTouchUp(screenX, screenY)) {
+                world.leaderBoard();
             } else if (titleSettingsButton.isTouchUp(screenX, screenY)) {
+                world.menu();
             }
         } else if (world.isMenu()) {
             if (menuDoneButton.isTouchUp(screenX, screenY)){
@@ -212,7 +219,7 @@ public class InputHandler implements InputProcessor {
             if(readySettingsButton.isTouchUp(screenX, screenY)) {
                 world.menu();
             }
-            else if (menuHighscoresButton.isTouchUp(screenX, screenY)) {
+            else if (readyHighscoresButton.isTouchUp(screenX, screenY)) {
                 world.leaderBoard();
             }
             else {
@@ -229,19 +236,18 @@ public class InputHandler implements InputProcessor {
                 world.restart();
             } else if (pausedHighscoresButton.isTouchUp(screenX, screenY)) {
                 world.leaderBoard();
-        } else if (world.isLeaderBoard()) {
-
-                if (leaderDoneButton.isTouchUp(screenX, screenY)) {
-                    if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
-                        world.pause();
-                    }
-                    else if (world.getPreviousState() == GameWorld.GameState.TITLE) {
-                        world.ready();
-                    }
+            }
+        }   else if (world.isLeaderBoard()) {
+            if (leaderDoneButton.isTouchUp(screenX, screenY)) {
+                if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
+                    world.pause();
+                } else if (world.getPreviousState() == GameWorld.GameState.TITLE) {
+                    world.ready();
                 }
             }
+        }
 
-        } else if (world.isGameOver()) {
+         else if (world.isGameOver()) {
             //Reset all variables, go to GameState.Ready
             world.restart();
         }
