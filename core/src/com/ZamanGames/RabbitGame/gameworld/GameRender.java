@@ -41,7 +41,7 @@ public class GameRender {
 
 //    private float dustTimer, dustTimeLeft;
 
-    private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton;
+    private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton, blood;
 
     private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet, star, emptyStar, largeStar, one, two, three;
 
@@ -255,7 +255,7 @@ public class GameRender {
         batch.draw(tEnemy2, enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
     }
     public void drawRabbit(float delta, float runTime) {
-        if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill()){
+        if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill() || world.isGameOver()){
             batch.draw(rabbitJumped, rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
         } else if (world.isReady() || world.isTitle()) {
             batch.draw(idleAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
@@ -439,6 +439,13 @@ public class GameRender {
 
         }
     }
+
+    public void drawBlood() {
+        System.out.print(world.isBloody());
+        if (world.isBloody()) {
+            batch.draw(blood, 0, 0, 1280, 720);
+        }
+    }
     //might use runTime later for animations
     public void render(float delta, float runTime) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -476,6 +483,7 @@ public class GameRender {
         drawScore();
         drawEnemies();
         drawRabbit(delta, runTime);
+        drawDyingPolice();
         drawBackgroundUI();
         drawTitle();
         drawPause();
@@ -484,8 +492,8 @@ public class GameRender {
         drawRunning();
         drawLeaderBoard();
         drawResuming();
-        drawDyingPolice();
         drawBullets();
+        drawBlood();
         //Shitty code to handle rabbit dying and bars showing over score
         if (rabbit.isDead()) {
             drawScore();
@@ -548,5 +556,6 @@ public class GameRender {
         one = AssetLoader.one;
         two = AssetLoader.two;
         three = AssetLoader.three;
+        blood = AssetLoader.blood;
     }
 }

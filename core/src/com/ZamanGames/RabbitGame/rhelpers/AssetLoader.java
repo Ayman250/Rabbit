@@ -18,7 +18,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class AssetLoader {
 
-    public static Texture ground, dirt, uiBackground;
+    public static Texture ground, dirt, uiBackground, blood;
 
     public static TextureAtlas spriteSheet, rabbitAnimation;
 
@@ -47,6 +47,8 @@ public class AssetLoader {
         rabbitJumped = new TextureRegion(rabbitAnimation.findRegion("Jumped"));
 
         uiBackground = new Texture(Gdx.files.internal("data/UIBackground.png"));
+
+        blood = new Texture(Gdx.files.internal("data/blood.png"));
 
         playButtonUp = new TextureRegion(spriteSheet.findRegion("playButton"));
         playButtonDown = new TextureRegion(spriteSheet.findRegion("playButtonDown"));

@@ -87,7 +87,7 @@ public class ScrollHandler {
         bullet2 = new Bullet(-100, 0, 50, 25, -SCROLL_SPEED);
 
 
-        dyingCounter = 3;
+        dyingCounter = 2;
 
         r = new Random();
 
@@ -217,12 +217,13 @@ public class ScrollHandler {
         bullet1.setY(rabbit.getY());
         bullet2.setY(rabbit.getY() + 50);
         dyingCounter -= delta;
+        System.out.println(dyingCounter);
         //If bullet hits rabbit make bullet dissappear by sending it way up into the middle of nowhere.
-        if(bullet1.getX() + 50 > rabbit.getX()) {
+        if(bullet1.getX() > rabbit.getX()) {
             bullet1.setY(1000);
         }
 
-        if(bullet2.getX() + 50 > rabbit.getX()) {
+        if(bullet2.getX() > rabbit.getX()) {
             bullet2.setY(1000);
         }
         if(dyingCounter < 2) {
@@ -230,6 +231,9 @@ public class ScrollHandler {
         }
         if (dyingCounter < 1.5) {
             bullet2.update(delta);
+        }
+        if (dyingCounter < .5) {
+            world.setBloody();
         }
     }
 

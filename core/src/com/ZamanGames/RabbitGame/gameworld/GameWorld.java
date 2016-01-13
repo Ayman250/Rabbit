@@ -18,7 +18,7 @@ public class GameWorld {
     private float scoreCounter, runTime = 0, initRHeight;
     private double resumingCounter, dyingCounter;
 
-    private boolean scoring, soundOn, collidedPolice, shouldShoot;
+    private boolean scoring, soundOn, collidedPolice, shouldShoot, bloody;
 
     private GameState currentState, previousState;
 
@@ -56,6 +56,8 @@ public class GameWorld {
         collidedPolice = false;
 
         shouldShoot = false;
+
+        bloody = false;
 
 
 
@@ -216,6 +218,7 @@ public class GameWorld {
         dyingCounter = 2;
         resumingCounter = 3;
         collidedPolice = false;
+        bloody = false;
 
     }
 
@@ -280,6 +283,10 @@ public class GameWorld {
         AssetLoader.bgMusic.play();
     }
 
+    public void setBloody() {
+        bloody = true;
+    }
+
     public boolean isHighScore() {
         return currentState == GameState.HIGHSCORE;
     }
@@ -316,16 +323,20 @@ public class GameWorld {
         return currentState == GameState.LEADERBOARD;
     }
 
-    public GameState getCurrentState() {
-        return currentState;
-    }
-
     public boolean isDyingPolice() {
         return currentState == GameState.DYINGPOLICE;
     }
 
     public boolean isDyingHill() {
         return currentState == GameState.DYINGHILL;
+    }
+
+    public boolean isBloody() {
+        return bloody;
+    }
+
+    public GameState getCurrentState() {
+        return currentState;
     }
 
     public GameState getPreviousState() {
