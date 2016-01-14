@@ -153,13 +153,11 @@ public class InputHandler implements InputProcessor {
             for (Button buttons : readyButtons) {
                 buttons.isTouchDown(screenX, screenY);
             }
-        }
-        else if (world.isTitle()) {
+        } else if (world.isTitle()) {
             for (Button buttons : titleButtons) {
                 buttons.isTouchDown(screenX, screenY);
             }
-        }
-        else if (world.isLeaderBoard()) {
+        } else if (world.isLeaderBoard()) {
                 for (Button buttons : leaderButtons) {
                     buttons.isTouchDown(screenX, screenY);
                 }

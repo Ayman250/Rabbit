@@ -1,6 +1,7 @@
 package com.ZamanGames.RabbitGame.gameobjects;
 
 import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -43,9 +44,8 @@ public class Rabbit {
         screenHeld = false;
         //determines if screen holding will cause upwards acceleration of rabbit
         upAllowed = true;
-
-
         isBacking = false;
+
     }
 
     public void update(float delta) {
@@ -130,7 +130,7 @@ public class Rabbit {
         }
     }
 
-    public void changeHeight(float newY) {
+    public void setY(float newY) {
         groundY = newY;
     }
 
@@ -146,6 +146,7 @@ public class Rabbit {
         velocity.x = initXVelocity;
         velocity.y = initYVelocity;
     }
+
 
     public void die() {
         isDead = true;
@@ -178,6 +179,7 @@ public class Rabbit {
             isBacking = false;
         }
     }
+
 
     public boolean inAir() {
         if (position.y < groundY) {

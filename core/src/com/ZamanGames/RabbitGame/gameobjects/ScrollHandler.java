@@ -2,6 +2,8 @@ package com.ZamanGames.RabbitGame.gameobjects;
 
 import com.ZamanGames.RabbitGame.gameworld.GameWorld;
 
+import com.badlogic.gdx.math.MathUtils;
+
 import java.util.Random;
 
 /**
@@ -27,6 +29,8 @@ public class ScrollHandler {
     private Tree tree1, tree2, tree3, tree4;
 
     private Cloud cloud1, cloud2, cloud3, cloud4;
+
+    public Weed weed;
 
     private Scrollable enemy1, enemy2;
 
@@ -86,10 +90,12 @@ public class ScrollHandler {
         bullet1 = new Bullet(-100, 0, 50, 25, -SCROLL_SPEED);
         bullet2 = new Bullet(-100, 0, 50, 25, -SCROLL_SPEED);
 
-
         dyingCounter = 2;
 
         r = new Random();
+
+//        weed = new Weed(r.nextInt(1280*6) + 1280, r.nextInt(256), 50, 50, -SCROLL_SPEED);
+        weed = new Weed(700, 500, 50, 50, SCROLL_SPEED);
 
     }
 
@@ -119,22 +125,29 @@ public class ScrollHandler {
         enemy1.update(delta);
         enemy2.update(delta);
 
+        weed.update(delta);
+
+        if (weed.collides(rabbit)) {
+            //if rabbit hits weeds, the rabbit gets high and the weed is dissapears.
+            world.getHigh();
+            weed.reset(-10, -10);
+        }
 
         if (hill1.rabbitOn(rabbit) && hill1.getY() > 0) {
-            rabbit.changeHeight(hill1.getY() + hill1.getHeight() - 7);
+            rabbit.setY(hill1.getY() + hill1.getHeight() - 7);
         } else if (hill2.rabbitOn(rabbit) && hill2.getY() > 0) {
-            rabbit.changeHeight(hill2.getY() + hill2.getHeight() - 7);
+            rabbit.setY(hill2.getY() + hill2.getHeight() - 7);
         } else if (hill3.rabbitOn(rabbit) && hill3.getY() > 0) {
-            rabbit.changeHeight(hill3.getY() + hill3.getHeight() - 7);
+            rabbit.setY(hill3.getY() + hill3.getHeight() - 7);
 //            System.out.println("onHill3");
         } else if (hill4.rabbitOn(rabbit) && hill4.getY() > 0) {
-            rabbit.changeHeight(hill4.getY() + hill4.getHeight() + 7);
+            rabbit.setY(hill4.getY() + hill4.getHeight() + 7);
         } else if (ground1.rabbitOn(rabbit)) {
-            rabbit.changeHeight(ground1.getY());
+            rabbit.setY(ground1.getY());
 //            System.out.println("Ground1");
         } else if (ground2.rabbitOn(rabbit)) {
 //            System.out.println("Ground2");
-            rabbit.changeHeight(ground2.getY());
+            rabbit.setY(ground2.getY());
         }
 
 
@@ -211,6 +224,7 @@ public class ScrollHandler {
         //Determine which ground is on the right side and make sure hills spawn according to that one
 
         //when hill is reset, parameter is passed in to determine how high it will stand now
+
     }
 
     public void updateDyingHill(float delta) {
@@ -265,6 +279,7 @@ public class ScrollHandler {
         tree2.stop();
         tree3.stop();
         tree4.stop();
+        weed.stop();
         world.stopScoring();
     }
 
@@ -280,6 +295,7 @@ public class ScrollHandler {
         tree2.stop();
         tree3.stop();
         tree4.stop();
+        weed.stop();
     }
 
     public void resume() {
@@ -293,6 +309,7 @@ public class ScrollHandler {
         tree2.resume();
         tree3.resume();
         tree4.resume();
+        weed.resume();
     }
 
 
@@ -331,6 +348,7 @@ public class ScrollHandler {
         cloud4.onRestart(cloud3.getTailX() + CLOUD_GAP, -1000, r.nextBoolean());
         bullet1.reset(-100, 0);
         bullet2.reset(-100, 0);
+        weed.reset(r.nextInt(1280*6) + 1280, r.nextInt(256));
 
     }
 
@@ -418,6 +436,10 @@ public class ScrollHandler {
         return bullet2;
     }
 
+    public Weed getWeed() {
+        return weed;
+    }
+
     public Scrollable getEnemy1() {
         return enemy1;
     }
@@ -425,4 +447,5 @@ public class ScrollHandler {
     public Scrollable getEnemy2() {
         return enemy2;
     }
+
 }

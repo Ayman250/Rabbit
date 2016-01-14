@@ -9,11 +9,11 @@ import com.ZamanGames.RabbitGame.gameobjects.ScrollHandler;
 import com.ZamanGames.RabbitGame.gameobjects.Scrollable;
 import com.ZamanGames.RabbitGame.gameobjects.Spike;
 import com.ZamanGames.RabbitGame.gameobjects.Tree;
+import com.ZamanGames.RabbitGame.gameobjects.Weed;
 import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
 import com.ZamanGames.RabbitGame.rhelpers.InputHandler;
 import com.ZamanGames.RabbitGame.ui.Button;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -56,6 +56,7 @@ public class GameRender {
     private ScrollHandler scroller;
     private ParallaxBackground parallaxBackground;
     private Bullet bullet1, bullet2;
+    private Weed weed;
 
     private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons, leaderButtons;
 
@@ -441,10 +442,13 @@ public class GameRender {
     }
 
     public void drawBlood() {
-        System.out.print(world.isBloody());
         if (world.isBloody()) {
             batch.draw(blood, 0, 0, 1280, 720);
         }
+    }
+
+    public void drawWeed() {
+            batch.draw(tEnemy1, weed.getX(), weed.getY(), weed.getWidth(), weed.getHeight());
     }
     //might use runTime later for animations
     public void render(float delta, float runTime) {
@@ -473,7 +477,7 @@ public class GameRender {
 
         drawBackground();
         drawClouds();
-
+        drawWeed();
         drawGround();
         drawHillBottoms();
         drawHills();
@@ -528,6 +532,7 @@ public class GameRender {
         enemy2 = world.getEnemy2();
         bullet1 = scroller.getBullet1();
         bullet2 = scroller.getBullet2();
+        weed = scroller.getWeed();
         //parallaxBackground = new ParallaxBackground();
     }
 

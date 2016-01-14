@@ -4,6 +4,7 @@ import com.ZamanGames.RabbitGame.gameobjects.Rabbit;
 import com.ZamanGames.RabbitGame.gameobjects.ScrollHandler;
 import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.math.MathUtils;
 
 /**
  * Created by Ayman on 6/6/2015.
@@ -15,10 +16,10 @@ public class GameWorld {
     private int rabbitWidth, rabbitHeight;
 
     private int gameWidth, gameHeight, groundY, score;
-    private float scoreCounter, runTime = 0, initRHeight;
+    private float scoreCounter, runTime = 0, initRHeight, highCounter;
     private double resumingCounter, dyingCounter;
 
-    private boolean scoring, soundOn, collidedPolice, shouldShoot, bloody;
+    private boolean scoring, soundOn, collidedPolice, shouldShoot, bloody, high;
 
     private GameState currentState, previousState;
 
@@ -44,27 +45,22 @@ public class GameWorld {
 
         score = 0;
         scoreCounter = 0;
+        resumingCounter = 3;
+        dyingCounter = 2;
+        highCounter = 0;
 
         scoring = true;
-
         soundOn = true;
-
-        resumingCounter = 3;
-
-        dyingCounter = 2;
-
         collidedPolice = false;
-
         shouldShoot = false;
-
         bloody = false;
+        high = false;
 
 
 
     }
 
     public void update(float delta) {
-        System.out.println(currentState);
         runTime += delta;
         scroller.updateClouds(delta);
         switch (currentState) {
@@ -111,6 +107,7 @@ public class GameWorld {
         enemy1.update(delta);
         enemy2.update(delta);
         scroller.update(delta);
+        highStuff(delta);
         //adds point every 1/20th of a second
         scoreCounter += delta;
         if (scoring) {
@@ -141,7 +138,22 @@ public class GameWorld {
                 previousState = currentState;
         }
 
+    }
 
+    public void highStuff(float delta) {
+        highCounter -= delta;
+
+        if (highCounter > 0){
+            high = true;
+        } else {
+            high = false;
+        }
+
+        //if rabbit is high  make it float in the sky...
+
+        if (isHigh()) {
+            rabbit.setY(200 + MathUtils.sin(1));
+        }
     }
 
     public void updateMenu(float delta) {
@@ -291,6 +303,10 @@ public class GameWorld {
         bloody = true;
     }
 
+    public void getHigh() {
+        highCounter = 10;
+    }
+
     public boolean isHighScore() {
         return currentState == GameState.HIGHSCORE;
     }
@@ -337,6 +353,10 @@ public class GameWorld {
 
     public boolean isBloody() {
         return bloody;
+    }
+
+    public boolean isHigh() {
+        return high;
     }
 
     public GameState getCurrentState() {
