@@ -138,7 +138,6 @@ public class AssetLoader {
         jailCell = Gdx.audio.newMusic(Gdx.files.internal("data/jail.mp3"));
         policeSiren = Gdx.audio.newMusic(Gdx.files.internal("data/police.mp3"));
 
-
 //        gameFont = new BitmapFont(Gdx.files.internal("data/gameFont.fnt"), true);
 
 
@@ -148,6 +147,7 @@ public class AssetLoader {
         ground.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         dirt.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
+        gunShot.setLooping(false);
         bgMusic.setLooping(true);
         bgMusic.setVolume(1f);
         click.setVolume(1);

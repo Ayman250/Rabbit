@@ -215,14 +215,13 @@ public class ScrollHandler {
 
     public void updateDyingHill(float delta) {
         bullet1.setY(rabbit.getY());
-        bullet2.setY(rabbit.getY() + 50);
+        bullet2.setY(rabbit.getY() - 30);
         dyingCounter -= delta;
         System.out.println(dyingCounter);
         //If bullet hits rabbit make bullet dissappear by sending it way up into the middle of nowhere.
         if(bullet1.getX() > rabbit.getX()) {
             bullet1.setY(1000);
         }
-
         if(bullet2.getX() > rabbit.getX()) {
             bullet2.setY(1000);
         }

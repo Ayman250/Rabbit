@@ -139,8 +139,8 @@ public class GameRender {
     }
 
     public void drawBullets() {
-        batch.draw(bullet, bullet1.getX(), bullet1.getY(), bullet1.getWidth(), bullet1.getHeight());
-        batch.draw(bullet, bullet2.getX(), bullet2.getY(), bullet2.getWidth(), bullet2.getHeight());
+        batch.draw(bullet, bullet1.getX(), bullet1.getY(), bullet1.getWidth()/2, bullet1.getHeight()/2);
+        batch.draw(bullet, bullet2.getX(), bullet2.getY(), bullet2.getWidth()/2, bullet2.getHeight()/2);
 
     }
 

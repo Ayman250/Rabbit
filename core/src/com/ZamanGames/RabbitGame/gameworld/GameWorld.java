@@ -170,6 +170,10 @@ public class GameWorld {
         if (dyingCounter <= 0) {
             currentState = GameState.GAMEOVER;
         }
+        if (dyingCounter <= 2) {
+            shouldShoot = true;
+            AssetLoader.gunShot.play();
+        }
         if (dyingCounter <= 1.5) {
             shouldShoot = true;
             AssetLoader.gunShot.play();
