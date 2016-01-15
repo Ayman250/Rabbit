@@ -140,6 +140,14 @@ public class GameWorld {
                 previousState = currentState;
         }
 
+        risingStuff();
+
+    }
+
+    public  void risingStuff() {
+        if (rising) {
+            rise();
+        }
     }
 
     public void highStuff(float delta) {
@@ -154,7 +162,7 @@ public class GameWorld {
         //if rabbit is high  make it float in the sky...
 
         if (isHigh()) {
-            rabbit.setY(200 + MathUtils.sin(1));
+            rabbit.setY(200 + 10*MathUtils.sin(1));
         }
     }
 
@@ -166,6 +174,14 @@ public class GameWorld {
     public void rise() {
         rising = true;
         scroller.stop();
+        if (rabbit.getY() < 200) {
+            rabbit.setYAcceleration(-50);
+        } else {
+            rising = false;
+            getHigh();
+            scroller.resume();
+        }
+
     }
 
 

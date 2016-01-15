@@ -91,6 +91,14 @@ public class Rabbit {
 
     }
 
+//    public void updateRising(float delta) {
+//        if (position.y > 200) {
+//            acceleration.y = 50;
+//        } else {
+//            rising = false;
+//        }
+//    }
+
     public void updateReady(float runTime) {
 //        position.y = 2 * (float) Math.sin(7 * runTime) + initY;
     }
@@ -134,6 +142,10 @@ public class Rabbit {
 
     public void setY(float newY) {
         groundY = newY;
+    }
+
+    public void setYAcceleration(float newYAcceleration) {
+        acceleration.y = newYAcceleration;
     }
 
     public void pause() {

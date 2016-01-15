@@ -28,7 +28,7 @@ public class ScrollHandler {
 
     private Cloud cloud1, cloud2, cloud3, cloud4;
 
-    public com.ZamanGames.RabbitGame.gameobjects.weed weed;
+    public Weed Weed;
 
     private Scrollable enemy1, enemy2;
 
@@ -93,7 +93,7 @@ public class ScrollHandler {
         r = new Random();
 
 //        weed = new Weed(r.nextInt(1280*6) + 1280, r.nextInt(256), 50, 50, -SCROLL_SPEED);
-        weed = new com.ZamanGames.RabbitGame.gameobjects.weed(700, 500, 50, 50, SCROLL_SPEED);
+        Weed = new Weed(700, 500, 50, 50, SCROLL_SPEED);
 
     }
 
@@ -123,12 +123,12 @@ public class ScrollHandler {
         enemy1.update(delta);
         enemy2.update(delta);
 
-        weed.update(delta);
+        Weed.update(delta);
 
-        if (weed.collides(rabbit)) {
+        if (Weed.collides(rabbit)) {
             //if rabbit hits weeds, the rabbit gets high and the weed is dissapears.
-            world.getHigh();
-            weed.reset(-10, -10);
+            world.rise();
+            Weed.reset(-10, -10);
         }
 
         if (hill1.rabbitOn(rabbit) && hill1.getY() > 0) {
@@ -277,7 +277,7 @@ public class ScrollHandler {
         tree2.stop();
         tree3.stop();
         tree4.stop();
-        weed.stop();
+        Weed.stop();
         world.stopScoring();
     }
 
@@ -293,7 +293,7 @@ public class ScrollHandler {
         tree2.stop();
         tree3.stop();
         tree4.stop();
-        weed.stop();
+        Weed.stop();
     }
 
     public void resume() {
@@ -307,7 +307,7 @@ public class ScrollHandler {
         tree2.resume();
         tree3.resume();
         tree4.resume();
-        weed.resume();
+        Weed.resume();
     }
 
 
@@ -346,7 +346,7 @@ public class ScrollHandler {
         cloud4.onRestart(cloud3.getTailX() + CLOUD_GAP, -1000, r.nextBoolean());
         bullet1.reset(-100, 0);
         bullet2.reset(-100, 0);
-        weed.reset(r.nextInt(1280*6) + 1280, r.nextInt(256));
+        Weed.reset(r.nextInt(1280*6) + 1280, r.nextInt(256));
 
     }
 
@@ -434,8 +434,8 @@ public class ScrollHandler {
         return bullet2;
     }
 
-    public com.ZamanGames.RabbitGame.gameobjects.weed getWeed() {
-        return weed;
+    public Weed getWeed() {
+        return Weed;
     }
 
     public Scrollable getEnemy1() {
