@@ -16,10 +16,10 @@ public class GameWorld {
     private int rabbitWidth, rabbitHeight;
 
     private int gameWidth, gameHeight, groundY, score;
-    private float scoreCounter, runTime = 0, initRHeight, highCounter;
+    private float scoreCounter, runTime = 0, initRHeight, highCounter, risingCounter, fallingCounter;
     private double resumingCounter, dyingCounter;
 
-    private boolean scoring, soundOn, collidedPolice, shouldShoot, bloody, high;
+    private boolean scoring, soundOn, collidedPolice, shouldShoot, bloody, high, rising, falling;
 
     private GameState currentState, previousState;
 
@@ -55,6 +55,8 @@ public class GameWorld {
         shouldShoot = false;
         bloody = false;
         high = false;
+        rising = false;
+        falling = false;
 
 
 
@@ -155,6 +157,17 @@ public class GameWorld {
             rabbit.setY(200 + MathUtils.sin(1));
         }
     }
+
+    public void fall() {
+        falling = true;
+        scroller.stop();
+    }
+
+    public void rise() {
+        rising = true;
+        scroller.stop();
+    }
+
 
     public void updateMenu(float delta) {
 
@@ -264,6 +277,14 @@ public class GameWorld {
     public void highScore() {
         previousState = currentState;
         currentState = GameState.HIGHSCORE;
+    }
+
+    public boolean isRising() {
+        return rising;
+    }
+
+    public boolean isFalling() {
+        return falling;
     }
 
     public void leaderBoard() {

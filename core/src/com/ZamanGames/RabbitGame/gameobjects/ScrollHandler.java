@@ -2,8 +2,6 @@ package com.ZamanGames.RabbitGame.gameobjects;
 
 import com.ZamanGames.RabbitGame.gameworld.GameWorld;
 
-import com.badlogic.gdx.math.MathUtils;
-
 import java.util.Random;
 
 /**
@@ -30,7 +28,7 @@ public class ScrollHandler {
 
     private Cloud cloud1, cloud2, cloud3, cloud4;
 
-    public Weed weed;
+    public com.ZamanGames.RabbitGame.gameobjects.weed weed;
 
     private Scrollable enemy1, enemy2;
 
@@ -95,7 +93,7 @@ public class ScrollHandler {
         r = new Random();
 
 //        weed = new Weed(r.nextInt(1280*6) + 1280, r.nextInt(256), 50, 50, -SCROLL_SPEED);
-        weed = new Weed(700, 500, 50, 50, SCROLL_SPEED);
+        weed = new com.ZamanGames.RabbitGame.gameobjects.weed(700, 500, 50, 50, SCROLL_SPEED);
 
     }
 
@@ -436,7 +434,7 @@ public class ScrollHandler {
         return bullet2;
     }
 
-    public Weed getWeed() {
+    public com.ZamanGames.RabbitGame.gameobjects.weed getWeed() {
         return weed;
     }
 

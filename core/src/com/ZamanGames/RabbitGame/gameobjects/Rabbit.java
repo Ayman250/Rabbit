@@ -20,7 +20,7 @@ public class Rabbit {
 
     private float delta, timeLeft;
 
-    private boolean isDead, screenHeld, upAllowed, isEnemy, isBacking;
+    private boolean isDead, screenHeld, upAllowed, isEnemy, isBacking, rising, falling;
 
     private Rectangle hitBox;
 
@@ -45,6 +45,8 @@ public class Rabbit {
         //determines if screen holding will cause upwards acceleration of rabbit
         upAllowed = true;
         isBacking = false;
+        rising = false;
+        falling = false;
 
     }
 
