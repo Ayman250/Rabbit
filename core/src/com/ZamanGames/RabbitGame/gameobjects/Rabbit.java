@@ -144,6 +144,10 @@ public class Rabbit {
         groundY = newY;
     }
 
+    public void setYVelocity(float newYVelocity) {
+        velocity.y = newYVelocity;
+    }
+
     public void setYAcceleration(float newYAcceleration) {
         acceleration.y = newYAcceleration;
     }

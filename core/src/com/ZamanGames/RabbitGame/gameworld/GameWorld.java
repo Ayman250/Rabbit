@@ -109,7 +109,6 @@ public class GameWorld {
         enemy1.update(delta);
         enemy2.update(delta);
         scroller.update(delta);
-        highStuff(delta);
         //adds point every 1/20th of a second
         scoreCounter += delta;
         if (scoring) {
@@ -137,9 +136,11 @@ public class GameWorld {
                 } else if (score > AssetLoader.getHighScore3()) {
                     AssetLoader.setHighScore(score, 3);
                 }
+            //??????????? below
                 previousState = currentState;
         }
 
+        highStuff(delta);
         risingStuff();
 
     }
@@ -162,24 +163,27 @@ public class GameWorld {
         //if rabbit is high  make it float in the sky...
 
         if (isHigh()) {
-            rabbit.setY(200 + 10*MathUtils.sin(1));
+            rabbit.setY(200 + 30*MathUtils.sin(1));
         }
     }
 
     public void fall() {
         falling = true;
-        scroller.stop();
     }
 
     public void rise() {
+        System.out.println(rabbit.getY());
         rising = true;
-        scroller.stop();
-        if (rabbit.getY() < 200) {
-            rabbit.setYAcceleration(-50);
+        if (rabbit.getY() > 200) {
+//            scroller.risePause();
+            rabbit.setYAcceleration(-10);
         } else {
-            rising = false;
             getHigh();
-            scroller.resume();
+//            scroller.resume();
+            rabbit.setYAcceleration(0);
+            rabbit.setYVelocity(0);
+            rising = false;
+
         }
 
     }

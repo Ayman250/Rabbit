@@ -51,7 +51,6 @@ public class Button {
     }
 
     public boolean isTouchUp(int screenX, int screenY) {
-        System.out.println(screenX + " , " + screenY);
         // It only counts as touchUp if the button is in a pressed state.
         if (bounds.contains(screenX, screenY) && isPressed) {
 

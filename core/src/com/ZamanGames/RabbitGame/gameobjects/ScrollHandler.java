@@ -296,6 +296,21 @@ public class ScrollHandler {
         Weed.stop();
     }
 
+    //pauses everything that needs to be paused so that the rabbit may rise... Same as above without rabbit.pause
+    public void risePause() {
+        ground1.stop();
+        ground2.stop();
+        policeCar1.stop();
+        policeCar2.stop();
+        water1.stop();
+        water2.stop();
+        tree1.stop();
+        tree2.stop();
+        tree3.stop();
+        tree4.stop();
+        Weed.stop();
+    }
+
     public void resume() {
         ground1.resume();
         ground2.resume();
