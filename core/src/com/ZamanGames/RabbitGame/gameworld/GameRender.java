@@ -9,8 +9,7 @@ import com.ZamanGames.RabbitGame.gameobjects.ScrollHandler;
 import com.ZamanGames.RabbitGame.gameobjects.Scrollable;
 import com.ZamanGames.RabbitGame.gameobjects.Spike;
 import com.ZamanGames.RabbitGame.gameobjects.Tree;
-import com.ZamanGames.RabbitGame.gameobjects.weed;
-import com.ZamanGames.RabbitGame.gameobjects.weed;
+import com.ZamanGames.RabbitGame.gameobjects.Weed;
 import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
 import com.ZamanGames.RabbitGame.rhelpers.InputHandler;
 import com.ZamanGames.RabbitGame.ui.Button;
@@ -57,7 +56,7 @@ public class GameRender {
     private ScrollHandler scroller;
     private ParallaxBackground parallaxBackground;
     private Bullet bullet1, bullet2;
-    private weed weed;
+    private Weed weed;
 
     private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons, leaderButtons;
 
@@ -257,13 +256,14 @@ public class GameRender {
         batch.draw(tEnemy2, enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
     }
     public void drawRabbit(float delta, float runTime) {
-        if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill() || world.isGameOver()){
-            batch.draw(rabbitJumped, rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
-        } else if (world.isReady() || world.isTitle()) {
+        System.out.println(rabbit.inAir());
+        if (world.isReady() || world.isTitle() || world.isRising() || world.isFalling()) {
             batch.draw(idleAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
+        } else if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill() || world.isGameOver()){
+            batch.draw(rabbitJumped, rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
         } else {
             batch.draw(runningAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
-//            dustTimer += delta;
+//          dustTimer += delta;
 //            if (dustTimer > 1f) {
 //                dustTimer -= 1f;
 //                dustTimeLeft = .3f;

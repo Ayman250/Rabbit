@@ -149,29 +149,63 @@ public class GameWorld {
                 previousState = currentState;
         }
 
-        highStuff(delta);
-
     }
 
     public void updateRising(float delta) {
+/*Issues arise with allowing rabbit to update whil game is paused
+Solution will be to set delta to 0 for scroller update while rabbit is rising. This will effectively prevent the scroller
+from updating
+ */
+        rabbit.update(delta);
         if (rabbit.getY() > 200) {
 //            scroller.risePause();
-            rabbit.setYAcceleration(-10);
+            //Yvelocity must be changed from the velocoity it was in the the rising started
+            rabbit.setYVelocity(-180);
+            delta = 0;
+            scroller.update(delta);
         } else {
+
             getHigh();
 //            scroller.resume();
             rabbit.setYAcceleration(0);
             rabbit.setYVelocity(0);
-            rising = false;
+            currentState = GameState.HIGH;
 
         }
     }
 
     public void updateHigh(float delta) {
+        rabbit.update(delta);
+        scroller.update(delta);
+        //for some fucking reason if you don't click the screen (even though gamestate is not even on runnign and clicking shouldn't do anything...
+        //rabbit is in some downsmode always showing in air animation state not fucking sure why at all.
+        //Has to do with the grounY for rabbit changing when it's high... Weird... I'll get back to this
+        highCounter -= delta;
+        rabbit.onClick();
+        rabbit.onRelease();;
+        //scoring while high
+        scoreCounter += delta;
+        if (scoring) {
+            if (scoreCounter >= 1 / 10f) {
+                scoreCounter -= 1 / 10f;
+                score++;
+            }
+        }
+
+        if (highCounter > 0){
+            rabbit.setY(200 + 30*MathUtils.sin(1));
+        } else {
+            currentState = GameState.FALLING;
+        }
 
     }
 
     public void updateFalling(float delta) {
+        rabbit.update(delta);
+        scroller.update(delta);
+        if (!rabbit.inAir()) {
+            currentState = GameState.RUNNING;
+        }
 
     }
 
@@ -313,11 +347,11 @@ public class GameWorld {
     }
 
     public boolean isRising() {
-        return rising;
+        return currentState == GameState.RISING;
     }
 
     public boolean isFalling() {
-        return falling;
+        return currentState == GameState.FALLING;
     }
 
     public void leaderBoard() {

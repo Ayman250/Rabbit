@@ -201,6 +201,7 @@ public class Rabbit {
 
     public boolean inAir() {
         if (position.y < groundY) {
+            System.out.println(groundY);
             return true;
         } else {
             timeLeft = .4f;
