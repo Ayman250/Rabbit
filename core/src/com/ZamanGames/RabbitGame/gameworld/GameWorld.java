@@ -24,7 +24,7 @@ public class GameWorld {
     private GameState currentState, previousState;
 
     public enum GameState {
-        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING, TITLE, DYINGPOLICE, DYINGHILL, LEADERBOARD;
+        MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING, TITLE, DYINGPOLICE, DYINGHILL, LEADERBOARD, RISING, FALLING, HIGH;
     }
 
     public GameWorld(int gameWidth, int gameHeight, float midPointY, int groundY) {
@@ -73,6 +73,15 @@ public class GameWorld {
                 break;
             case RUNNING:
                 updateRunning(delta);
+                break;
+            case RISING:
+                updateRising(delta);
+                break;
+            case HIGH:
+                updateHigh(delta);
+                break;
+            case FALLING:
+                updateFalling(delta);
                 break;
             case DYINGHILL:
                 updateDyingHillUpdate(delta);
@@ -141,15 +150,31 @@ public class GameWorld {
         }
 
         highStuff(delta);
-        risingStuff();
 
     }
 
-    public  void risingStuff() {
-        if (rising) {
-            rise();
+    public void updateRising(float delta) {
+        if (rabbit.getY() > 200) {
+//            scroller.risePause();
+            rabbit.setYAcceleration(-10);
+        } else {
+            getHigh();
+//            scroller.resume();
+            rabbit.setYAcceleration(0);
+            rabbit.setYVelocity(0);
+            rising = false;
+
         }
     }
+
+    public void updateHigh(float delta) {
+
+    }
+
+    public void updateFalling(float delta) {
+
+    }
+
 
     public void highStuff(float delta) {
         highCounter -= delta;
@@ -172,19 +197,7 @@ public class GameWorld {
     }
 
     public void rise() {
-        System.out.println(rabbit.getY());
-        rising = true;
-        if (rabbit.getY() > 200) {
-//            scroller.risePause();
-            rabbit.setYAcceleration(-10);
-        } else {
-            getHigh();
-//            scroller.resume();
-            rabbit.setYAcceleration(0);
-            rabbit.setYVelocity(0);
-            rising = false;
-
-        }
+        currentState = GameState.RISING;
 
     }
 

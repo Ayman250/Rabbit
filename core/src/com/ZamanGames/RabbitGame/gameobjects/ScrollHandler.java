@@ -28,7 +28,7 @@ public class ScrollHandler {
 
     private Cloud cloud1, cloud2, cloud3, cloud4;
 
-    public Weed Weed;
+    public Weed weed;
 
     private Scrollable enemy1, enemy2;
 
@@ -93,7 +93,7 @@ public class ScrollHandler {
         r = new Random();
 
 //        weed = new Weed(r.nextInt(1280*6) + 1280, r.nextInt(256), 50, 50, -SCROLL_SPEED);
-        Weed = new Weed(700, 500, 50, 50, SCROLL_SPEED);
+        weed = new Weed(700, 500, 50, 50, SCROLL_SPEED);
 
     }
 
@@ -123,12 +123,12 @@ public class ScrollHandler {
         enemy1.update(delta);
         enemy2.update(delta);
 
-        Weed.update(delta);
+        weed.update(delta);
 
-        if (Weed.collides(rabbit)) {
+        if (weed.collides(rabbit)) {
             //if rabbit hits weeds, the rabbit gets high and the weed is dissapears.
             world.rise();
-            Weed.reset(-10, -10);
+            weed.reset(-10, -10);
         }
 
         if (hill1.rabbitOn(rabbit) && hill1.getY() > 0) {
@@ -277,7 +277,7 @@ public class ScrollHandler {
         tree2.stop();
         tree3.stop();
         tree4.stop();
-        Weed.stop();
+        weed.stop();
         world.stopScoring();
     }
 
@@ -293,7 +293,7 @@ public class ScrollHandler {
         tree2.stop();
         tree3.stop();
         tree4.stop();
-        Weed.stop();
+        weed.stop();
     }
 
     //pauses everything that needs to be paused so that the rabbit may rise... Same as above without rabbit.pause
@@ -308,7 +308,7 @@ public class ScrollHandler {
         tree2.stop();
         tree3.stop();
         tree4.stop();
-        Weed.stop();
+        weed.stop();
     }
 
     public void resume() {
@@ -322,7 +322,7 @@ public class ScrollHandler {
         tree2.resume();
         tree3.resume();
         tree4.resume();
-        Weed.resume();
+        weed.resume();
     }
 
 
@@ -361,7 +361,7 @@ public class ScrollHandler {
         cloud4.onRestart(cloud3.getTailX() + CLOUD_GAP, -1000, r.nextBoolean());
         bullet1.reset(-100, 0);
         bullet2.reset(-100, 0);
-        Weed.reset(r.nextInt(1280*6) + 1280, r.nextInt(256));
+        weed.reset(r.nextInt(1280*6) + 1280, r.nextInt(256));
 
     }
 
@@ -450,7 +450,7 @@ public class ScrollHandler {
     }
 
     public Weed getWeed() {
-        return Weed;
+        return weed;
     }
 
     public Scrollable getEnemy1() {

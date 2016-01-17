@@ -9,7 +9,8 @@ import com.ZamanGames.RabbitGame.gameobjects.ScrollHandler;
 import com.ZamanGames.RabbitGame.gameobjects.Scrollable;
 import com.ZamanGames.RabbitGame.gameobjects.Spike;
 import com.ZamanGames.RabbitGame.gameobjects.Tree;
-import com.ZamanGames.RabbitGame.gameobjects.Weed;
+import com.ZamanGames.RabbitGame.gameobjects.weed;
+import com.ZamanGames.RabbitGame.gameobjects.weed;
 import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
 import com.ZamanGames.RabbitGame.rhelpers.InputHandler;
 import com.ZamanGames.RabbitGame.ui.Button;
@@ -56,7 +57,7 @@ public class GameRender {
     private ScrollHandler scroller;
     private ParallaxBackground parallaxBackground;
     private Bullet bullet1, bullet2;
-    private Weed weed;
+    private weed weed;
 
     private List<Button> menuButtons, titleButtons, readyButtons, pausedButtons, leaderButtons;
 
