@@ -92,12 +92,13 @@ public class ScrollHandler {
 
         r = new Random();
 
-//        weed = new Weed(r.nextInt(1280*6) + 1280, r.nextInt(256), 50, 50, -SCROLL_SPEED);
-        weed = new Weed(700, 500, 50, 50, SCROLL_SPEED);
+        weed = new Weed(r.nextInt(1280*2) + 1280, r.nextInt(128), 150, -86, SCROLL_SPEED);
+
 
     }
 
     public void update(float delta) {
+        System.out.println(weed.getX() + " , " + weed.getY());
 
         updateClouds(delta);
 
@@ -128,7 +129,7 @@ public class ScrollHandler {
         if (weed.collides(rabbit)) {
             //if rabbit hits weeds, the rabbit gets high and the weed is dissapears.
             world.rise();
-            weed.reset(-10, -10);
+            weed.reset(-200, -200);
         }
 
         if (hill1.rabbitOn(rabbit) && hill1.getY() > 0) {
@@ -212,12 +213,14 @@ public class ScrollHandler {
         }
 
 
-
-
         if (water1.isScrolledLeft()) {
             water1.reset(gameWidth - 2, 0);
         } else if (water2.isScrolledLeft()) {
             water2.reset(gameWidth - 2, 0);
+        }
+
+        if (weed.isScrolledLeft()) {
+            weed.reset(r.nextInt(1280*6) + 5120, r.nextInt(128));
         }
         //Determine which ground is on the right side and make sure hills spawn according to that one
 
@@ -229,7 +232,6 @@ public class ScrollHandler {
         bullet1.setY(rabbit.getY());
         bullet2.setY(rabbit.getY() - 30);
         dyingCounter -= delta;
-        System.out.println(dyingCounter);
         //If bullet hits rabbit make bullet dissappear by sending it way up into the middle of nowhere.
         if(bullet1.getX() > rabbit.getX()) {
             bullet1.setY(1000);
@@ -361,7 +363,7 @@ public class ScrollHandler {
         cloud4.onRestart(cloud3.getTailX() + CLOUD_GAP, -1000, r.nextBoolean());
         bullet1.reset(-100, 0);
         bullet2.reset(-100, 0);
-        weed.reset(r.nextInt(1280*6) + 1280, r.nextInt(256));
+        weed.reset(r.nextInt(1280*2) + 1280, r.nextInt(64) + 64, SCROLL_SPEED);
 
     }
 

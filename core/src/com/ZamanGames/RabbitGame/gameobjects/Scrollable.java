@@ -13,12 +13,14 @@ public class Scrollable {
     protected Vector2 velocity;
     protected int width, height;
     protected float initXVelocity;
+    protected float scrollSpeed;
     protected boolean isScrolledLeft;
     protected Rectangle hitBox;
 
     public Scrollable(float x, float y, int width, int height, float scrollSpeed) {
         position = new Vector2(x, y);
         velocity = new Vector2(scrollSpeed, 0);
+        this.scrollSpeed = scrollSpeed;
         this.width = width;
         //So that rendering is made more simple and uniform
         //Except ground because I don't want to recode half the game

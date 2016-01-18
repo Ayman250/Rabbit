@@ -20,7 +20,7 @@ public class Rabbit {
 
     private float delta, timeLeft;
 
-    private boolean isDead, screenHeld, upAllowed, isEnemy, isBacking, rising, falling;
+    private boolean isDead, screenHeld, upAllowed, isEnemy, isBacking, rising, falling, jumpWhileFalling;
 
     private Rectangle hitBox;
 
@@ -34,7 +34,7 @@ public class Rabbit {
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 2000);
-        hitBox = new Rectangle(x, y, width, -height);
+        hitBox = new Rectangle(x, y, width, -(height - 20));
 
         isDead = false;
 
@@ -47,6 +47,7 @@ public class Rabbit {
         isBacking = false;
         rising = false;
         falling = false;
+        jumpWhileFalling = false;
 
     }
 
@@ -109,23 +110,22 @@ public class Rabbit {
     public void jump() {
         //if the rabbit lands reset upAllowed to false so game knows to activate jump mechanics when pressed
 
-        if (upAllowed && timeLeft > 0) {
+        if ((upAllowed && timeLeft > 0)) {
             acceleration.y = 0;
             velocity.y = -650;
             timeLeft -=delta;
-            if (!inAir()) {
+            if (!inAir() || jumpWhileFalling) {
                 AssetLoader.jumpSound.play();
             }
-
-
-
-        } else{
+        }
+        else{
             acceleration.y = 2000;
         }
     }
 
     public void onClick() {
-        if (!inAir()) {
+//        System.out.println(upAllowed + " " + jumpWhileFalling);
+        if (!inAir() || jumpWhileFalling) {
             AssetLoader.jumpSound.play();
             velocity.add(0, -650);
         }
@@ -171,6 +171,15 @@ public class Rabbit {
         velocity.x = 0;
     }
 
+    public void setUpAllowed(boolean upAllowed) {
+        this.upAllowed = upAllowed;
+        jumpWhileFalling = true;
+    }
+
+    public void setJumpWhileFalling(boolean jumpWhileFalling) {
+        this.jumpWhileFalling = jumpWhileFalling;
+    }
+
     public void onRestart(int groundY, float x, float y) {
         if (isEnemy) {
             position.x = x;
@@ -201,7 +210,6 @@ public class Rabbit {
 
     public boolean inAir() {
         if (position.y < groundY) {
-            System.out.println(groundY);
             return true;
         } else {
             timeLeft = .4f;
@@ -232,6 +240,10 @@ public class Rabbit {
 
     public float getHeight() {
         return height;
+    }
+
+    public boolean isUpAllowed() {
+        return upAllowed;
     }
 
 }

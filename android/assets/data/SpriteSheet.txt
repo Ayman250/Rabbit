@@ -142,23 +142,44 @@ Spikes
   orig: 197, 87
   offset: 0, 0
   index: -1
-pause
+shoppingCart
   rotate: false
   xy: 1537, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-shoppingCart
+right
   rotate: false
   xy: 1639, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-right
+leaderboardsComplex
   rotate: false
   xy: 1741, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+audioOn
+  rotate: false
+  xy: 1843, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+audioOff
+  rotate: false
+  xy: 1945, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+pause
+  rotate: false
+  xy: 2047, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -170,128 +191,114 @@ restart
   orig: 100, 100
   offset: 0, 0
   index: -1
-audioOff
-  rotate: false
-  xy: 104, 104
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-audioOn
-  rotate: false
-  xy: 206, 104
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-leaderboardsComplex
-  rotate: false
-  xy: 308, 104
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
 hill
   rotate: false
-  xy: 410, 104
+  xy: 104, 104
   size: 212, 130
   orig: 212, 130
   offset: 0, 0
   index: -1
+weed
+  rotate: false
+  xy: 318, 104
+  size: 282, 163
+  orig: 282, 163
+  offset: 0, 0
+  index: -1
 settings
   rotate: false
-  xy: 624, 104
+  xy: 602, 104
   size: 182, 189
   orig: 182, 189
   offset: 0, 0
   index: -1
-settingsButtonDownOld
+audioOnButton
   rotate: false
-  xy: 808, 104
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-settingsButton
-  rotate: false
-  xy: 1002, 104
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-settingsButtonOld
-  rotate: false
-  xy: 1196, 104
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-highscoresButtonDown
-  rotate: false
-  xy: 1390, 104
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-audioOnButtonPressed
-  rotate: false
-  xy: 1584, 104
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-settingsButtonDown
-  rotate: false
-  xy: 2, 298
-  size: 192, 192
-  orig: 192, 192
-  offset: 0, 0
-  index: -1
-audioOffButton
-  rotate: false
-  xy: 196, 298
+  xy: 786, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
 audioOffButtonPressed
   rotate: false
-  xy: 390, 298
+  xy: 980, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
-audioOnButton
+settingsButtonOld
   rotate: false
-  xy: 584, 298
+  xy: 1174, 104
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+audioOffButton
+  rotate: false
+  xy: 1368, 104
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+settingsButton
+  rotate: false
+  xy: 1562, 104
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
 highscoresButton
   rotate: false
-  xy: 778, 298
+  xy: 1756, 104
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+highscoresButtonDown
+  rotate: false
+  xy: 1950, 104
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+audioOnButtonPressed
+  rotate: false
+  xy: 2, 298
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+settingsButtonDownOld
+  rotate: false
+  xy: 196, 298
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+settingsButtonDown
+  rotate: false
+  xy: 390, 298
   size: 192, 192
   orig: 192, 192
   offset: 0, 0
   index: -1
 emptyStar
   rotate: false
-  xy: 972, 298
+  xy: 584, 298
   size: 194, 193
   orig: 194, 193
   offset: 0, 0
   index: -1
 star
   rotate: false
-  xy: 1168, 298
+  xy: 780, 298
   size: 194, 195
   orig: 194, 195
   offset: 0, 0
   index: -1
 largeStar
   rotate: false
-  xy: 1364, 298
+  xy: 976, 298
   size: 194, 204
   orig: 194, 204
   offset: 0, 0
@@ -303,14 +310,14 @@ title4
   orig: 1914, 274
   offset: 0, 0
   index: -1
-restartButtonDown
+restartButton
   rotate: false
   xy: 2, 780
   size: 309, 311
   orig: 309, 311
   offset: 0, 0
   index: -1
-restartButton
+restartButtonDown
   rotate: false
   xy: 313, 780
   size: 309, 311
@@ -340,28 +347,28 @@ Enemy G1
   index: -1
 Enemy G2
   rotate: false
-  xy: 2, 1284
+  xy: 1657, 780
   size: 409, 502
   orig: 409, 502
   offset: 0, 0
   index: -1
 background
   rotate: false
-  xy: 413, 1284
+  xy: 2, 1284
   size: 768, 768
   orig: 768, 768
   offset: 0, 0
   index: -1
 policeCar
   rotate: false
-  xy: 2, 2054
+  xy: 772, 1284
   size: 1415, 875
   orig: 1415, 875
   offset: 0, 0
   index: -1
 bars
   rotate: false
-  xy: 2, 2931
+  xy: 2, 2161
   size: 1596, 1304
   orig: 1596, 1304
   offset: 0, 0

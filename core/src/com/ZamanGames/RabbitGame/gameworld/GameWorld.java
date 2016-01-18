@@ -157,7 +157,7 @@ Solution will be to set delta to 0 for scroller update while rabbit is rising. T
 from updating
  */
         rabbit.update(delta);
-        if (rabbit.getY() > 200) {
+        if (rabbit.getY() > 150) {
 //            scroller.risePause();
             //Yvelocity must be changed from the velocoity it was in the the rising started
             rabbit.setYVelocity(-180);
@@ -193,18 +193,25 @@ from updating
         }
 
         if (highCounter > 0){
-            rabbit.setY(200 + 30*MathUtils.sin(1));
+            rabbit.setY(150 + 30*MathUtils.sin(1));
         } else {
             currentState = GameState.FALLING;
+            rabbit.setJumpWhileFalling(true);
+            rabbit.setUpAllowed(true);
         }
 
     }
 
     public void updateFalling(float delta) {
+        System.out.println(rabbit.isUpAllowed());
+        if (rabbit.isUpAllowed()) {
+            delta = delta/3;
+        }
         rabbit.update(delta);
         scroller.update(delta);
         if (!rabbit.inAir()) {
             currentState = GameState.RUNNING;
+            rabbit.setJumpWhileFalling(false);
         }
 
     }
@@ -222,7 +229,7 @@ from updating
         //if rabbit is high  make it float in the sky...
 
         if (isHigh()) {
-            rabbit.setY(200 + 30*MathUtils.sin(1));
+            rabbit.setY(150 + 30*MathUtils.sin(1));
         }
     }
 

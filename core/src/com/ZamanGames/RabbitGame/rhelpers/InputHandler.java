@@ -130,7 +130,7 @@ public class InputHandler implements InputProcessor {
         screenY = scaleY(screenY);
 
         //System.out.println(screenX + " " + screenY);
-        if (world.isRunning()) {
+        if (world.isRunning() || world.isFalling()) {
             if (!pauseButton.isTouchDown(screenX, screenY)) {
             rabbit.onClick();}
         } else if (world.isPaused()) {

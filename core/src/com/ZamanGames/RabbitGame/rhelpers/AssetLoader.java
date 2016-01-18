@@ -25,7 +25,7 @@ public class AssetLoader {
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
             policeCar, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
             audioOnButton, audioOnButtonPressed, audioOffButton, audioOffButtonPressed, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
-            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars, bullet, star, emptyStar, largeStar, one, two, three;
+            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars, bullet, star, emptyStar, largeStar, one, two, three, weed;
 
     public static Animation runningAnimation, idleAnimation;
 
@@ -92,6 +92,7 @@ public class AssetLoader {
         one = new TextureRegion(spriteSheet.findRegion("1"));
         two = new TextureRegion(spriteSheet.findRegion("2"));
         three = new TextureRegion(spriteSheet.findRegion("3"));
+        weed = new TextureRegion(spriteSheet.findRegion("weed"));
 
         TextureRegion[] runFrames = {rabbitAnimation.findRegion("Frame01"),
                 rabbitAnimation.findRegion("Frame02"), rabbitAnimation.findRegion("Frame03"), rabbitAnimation.findRegion("Frame04"), rabbitAnimation.findRegion("Frame05"),
@@ -130,6 +131,7 @@ public class AssetLoader {
         one.flip(false, true);
         two.flip(false, true);
         three.flip(false, true);
+        weed.flip(false, true);
 
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("data/ridaz.mp3"));
         click = Gdx.audio.newMusic(Gdx.files.internal("data/click.ogg"));

@@ -43,7 +43,7 @@ public class GameRender {
 
     private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton, blood;
 
-    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet, star, emptyStar, largeStar, one, two, three;
+    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet, star, emptyStar, largeStar, one, two, three, tWeed;
 
     private Animation runningAnimation, idleAnimation;
 
@@ -256,7 +256,6 @@ public class GameRender {
         batch.draw(tEnemy2, enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
     }
     public void drawRabbit(float delta, float runTime) {
-        System.out.println(rabbit.inAir());
         if (world.isReady() || world.isTitle() || world.isRising() || world.isFalling()) {
             batch.draw(idleAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
         } else if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill() || world.isGameOver()){
@@ -449,7 +448,7 @@ public class GameRender {
     }
 
     public void drawWeed() {
-            batch.draw(tEnemy1, weed.getX(), weed.getY(), weed.getWidth(), weed.getHeight());
+            batch.draw(tWeed, weed.getX(), weed.getY(), weed.getWidth(), weed.getHeight());
     }
     //might use runTime later for animations
     public void render(float delta, float runTime) {
@@ -563,5 +562,6 @@ public class GameRender {
         two = AssetLoader.two;
         three = AssetLoader.three;
         blood = AssetLoader.blood;
+        tWeed = AssetLoader.weed;
     }
 }
