@@ -193,7 +193,7 @@ from updating
         }
 
         if (highCounter > 0){
-            rabbit.setY(150 + 30*MathUtils.sin(1));
+            rabbit.setY(150 + 10*MathUtils.sin(7 * runTime));
         } else {
             currentState = GameState.FALLING;
             rabbit.setJumpWhileFalling(true);
@@ -317,7 +317,6 @@ from updating
         enemy2.onRestart(this.groundY, -299, 150);
         scroller.onRestart();
         currentState = GameState.READY;
-        AssetLoader.bgMusic.play();
         dyingCounter = 2;
         resumingCounter = 3;
         collidedPolice = false;
@@ -371,27 +370,27 @@ from updating
     }
 
     public void startSound() {
-        AssetLoader.bgMusic.setVolume(1);
+//        AssetLoader.bgMusic.setVolume(1);
         AssetLoader.click.setVolume( 1);
         soundOn = true;
     }
 
     public void stopSound() {
-        AssetLoader.bgMusic.setVolume(0);
+//        AssetLoader.bgMusic.setVolume(0);
         AssetLoader.click.setVolume(0);
         soundOn = false;
     }
 
     public void stopMusic() {
-        AssetLoader.bgMusic.stop();
+//        AssetLoader.bgMusic.stop();
     }
 
     public void pauseMusic() {
-        AssetLoader.bgMusic.pause();
+//        AssetLoader.bgMusic.pause();
     }
 
     public void playMusic() {
-        AssetLoader.bgMusic.play();
+//        AssetLoader.bgMusic.play();
     }
 
     public void setBloody() {
@@ -451,8 +450,10 @@ from updating
     }
 
     public boolean isHigh() {
-        return high;
+//        return high;
+        return currentState == GameState.HIGH;
     }
+
 
     public GameState getCurrentState() {
         return currentState;

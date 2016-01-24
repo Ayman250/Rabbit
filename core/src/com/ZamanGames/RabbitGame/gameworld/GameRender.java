@@ -43,7 +43,7 @@ public class GameRender {
 
     private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton, blood;
 
-    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet, star, emptyStar, largeStar, one, two, three, tWeed;
+    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet, star, emptyStar, largeStar, one, two, three, tWeed, high;
 
     private Animation runningAnimation, idleAnimation;
 
@@ -256,9 +256,10 @@ public class GameRender {
         batch.draw(tEnemy2, enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
     }
     public void drawRabbit(float delta, float runTime) {
-        if (world.isReady() || world.isTitle() || world.isRising() || world.isFalling()) {
+        System.out.println(world.isHigh());
+        if (world.isReady() || world.isTitle() || world.isRising() || world.isFalling() || world.isHigh()) {
             batch.draw(idleAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
-        } else if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill() || world.isGameOver()){
+        } else if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill() || world.isGameOver()) {
             batch.draw(rabbitJumped, rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
         } else {
             batch.draw(runningAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
@@ -279,9 +280,6 @@ public class GameRender {
     }
 
     private void drawScore() {
-        if (world.isGameOver() && world.getCollidedPolice()) {
-                batch.draw(bars, 50, -20, bars.getRegionWidth() * 3 / 4, bars.getRegionHeight() * 3 / 4);
-        }
         if (world.isTitle()) {
             return;
         } else if (world.isGameOver() || world.isHighScore()) {
@@ -332,10 +330,15 @@ public class GameRender {
 
     }
     private void drawBackgroundUI() {
+        if (world.isGameOver() && world.getCollidedPolice()) {
+            batch.draw(bars, 50, -20, bars.getRegionWidth() * 3 / 4, bars.getRegionHeight() * 3 / 4);
+        }
+
         if ( world.isMenu() || world.isPaused() || world.isReady() || world.isLeaderBoard() || world.isHighScore() || world.isGameOver()) {
             batch.setColor(1F, 1F, 1F, 1F);
             batch.draw(AssetLoader.uiBackground, 320, 180, 640, 360);
         }
+
     }
 
     private void drawLeaderBoard() {
@@ -448,7 +451,15 @@ public class GameRender {
     }
 
     public void drawWeed() {
+        if (!world.isHigh()) {
             batch.draw(tWeed, weed.getX(), weed.getY(), weed.getWidth(), weed.getHeight());
+        }
+    }
+
+    public void drawHigh() {
+        if (world.isHigh() || world.isRising()) {
+            batch.draw(high, 0, gameHeight, gameWidth, -gameHeight);
+        }
     }
     //might use runTime later for animations
     public void render(float delta, float runTime) {
@@ -488,7 +499,9 @@ public class GameRender {
         drawEnemies();
         drawRabbit(delta, runTime);
         drawDyingPolice();
+        drawBlood();
         drawBackgroundUI();
+        drawBlood();
         drawTitle();
         drawPause();
         drawMenuUI();
@@ -497,7 +510,7 @@ public class GameRender {
         drawLeaderBoard();
         drawResuming();
         drawBullets();
-        drawBlood();
+        drawHigh();
         //Shitty code to handle rabbit dying and bars showing over score
         if (rabbit.isDead()) {
             drawScore();
@@ -563,5 +576,6 @@ public class GameRender {
         three = AssetLoader.three;
         blood = AssetLoader.blood;
         tWeed = AssetLoader.weed;
+        high = AssetLoader.high;
     }
 }

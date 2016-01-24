@@ -25,13 +25,13 @@ public class AssetLoader {
     public static TextureRegion hill, hillTop, hillBottom, rabbitJumped, background, water,
             policeCar, playButtonDown, playButtonUp, dust, cloud1, cloud2, treeTall, treeShort, settingsGear,
             audioOnButton, audioOnButtonPressed, audioOffButton, audioOffButtonPressed, settings, shoppingCart, pause, restart, hiScores, done, playButton, settingsButtonUp,
-            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars, bullet, star, emptyStar, largeStar, one, two, three, weed;
+            settingsButtonDown, highscoresButtonUp, highscoresButtonDown, restartButtonUp, restartButtonDown, title, enemy1, enemy2, bars, bullet, star, emptyStar, largeStar, one, two, three, weed, high;
 
     public static Animation runningAnimation, idleAnimation;
 
     public static BitmapFont gameFont, scoreFont, resumingFont, bgGameFont, bgScoreFont;
 
-    public static Music bgMusic, click, jumpSound, jailCell, gunShot, policeSiren;
+    public static Music click, jumpSound, jailCell, gunShot, policeSiren;
 
     public static Preferences prefs;
 
@@ -93,6 +93,7 @@ public class AssetLoader {
         two = new TextureRegion(spriteSheet.findRegion("2"));
         three = new TextureRegion(spriteSheet.findRegion("3"));
         weed = new TextureRegion(spriteSheet.findRegion("weed"));
+        high = new TextureRegion(spriteSheet.findRegion("High"));
 
         TextureRegion[] runFrames = {rabbitAnimation.findRegion("Frame01"),
                 rabbitAnimation.findRegion("Frame02"), rabbitAnimation.findRegion("Frame03"), rabbitAnimation.findRegion("Frame04"), rabbitAnimation.findRegion("Frame05"),
@@ -133,7 +134,6 @@ public class AssetLoader {
         three.flip(false, true);
         weed.flip(false, true);
 
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("data/ridaz.mp3"));
         click = Gdx.audio.newMusic(Gdx.files.internal("data/click.ogg"));
         jumpSound = Gdx.audio.newMusic(Gdx.files.internal("data/jumpSound.wav"));
         gunShot = Gdx.audio.newMusic(Gdx.files.internal("data/gunShot.mp3"));
@@ -150,11 +150,8 @@ public class AssetLoader {
         dirt.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
         gunShot.setLooping(false);
-        bgMusic.setLooping(true);
-        bgMusic.setVolume(1f);
         click.setVolume(1);
 
-        AssetLoader.bgMusic.play();
 
 //        gameFont.getData().setScale(2f,2f);
 
@@ -195,7 +192,6 @@ public class AssetLoader {
     public void dispose() {
         ground.dispose();
         dirt.dispose();
-        bgMusic.dispose();
         gameFont.dispose();
     }
 

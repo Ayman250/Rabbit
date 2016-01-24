@@ -98,8 +98,6 @@ public class ScrollHandler {
     }
 
     public void update(float delta) {
-        System.out.println(weed.getX() + " , " + weed.getY());
-
         updateClouds(delta);
 
         hill1.update(delta);
@@ -124,13 +122,7 @@ public class ScrollHandler {
         enemy1.update(delta);
         enemy2.update(delta);
 
-        weed.update(delta);
-
-        if (weed.collides(rabbit)) {
-            //if rabbit hits weeds, the rabbit gets high and the weed is dissapears.
-            world.rise();
-            weed.reset(-200, -200);
-        }
+        updateWeed(delta);
 
         if (hill1.rabbitOn(rabbit) && hill1.getY() > 0) {
             rabbit.setY(hill1.getY() + hill1.getHeight() - 7);
@@ -219,9 +211,6 @@ public class ScrollHandler {
             water2.reset(gameWidth - 2, 0);
         }
 
-        if (weed.isScrolledLeft()) {
-            weed.reset(r.nextInt(1280*6) + 5120, r.nextInt(128));
-        }
         //Determine which ground is on the right side and make sure hills spawn according to that one
 
         //when hill is reset, parameter is passed in to determine how high it will stand now
@@ -264,6 +253,20 @@ public class ScrollHandler {
             cloud3.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
         }else if (cloud4.isScrolledLeft) {
             cloud4.reset(gameWidth, r.nextInt(120) + 60, r.nextBoolean());
+        }
+    }
+
+    public void updateWeed(float delta) {
+        weed.update(delta);
+
+        if (weed.collides(rabbit) && (!world.isHigh())) {
+            //if rabbit hits weeds, the rabbit gets high and the weed is dissapears.
+            world.rise();
+            weed.reset(-200, -200);
+        }
+
+        if (weed.isScrolledLeft()) {
+            weed.reset(r.nextInt(1280*6) + 5120, r.nextInt(128)+256);
         }
     }
 
@@ -363,7 +366,7 @@ public class ScrollHandler {
         cloud4.onRestart(cloud3.getTailX() + CLOUD_GAP, -1000, r.nextBoolean());
         bullet1.reset(-100, 0);
         bullet2.reset(-100, 0);
-        weed.reset(r.nextInt(1280*2) + 1280, r.nextInt(64) + 64, SCROLL_SPEED);
+        weed.reset(r.nextInt(1280 * 2) + 1280, r.nextInt(64) + 64, SCROLL_SPEED);
 
     }
 

@@ -7,6 +7,7 @@ public class Weed extends Scrollable {
 
     public Weed(float x, float y, int width, int height, float scrollSpeed) {
         super(x, y, width, height, scrollSpeed);
+        hitBox.height = -height;
     }
 
     public void reset(float newX, float newY, float scrollSpeed) {
