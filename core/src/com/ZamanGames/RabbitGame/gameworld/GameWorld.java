@@ -193,7 +193,7 @@ from updating
         }
 
         if (highCounter > 0){
-            rabbit.setY(150 + 10*MathUtils.sin(7 * runTime));
+            rabbit.setY(150 + 10 * MathUtils.sin(7 * runTime));
         } else {
             currentState = GameState.FALLING;
             rabbit.setJumpWhileFalling(true);
@@ -203,7 +203,6 @@ from updating
     }
 
     public void updateFalling(float delta) {
-        System.out.println(rabbit.isUpAllowed());
         if (rabbit.isUpAllowed()) {
             delta = delta/3;
         }
@@ -229,7 +228,7 @@ from updating
         //if rabbit is high  make it float in the sky...
 
         if (isHigh()) {
-            rabbit.setY(150 + 30*MathUtils.sin(1));
+            rabbit.setY(150 + 30 * MathUtils.sin(1));
         }
     }
 
@@ -299,8 +298,8 @@ from updating
     public void start() {
         previousState = currentState;
         currentState = GameState.RUNNING;
-
     }
+
 
     public void startResuming() {
         previousState = currentState;
@@ -453,7 +452,6 @@ from updating
 //        return high;
         return currentState == GameState.HIGH;
     }
-
 
     public GameState getCurrentState() {
         return currentState;

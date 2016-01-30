@@ -256,7 +256,6 @@ public class GameRender {
         batch.draw(tEnemy2, enemy2.getX(), enemy2.getY(), enemy2.getWidth(), enemy2.getHeight());
     }
     public void drawRabbit(float delta, float runTime) {
-        System.out.println(world.isHigh());
         if (world.isReady() || world.isTitle() || world.isRising() || world.isFalling() || world.isHigh()) {
             batch.draw(idleAnimation.getKeyFrame(runTime), rabbit.getX(), rabbit.getY(), rabbit.getWidth(), rabbit.getHeight());
         } else if (rabbit.inAir() || world.isPaused() || world.isMenu() || world.isDyingHill() || world.isGameOver()) {
@@ -449,6 +448,7 @@ public class GameRender {
             batch.draw(blood, 0, 0, 1280, 720);
         }
     }
+
 
     public void drawWeed() {
         if (!world.isHigh()) {

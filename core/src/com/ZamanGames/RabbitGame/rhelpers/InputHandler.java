@@ -241,6 +241,9 @@ public class InputHandler implements InputProcessor {
                     world.pause();
                 } else if (world.getPreviousState() == GameWorld.GameState.TITLE) {
                     world.ready();
+                } else if (world.getPreviousState() == GameWorld.GameState.READY) {
+                    world.ready();
+
                 }
             }
         }
