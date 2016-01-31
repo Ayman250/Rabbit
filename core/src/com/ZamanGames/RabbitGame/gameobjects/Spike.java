@@ -1,5 +1,6 @@
 package com.ZamanGames.RabbitGame.gameobjects;
 
+import com.ZamanGames.RabbitGame.rhelpers.Extras;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
@@ -7,11 +8,11 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Spike extends Scrollable {
 
-
+    private Rectangle hitBox1, hitBox2, hitBox3;
     public Spike(float x, float y, int width, int height, float scrollSpeed) {
         super(x, y, width, height, scrollSpeed);
         //to give the spike hitBox a little leeWay width and Height are made a little smaller
-        hitBox = new Rectangle(x, y, width-10, -(height-5));
+        hitBox1 = new Rectangle(x, y, width-10, -(height-5));
     }
 
     @Override
@@ -39,4 +40,8 @@ public class Spike extends Scrollable {
 
     }
 
+    public boolean collides(Rabbit rabbit) {
+        return (Extras.hit(rabbit.getHitBox(), hitBox1) || Extras.hit(rabbit.getHitBox(), hitBox2) || Extras.hit(rabbit.getHitBox(), hitBox3));
+
+    }
 }

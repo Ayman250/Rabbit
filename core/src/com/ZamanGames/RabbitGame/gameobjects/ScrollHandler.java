@@ -11,20 +11,15 @@ public class ScrollHandler {
 
     private Hill hill1, hill2, hill3, hill4;
     private Ground ground1, ground2, rightGround;
-    private Fence fence1, fence2;
     private Spike policeCar1, policeCar2, policeCar3;
     private Bullet bullet1, bullet2;
 
     public static int SCROLL_SPEED;
-    public static int HILL_GAP, TREE_GAP, CLOUD_GAP;
+    public static int HILL_GAP, CLOUD_GAP;
 
     private Random r;
 
     private Rabbit rabbit;
-
-    private Water water1, water2;
-
-    private Tree tree1, tree2, tree3, tree4;
 
     private Cloud cloud1, cloud2, cloud3, cloud4;
 
@@ -52,7 +47,6 @@ public class ScrollHandler {
 
         SCROLL_SPEED = -gameWidth / 2;
         HILL_GAP = gameWidth / 2;
-        TREE_GAP = gameWidth / 4;
         CLOUD_GAP = gameWidth / 4;
 
         //Set invisible at first
@@ -64,18 +58,9 @@ public class ScrollHandler {
         hill3 = new Hill(ground2.getTailX() - 400, ground1.getY() - 10, 90, 140, SCROLL_SPEED, groundY);
         hill4 = new Hill(-1000, -720 - 202, 90, 140, SCROLL_SPEED, groundY);
 
-
-        water1 = new Water(0, groundY, 1300, 70, SCROLL_SPEED);
-        water2 = new Water(water1.getTailX(), gameHeight, 1300, 70, SCROLL_SPEED);
-
         //initialize policeCar to be invisble to player
         policeCar1 = new Spike(0, -200 - 10, 141, 87, SCROLL_SPEED);
         policeCar2 = new Spike(0, -200 - 10, 141, 87, SCROLL_SPEED);
-
-        tree1 = new Tree(50, groundY, 100, 150, SCROLL_SPEED/2, false);
-        tree2 = new Tree(tree1.getTailX() + TREE_GAP, groundY - 12, 100, 150, SCROLL_SPEED/2, true);
-        tree3 = new Tree(tree2.getTailX() + TREE_GAP, groundY - 12, 100, 150, SCROLL_SPEED/2, false);
-        tree4 = new Tree(tree3.getTailX() + TREE_GAP, groundY - 12, 100, 150, SCROLL_SPEED/2, false);
 
         cloud1 = new Cloud(50, 100, 150, 75, SCROLL_SPEED/3, true);
         cloud2 = new Cloud(cloud1.getTailX() + CLOUD_GAP, 150, 150, 75, SCROLL_SPEED/3, false);
@@ -92,7 +77,7 @@ public class ScrollHandler {
 
         r = new Random();
 
-        weed = new Weed(r.nextInt(1280*2) + 1280, r.nextInt(128), 150, -86, SCROLL_SPEED);
+        weed = new Weed(r.nextInt(1280*6) + 1280, r.nextInt(128), 150, -86, SCROLL_SPEED);
 
 
     }
@@ -104,20 +89,11 @@ public class ScrollHandler {
         hill2.update(delta);
         hill3.update(delta);
 
-
-        water1.update(delta);
-        water2.update(delta);
-
         ground1.update(delta);
         ground2.update(delta);
 
         policeCar1.update(delta);
         policeCar2.update(delta);
-
-        tree1.update(delta);
-        tree2.update(delta);
-        tree3.update(delta);
-        tree4.update(delta);
 
         enemy1.update(delta);
         enemy2.update(delta);
@@ -145,7 +121,6 @@ public class ScrollHandler {
         if (ground1.isScrolledLeft()) {
             //After reset hasSpike is changed to false so it is not rendered
             ground1.reset(ground2.getTailX(), 0);
-            //fence1.changeHeight(ground1.getY());
             //50% chance of there being a spike on the ground
             //Same code logic for policeCar2
             if (r.nextInt(10) > 1) {
@@ -201,14 +176,6 @@ public class ScrollHandler {
             if (r.nextInt(10) % 2 == 0) {
 
             }
-            //fence2.changeHeight(ground2.getY());
-        }
-
-
-        if (water1.isScrolledLeft()) {
-            water1.reset(gameWidth - 2, 0);
-        } else if (water2.isScrolledLeft()) {
-            water2.reset(gameWidth - 2, 0);
         }
 
         //Determine which ground is on the right side and make sure hills spawn according to that one
@@ -266,7 +233,7 @@ public class ScrollHandler {
         }
 
         if (weed.isScrolledLeft()) {
-            weed.reset(r.nextInt(1280*6) + 5120, r.nextInt(128)+256);
+            weed.reset(r.nextInt(1280*10) + 5120, r.nextInt(128)+256);
         }
     }
 
@@ -276,12 +243,6 @@ public class ScrollHandler {
         ground2.stop();
         policeCar1.stop();
         policeCar2.stop();
-        water1.stop();
-        water2.stop();
-        tree1.stop();
-        tree2.stop();
-        tree3.stop();
-        tree4.stop();
         weed.stop();
         world.stopScoring();
     }
@@ -292,12 +253,6 @@ public class ScrollHandler {
         rabbit.pause();
         policeCar1.stop();
         policeCar2.stop();
-        water1.stop();
-        water2.stop();
-        tree1.stop();
-        tree2.stop();
-        tree3.stop();
-        tree4.stop();
         weed.stop();
     }
 
@@ -307,12 +262,6 @@ public class ScrollHandler {
         ground2.stop();
         policeCar1.stop();
         policeCar2.stop();
-        water1.stop();
-        water2.stop();
-        tree1.stop();
-        tree2.stop();
-        tree3.stop();
-        tree4.stop();
         weed.stop();
     }
 
@@ -321,12 +270,6 @@ public class ScrollHandler {
         ground2.resume();
         policeCar1.resume();
         policeCar2.resume();
-        water1.resume();
-        water2.resume();
-        tree1.resume();
-        tree2.resume();
-        tree3.resume();
-        tree4.resume();
         weed.resume();
     }
 
@@ -353,12 +296,6 @@ public class ScrollHandler {
         hill4.onReset(hill3.getTailX() + HILL_GAP, -1000, 120, SCROLL_SPEED);
         policeCar1.onReset(0, SCROLL_SPEED);
         policeCar2.onReset(0, SCROLL_SPEED);
-        water1.onReset(0, SCROLL_SPEED);
-        water2.onReset(0, SCROLL_SPEED);
-        tree1.onRestart(50, r.nextBoolean());
-        tree2.onRestart(tree1.getTailX() + HILL_GAP, r.nextBoolean());
-        tree3.onRestart(tree2.getTailX() + HILL_GAP, r.nextBoolean());
-        tree4.onRestart(tree3.getTailX() + HILL_GAP, r.nextBoolean());
         cloud1.onRestart(50, r.nextInt(100) + 80, r.nextBoolean());
         cloud2.onRestart(cloud1.getTailX() + CLOUD_GAP, r.nextInt(100) + 80, r.nextBoolean());
         cloud3.onRestart(cloud2.getTailX() + CLOUD_GAP, r.nextInt(100) + 80, r.nextBoolean());
@@ -406,29 +343,6 @@ public class ScrollHandler {
         return policeCar3;
     }
 
-    public Water getWater1() {
-        return water1;
-    }
-
-    public Water getWater2() {
-        return water2;
-    }
-
-    public Tree getTree1() {
-        return tree1;
-    }
-
-    public Tree getTree2() {
-        return tree2;
-    }
-
-    public Tree getTree3() {
-        return tree3;
-    }
-
-    public Tree getTree4() {
-        return tree4;
-    }
 
     public Cloud getCloud1() {
         return cloud1;

@@ -8,7 +8,6 @@ import com.ZamanGames.RabbitGame.gameobjects.Rabbit;
 import com.ZamanGames.RabbitGame.gameobjects.ScrollHandler;
 import com.ZamanGames.RabbitGame.gameobjects.Scrollable;
 import com.ZamanGames.RabbitGame.gameobjects.Spike;
-import com.ZamanGames.RabbitGame.gameobjects.Tree;
 import com.ZamanGames.RabbitGame.gameobjects.Weed;
 import com.ZamanGames.RabbitGame.rhelpers.AssetLoader;
 import com.ZamanGames.RabbitGame.rhelpers.InputHandler;
@@ -43,18 +42,15 @@ public class GameRender {
 
     private Texture tGround, dirt, tPlayButtonUp, tPlayButtonDown, tPlayButton, tSettingsButton, tHighScoresButton, blood;
 
-    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, treeTall, treeShort, treeToDraw, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet, star, emptyStar, largeStar, one, two, three, tWeed, high;
+    private TextureRegion hillTop, hill, hillBottom,  rabbitJumped, spikes, dust, background, cloudToDraw, title, tEnemy1, tEnemy2, bars, bullet, star, emptyStar, largeStar, one, two, three, tWeed, high;
 
     private Animation runningAnimation, idleAnimation;
 
-    private Scrollable water1, water2;
     private Cloud cloud1, cloud2, cloud3, cloud4;
-    private Tree tree1, tree2, tree3, tree4;
     private Hill hill1, hill2, hill3, hill4;
     private Ground ground1, ground2;
     private Spike policeCar1, policeCar2, policeCar3;
     private ScrollHandler scroller;
-    private ParallaxBackground parallaxBackground;
     private Bullet bullet1, bullet2;
     private Weed weed;
 
@@ -90,14 +86,6 @@ public class GameRender {
         this.leaderButtons = ((InputHandler) Gdx.input.getInputProcessor())
                 .getLeaderButtons();
 
-//        this.settingsButton = ((InputHandler) Gdx.input.getInputProcessor())
-//            .getReadySettingsButton();
-//        this.hiScoreButton = ((InputHandler) Gdx.input.getInputProcessor())
-//                .getMenuHighscoresButton();
-//
-//        this.playButton =
-//                ((InputHandler) Gdx.input.getInputProcessor())
-//                        .getTitlePlayButton();
 
         initGameObjects();
         initAssets();
@@ -115,10 +103,10 @@ public class GameRender {
     public void drawHillTops() {
         //convoluted monkey ass faggot way of drawing hills
         //width of hilltop should match width of hill and the height should be experiments with (2*width seems to work well)
-        batch.draw(hillTop, hill1.getX(), hill1.getY() + hill1.getHeight() - (19), hill1.getWidth(), 20);
-        batch.draw(hillTop, hill2.getX(), hill2.getY() + hill2.getHeight() - (19), hill2.getWidth(), 20);
-        batch.draw(hillTop, hill3.getX(), hill3.getY() + hill3.getHeight() - (19), hill3.getWidth(), 20);
-        batch.draw(hillTop, hill4.getX(), hill4.getY() + hill4.getHeight() - (19), hill4.getWidth(), 20);
+        batch.draw(hillTop, hill1.getX(), hill1.getY() + hill1.getHeight() - (19), hill1.getWidth(), 21);
+        batch.draw(hillTop, hill2.getX(), hill2.getY() + hill2.getHeight() - (19), hill2.getWidth(), 21);
+        batch.draw(hillTop, hill3.getX(), hill3.getY() + hill3.getHeight() - (19), hill3.getWidth(), 21);
+        batch.draw(hillTop, hill4.getX(), hill4.getY() + hill4.getHeight() - (19), hill4.getWidth(), 21);
     }
 
     public void drawHills() {
@@ -133,10 +121,10 @@ public class GameRender {
     public void drawHillBottoms() {
         //draw((x coordinates of top and bottom match, y is shifted by the width (last parameter) so that it sits nicely on top of hill
         //width of hilltop should match width of hill and the height should be experiments with (2*width seems to work well)
-        batch.draw(hillBottom, hill1.getX(), hill1.getY(), hill1.getWidth(), 14);
-        batch.draw(hillBottom, hill2.getX(), hill2.getY(), hill2.getWidth(), 14);
-        batch.draw(hillBottom, hill3.getX(), hill3.getY(), hill3.getWidth(), 14);
-        batch.draw(hillBottom, hill4.getX(), hill4.getY(), hill4.getWidth(), 14);
+        batch.draw(hillBottom, hill1.getX(), hill1.getY()-6, hill1.getWidth(), 20);
+        batch.draw(hillBottom, hill2.getX(), hill2.getY()-6, hill2.getWidth(), 20);
+        batch.draw(hillBottom, hill3.getX(), hill3.getY()-6, hill3.getWidth(), 20);
+        batch.draw(hillBottom, hill4.getX(), hill4.getY()-6, hill4.getWidth(), 20);
     }
 
     public void drawBullets() {
@@ -182,39 +170,6 @@ public class GameRender {
         }
     }
 
-//    public void drawWater() {
-//        batch.draw(water, water1.getX(), water1.getY(), water1.getWidth(), water1.getHeight(), 0, 0, 8, 1);
-//        batch.draw(water, water2.getX(), water2.getY(), water2.getWidth(), water2.getHeight(), 0, 0, 8, 1);
-//
-//    }
-
-    public void drawTrees() {
-        //Randomly determines which tree should be drawn 50/50 chance
-        if (tree1.isTall()) {
-            treeToDraw = treeTall;
-        } else{
-            treeToDraw = treeShort;
-        }
-        batch.draw(treeToDraw, tree1.getX(), tree1.getY(), tree1.getWidth(), tree1.getHeight());
-        if (tree2.isTall()) {
-            treeToDraw = treeTall;
-        } else{
-            treeToDraw = treeShort;
-        }
-        batch.draw(treeToDraw, tree2.getX(), tree2.getY(), tree2.getWidth(), tree2.getHeight());
-        if (tree3.isTall()) {
-            treeToDraw = treeTall;
-        } else{
-            treeToDraw = treeShort;
-        }
-        batch.draw(treeToDraw, tree3.getX(), tree3.getY(), tree3.getWidth(), tree3.getHeight());
-        if (tree4.isTall()) {
-            treeToDraw = treeTall;
-        } else{
-            treeToDraw = treeShort;
-        }
-        batch.draw(treeToDraw, tree4.getX(), tree4.getY(), tree4.getWidth(), tree4.getHeight());
-    }
 
     private void drawClouds() {
         if (cloud1.is1()) {
@@ -490,9 +445,8 @@ public class GameRender {
         drawClouds();
         drawWeed();
         drawGround();
-        drawHillBottoms();
         drawHills();
-        drawHillTops();
+        drawHillBottoms();
         drawHillTops();
         drawPoliceCars();
         drawScore();
@@ -531,12 +485,6 @@ public class GameRender {
         ground2 = scroller.getGround2();
         policeCar1 = scroller.getPoliceCar1();
         policeCar2 = scroller.getPoliceCar2();
-        water1 = scroller.getWater1();
-        water2 = scroller.getWater2();
-        tree1 = scroller.getTree1();
-        tree2 = scroller.getTree2();
-        tree3 = scroller.getTree3();
-        tree4 = scroller.getTree4();
         cloud1 = scroller.getCloud1();
         cloud2 = scroller.getCloud2();
         cloud3 = scroller.getCloud3();
@@ -561,8 +509,6 @@ public class GameRender {
         runningAnimation = AssetLoader.runningAnimation;
         idleAnimation = AssetLoader.idleAnimation;
         dust = AssetLoader.dust;
-        treeTall = AssetLoader.treeTall;
-        treeShort = AssetLoader.treeShort;
         title = AssetLoader.title;
         tEnemy1 = AssetLoader.enemy1;
         tEnemy2 = AssetLoader.enemy2;
