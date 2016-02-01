@@ -21,7 +21,7 @@ public class GameWorld {
 
     private boolean scoring, soundOn, collidedPolice, shouldShoot, bloody, high, rising, falling;
 
-    private GameState currentState, previousState;
+    private GameState currentState, previousState, formerState;
 
     public enum GameState {
         MENU, READY, RUNNING, GAMEOVER, HIGHSCORE, PAUSED, RESUMING, TITLE, DYINGPOLICE, DYINGHILL, LEADERBOARD, RISING, FALLING, HIGH;
@@ -156,6 +156,7 @@ public class GameWorld {
 Solution will be to set delta to 0 for scroller update while rabbit is rising. This will effectively prevent the scroller
 from updating
  */
+        AssetLoader.cough.play();
         rabbit.update(delta);
         if (rabbit.getY() > 150) {
 //            scroller.risePause();
@@ -341,7 +342,16 @@ from updating
         currentState = GameState.RUNNING;
     }
 
+    public void title() {
+        previousState = currentState;
+        currentState = GameState.TITLE;
+    }
+
     public void menu() {
+        //former state stores  state when menu was entered because previous state fails when you enter highscores from the menu and try to go back twice...
+        if(currentState != GameState.LEADERBOARD){
+            formerState = currentState;
+        }
         previousState = currentState;
         currentState = GameState.MENU;
     }
@@ -371,12 +381,23 @@ from updating
     public void startSound() {
 //        AssetLoader.bgMusic.setVolume(1);
         AssetLoader.click.setVolume( 1);
+        AssetLoader.click.setVolume(1);
+        AssetLoader.jumpSound.setVolume(1);
+        AssetLoader.cough.setVolume(1);
+        AssetLoader.jailCell.setVolume(1);
+        AssetLoader.gunShot.setVolume(1);
+        AssetLoader.policeSiren.setVolume(1);
         soundOn = true;
     }
 
     public void stopSound() {
 //        AssetLoader.bgMusic.setVolume(0);
         AssetLoader.click.setVolume(0);
+        AssetLoader.jumpSound.setVolume(0);
+        AssetLoader.cough.setVolume(0);
+        AssetLoader.jailCell.setVolume(0);
+        AssetLoader.gunShot.setVolume(0);
+        AssetLoader.policeSiren.setVolume(0);
         soundOn = false;
     }
 
@@ -459,6 +480,10 @@ from updating
 
     public GameState getPreviousState() {
         return previousState;
+    }
+
+    public GameState getFormerState() {
+        return formerState;
     }
 
     //Used in case scoring needs to be resumed while game is still running.

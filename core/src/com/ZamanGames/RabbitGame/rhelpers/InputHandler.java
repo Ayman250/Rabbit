@@ -4,6 +4,7 @@ import com.ZamanGames.RabbitGame.gameobjects.Rabbit;
 import com.ZamanGames.RabbitGame.gameworld.GameWorld;
 import com.ZamanGames.RabbitGame.ui.Button;
 import com.ZamanGames.RabbitGame.ui.MusicButton;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.InputProcessor;
 
 import java.util.ArrayList;
@@ -194,9 +195,18 @@ public class InputHandler implements InputProcessor {
                 AssetLoader.click.play();
                 if (world.getPreviousState() == GameWorld.GameState.READY) {
                     world.ready();
-                }
-                else if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
+                } else if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
                     world.pause();
+                } else if (world.getPreviousState() == GameWorld.GameState.TITLE) {
+                    world.title();
+                } else if (world.getPreviousState() == GameWorld.GameState.LEADERBOARD) {
+                    if (world.getFormerState() == GameWorld.GameState.PAUSED) {
+                        world.pause();
+                    } else if (world.getFormerState() == GameWorld.GameState.TITLE) {
+                        world.title();
+                    } else if (world.getFormerState() == GameWorld.GameState.READY) {
+                        world.ready();
+                    }
                 }
             } else if (menuAudioButton.isTouchUp(screenX, screenY)) {
                 if (world.isSoundOn()) {
@@ -240,10 +250,11 @@ public class InputHandler implements InputProcessor {
                 if (world.getPreviousState() == GameWorld.GameState.PAUSED) {
                     world.pause();
                 } else if (world.getPreviousState() == GameWorld.GameState.TITLE) {
-                    world.ready();
+                    world.title();
                 } else if (world.getPreviousState() == GameWorld.GameState.READY) {
                     world.ready();
-
+                } else if (world.getPreviousState() == GameWorld.GameState.MENU) {
+                    world.menu();
                 }
             }
         }

@@ -201,7 +201,7 @@ public class ScrollHandler {
         if (dyingCounter < 1.5) {
             bullet2.update(delta);
         }
-        if (dyingCounter < .5) {
+        if (dyingCounter < .75) {
             world.setBloody();
         }
     }
@@ -287,7 +287,7 @@ public class ScrollHandler {
     }
 
     public void onRestart() {
-        dyingCounter = 3;
+        dyingCounter = 2;
         ground1.onReset(0, SCROLL_SPEED);
         ground2.onReset(ground1.getTailX(), SCROLL_SPEED);
         hill1.onReset(ground2.getTailX() - 150, -1000, 140, SCROLL_SPEED);

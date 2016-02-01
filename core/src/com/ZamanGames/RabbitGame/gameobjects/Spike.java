@@ -12,21 +12,36 @@ public class Spike extends Scrollable {
     public Spike(float x, float y, int width, int height, float scrollSpeed) {
         super(x, y, width, height, scrollSpeed);
         //to give the spike hitBox a little leeWay width and Height are made a little smaller
-        hitBox1 = new Rectangle(x, y, width-10, -(height-5));
+        hitBox1 = new Rectangle(x, y-.5f*height, width*.4f, -(height-5));
+        hitBox2 = new Rectangle(x + width*.4f, y, width*.3f, -(height-5));
+        hitBox3 = new Rectangle(x + width*.7f, y-.5f*height, width*.3f, -(height-5));
     }
 
     @Override
     public void reset(float newX, float newY) {
         super.reset(newX, newY);
         position.y = newY;
-        hitBox.x = position.x;
-        hitBox.y = position.y;
+        hitBox1.x = position.x;
+        hitBox1.y = position.y-.5f*height;
+        hitBox2.x = position.x+ width*.4f;
+        hitBox2.y = position.y;
+        hitBox3.x = position.x+ width*.7f;
+        hitBox3.y = position.y-.5f*height;
     }
 
     @Override
     public void update(float delta) {
-        super.update(delta);
+        position.add(velocity.cpy().scl(delta));
 
+        //If no longer visible FUCKIT
+        if (position.x + width <= 0 ) {
+            isScrolledLeft
+                    = true;
+        }
+        hitBox1.x = position.x;
+        hitBox2.x = position.x + width*.4f;
+        hitBox3.x = position.x + width*.7f;
+        initXVelocity = velocity.x;
 
     }
 
@@ -40,6 +55,7 @@ public class Spike extends Scrollable {
 
     }
 
+    @Override
     public boolean collides(Rabbit rabbit) {
         return (Extras.hit(rabbit.getHitBox(), hitBox1) || Extras.hit(rabbit.getHitBox(), hitBox2) || Extras.hit(rabbit.getHitBox(), hitBox3));
 

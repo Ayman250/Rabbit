@@ -31,7 +31,7 @@ public class AssetLoader {
 
     public static BitmapFont gameFont, scoreFont, resumingFont, bgGameFont, bgScoreFont;
 
-    public static Music click, jumpSound, jailCell, gunShot, policeSiren;
+    public static Music click, jumpSound, jailCell, gunShot, policeSiren, cough;
 
     public static Preferences prefs;
 
@@ -139,6 +139,7 @@ public class AssetLoader {
         gunShot = Gdx.audio.newMusic(Gdx.files.internal("data/gunShot.mp3"));
         jailCell = Gdx.audio.newMusic(Gdx.files.internal("data/jail.mp3"));
         policeSiren = Gdx.audio.newMusic(Gdx.files.internal("data/police.mp3"));
+        cough = Gdx.audio.newMusic(Gdx.files.internal("data/cough.wav"));
 
 //        gameFont = new BitmapFont(Gdx.files.internal("data/gameFont.fnt"), true);
 
@@ -150,6 +151,7 @@ public class AssetLoader {
         dirt.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
         gunShot.setLooping(false);
+        cough.setLooping(false);
         click.setVolume(1);
 
 

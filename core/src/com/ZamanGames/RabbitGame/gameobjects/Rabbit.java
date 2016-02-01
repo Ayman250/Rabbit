@@ -33,8 +33,8 @@ public class Rabbit {
 
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
-        acceleration = new Vector2(0, 2000);
-        hitBox = new Rectangle(x, (y - 20), width, -height);
+        acceleration = new Vector2(0, 4000);
+        hitBox = new Rectangle(x, y, width, -height);
 
         isDead = false;
 
